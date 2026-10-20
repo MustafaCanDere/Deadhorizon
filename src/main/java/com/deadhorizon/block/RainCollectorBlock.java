@@ -13,7 +13,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -25,7 +24,7 @@ import net.minecraft.world.World;
 
 /** An open barrel that fills with rain. Rain water is clean: fill glass bottles from it. */
 public class RainCollectorBlock extends Block {
-    public static final IntProperty LEVEL = Properties.LEVEL_3;
+    public static final IntProperty LEVEL = IntProperty.of("level", 0, 3);
     private static final VoxelShape SHAPE = Block.createCuboidShape(2, 0, 2, 14, 14, 14);
 
     public RainCollectorBlock(Settings settings) {
