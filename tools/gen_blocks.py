@@ -388,7 +388,7 @@ def gen_container_loot():
                               entry(m("sugar"), 6, 1, 4), entry(m("bowl"), 5), entry(m("glass_bottle"), 6, 1, 3),
                               entry(m("honey_bottle"), 2), entry(d("painkillers"), 2), entry(m("iron_sword"), 1),
                               entry(d("canned_beans"), 6, 1, 2), entry(d("canned_soup"), 6, 1, 2), entry(d("energy_bar"), 4, 1, 3),
-                              entry(d("clean_water"), 4, 1, 2)])
+                              entry(d("clean_water"), 4, 1, 2), entry(d("coffee"), 3)])
     chest("fridge", (1, 4), [entry(m("cooked_beef"), 6, 1, 2), entry(m("cooked_chicken"), 6, 1, 2), entry(m("apple"), 8, 1, 3),
                              entry(m("carrot"), 6, 1, 4), entry(m("milk_bucket"), 3), entry(m("rotten_flesh"), 8, 1, 3),
                              entry(m("melon_slice"), 5, 1, 4), entry(d("soda"), 6, 1, 3), entry(d("energy_drink"), 3),

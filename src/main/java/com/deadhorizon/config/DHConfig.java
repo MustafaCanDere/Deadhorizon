@@ -64,9 +64,20 @@ public class DHConfig {
     public double attackStaminaCost = 4.0;
     public double staminaRegenPerTick = 0.6;
 
+    // Body temperature, sleep, carrying weight
+    public boolean temperatureEnabled = true;
+    public boolean fatigueEnabled = true;
+    /** Rest lost per tick awake; the default lasts about two and a half in-game days. */
+    public double fatigueDrainPerTick = 0.0017;
+    public boolean encumbranceEnabled = true;
+
     // Injuries
     public boolean fracturesEnabled = true;
     public int fractureMinutes = 10;
+    /** Chance that one of our zombies grabs you on a hit, slowing you right down for a moment. */
+    public double zombieGrabChance = 0.35;
+    /** At or below this much health you go into shock: slow and weak. 0 turns it off. */
+    public double shockHealth = 4.0;
 
     // Zombie senses and headshots
     public boolean zombieSensesEnabled = true;

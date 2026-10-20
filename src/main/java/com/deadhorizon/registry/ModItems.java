@@ -49,13 +49,15 @@ public final class ModItems {
     public static final Item SPLINT = register("splint", new MedicalItem(new Item.Settings().maxCount(8),
             new Treatment(80, 0.0f, false, false, false, false, 0, true)));
 
-    // Drinks: DrinkItem(settings, thirst, stamina, returnsBottle, effect, effectSeconds)
+    // Drinks: DrinkItem(settings, thirst, stamina, rest, warmth, returnsBottle, effect, effectSeconds)
     public static final Item CLEAN_WATER = register("clean_water", new DrinkItem(new Item.Settings().maxCount(16),
-            8.0f, 0.0f, true, null, 0));
+            8.0f, 0.0f, 0.0f, 0.0f, true, null, 0));
     public static final Item SODA = register("soda", new DrinkItem(new Item.Settings().maxCount(16),
-            6.0f, 15.0f, false, null, 0));
+            6.0f, 15.0f, 5.0f, 0.0f, false, null, 0));
     public static final Item ENERGY_DRINK = register("energy_drink", new DrinkItem(new Item.Settings().maxCount(16),
-            3.0f, 100.0f, false, StatusEffects.SPEED, 30));
+            3.0f, 100.0f, 25.0f, 0.0f, false, StatusEffects.SPEED, 30));
+    public static final Item COFFEE = register("coffee", new DrinkItem(new Item.Settings().maxCount(16),
+            4.0f, 10.0f, 35.0f, 12.0f, true, null, 0));
 
     // Preserved food. Thirst and stamina effects of eating are in Survival.
     public static final Item CANNED_BEANS = register("canned_beans", new TooltipItem(new Item.Settings().maxCount(16)
@@ -89,6 +91,7 @@ public final class ModItems {
                         entries.add(CLEAN_WATER);
                         entries.add(SODA);
                         entries.add(ENERGY_DRINK);
+                        entries.add(COFFEE);
                         entries.add(CANNED_BEANS);
                         entries.add(CANNED_SOUP);
                         entries.add(ENERGY_BAR);

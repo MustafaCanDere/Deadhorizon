@@ -88,5 +88,18 @@
   "message.deadhorizon.exhausted": "Nefes nefese kaldın...",
   "message.deadhorizon.dirty_water": "Su temiz değildi. Miden bulanıyor.",
   "death.attack.deadhorizon.dehydration": "%1$s susuzluktan öldü",
-  "death.attack.deadhorizon.dehydration.player": "%1$s, %2$s elinden kaçarken susuzluktan öldü"
+  "death.attack.deadhorizon.dehydration.player": "%1$s, %2$s elinden kaçarken susuzluktan öldü",
+  "item.deadhorizon.coffee": "Kahve",
+  "item.deadhorizon.coffee.tooltip": "Uykunu açar, içini ısıtır",
+  "message.deadhorizon.cold": "Üşüyorsun. Ateş yak, deri giy.",
+  "message.deadhorizon.hot": "Bunaldın. Gölgeye geç, su iç.",
+  "message.deadhorizon.tired": "Gözlerin kapanıyor... Uyuman lazım.",
+  "message.deadhorizon.heavy": "Çantan ağırlaştı.",
+  "message.deadhorizon.overloaded": "Çok fazla yük taşıyorsun!",
+  "message.deadhorizon.grabbed": "Bir zombi seni yakaladı!",
+  "hud.deadhorizon.tired": "Uykusuz",
+  "hud.deadhorizon.heavy": "Ağır",
+  "hud.deadhorizon.overloaded": "Aşırı yük",
+  "death.attack.deadhorizon.heatstroke": "%1$s sıcak çarpmasından öldü",
+  "death.attack.deadhorizon.heatstroke.player": "%1$s, %2$s elinden kaçarken sıcak çarpmasından öldü"
 }

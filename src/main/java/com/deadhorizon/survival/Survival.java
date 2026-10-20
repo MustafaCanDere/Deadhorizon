@@ -5,6 +5,7 @@ import com.deadhorizon.config.DHConfig;
 import com.deadhorizon.registry.ModDamageTypes;
 import com.deadhorizon.registry.ModEffects;
 import com.deadhorizon.registry.ModItems;
+import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -33,7 +34,7 @@ import net.minecraft.world.World;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Thirst, stamina and broken legs. Server-authoritative; the client only gets a copy for the HUD. */
+/** Thirst, stamina, body temperature, sleep, carrying weight, shock and broken legs. Server-authoritative; the client only gets a copy for the HUD. */
 public final class Survival {
     public static final Identifier SYNC = DeadHorizon.id("survival_sync");
 
@@ -101,6 +102,13 @@ public final class Survival {
             return true;
         });
 
+        // A full night's sleep leaves you rested; a nap only helps a little (see tickRest).
+        EntitySleepEvents.STOP_SLEEPING.register((entity, sleepingPos) -> {
+            if (entity instanceof ServerPlayerEntity player && player.getWorld().isDay()) {
+                get(player).rest = SurvivalData.MAX_REST;
+            }
+        });
+
         ServerPlayerEvents.COPY_FROM.register((oldPlayer, newPlayer, alive) -> {
             if (alive) get(newPlayer).copyFrom(get(oldPlayer));
         });
@@ -115,7 +123,14 @@ public final class Survival {
         DHConfig cfg = DHConfig.INSTANCE;
         if (!exempt(player) && player.isAlive()) {
             if (cfg.thirstEnabled) tickThirst(player, data, cfg);
+            if (cfg.temperatureEnabled) tickTemperature(player, data);
+            if (cfg.fatigueEnabled) tickRest(player, data, cfg);
+            if (cfg.encumbranceEnabled) tickLoad(player, data);
             if (cfg.staminaEnabled) tickStamina(player, data, cfg);
+            if (cfg.shockHealth > 0 && player.getHealth() <= cfg.shockHealth && player.age % 40 == 0) {
+                refresh(player, StatusEffects.SLOWNESS, 0);
+                refresh(player, StatusEffects.WEAKNESS, 0);
+            }
             if (player.hasStatusEffect(ModEffects.FRACTURE) && player.isSprinting()) player.setSprinting(false);
         }
         if (player.age % 5 == 0) sync(player, data);
@@ -125,7 +140,10 @@ public final class Survival {
         ServerWorld world = player.getServerWorld();
         double rate = cfg.thirstDrainPerTick;
         if (player.isSprinting()) rate *= 3.0;
-        if (world.getRegistryKey() == World.NETHER) {
+        if (cfg.temperatureEnabled) {
+            if (data.temperature > 80.0f) rate *= 2.5;
+            else if (data.temperature > 65.0f) rate *= 1.5;
+        } else if (world.getRegistryKey() == World.NETHER) {
             rate *= 2.0;
         } else if (world.getBiome(player.getBlockPos()).value().getTemperature() > 1.0f) {
             rate *= 1.5;
@@ -145,13 +163,16 @@ public final class Survival {
     private static void tickStamina(ServerPlayerEntity player, SurvivalData data, DHConfig cfg) {
         if (player.isSprinting() && !player.hasVehicle()) {
             // Heavy armour makes running harder: full diamond (20 armour) is +50%.
-            exert(player, (float) (cfg.sprintStaminaCost * (1.0 + player.getArmor() / 40.0)));
+            double cost = cfg.sprintStaminaCost * (1.0 + player.getArmor() / 40.0) * (1.0 + data.load * 0.4);
+            exert(player, (float) cost);
         } else if (data.regenDelay > 0) {
             data.regenDelay--;
         } else {
             double regen = cfg.staminaRegenPerTick;
             if (data.thirst < 6.0f) regen *= 0.5;
             if (player.hasStatusEffect(ModEffects.FRACTURE)) regen *= 0.5;
+            if (data.rest < 25.0f) regen *= 0.6;
+            if (data.temperature < 25.0f || data.temperature > 75.0f) regen *= 0.7;
             if (player.isSneaking() || player.getVelocity().horizontalLengthSquared() < 1.0E-4) regen *= 1.5;
             data.addStamina((float) regen);
         }
@@ -166,6 +187,69 @@ public final class Survival {
                     refresh(player, StatusEffects.MINING_FATIGUE, 0);
                 }
             }
+        }
+    }
+
+    private static void tickTemperature(ServerPlayerEntity player, SurvivalData data) {
+        if (player.age % 20 == 0) {
+            float before = data.temperature;
+            data.temperature += (BodyTemperature.target(player) - data.temperature) * 0.04f;
+            if (data.temperature < 25.0f) {
+                refresh(player, StatusEffects.SLOWNESS, 0);
+                player.addExhaustion(0.4f); // shivering burns food
+                if (before >= 25.0f) message(player, "message.deadhorizon.cold", Formatting.AQUA);
+            } else if (data.temperature > 75.0f) {
+                refresh(player, StatusEffects.WEAKNESS, 0);
+                if (before <= 75.0f) message(player, "message.deadhorizon.hot", Formatting.GOLD);
+            }
+        }
+        if (data.temperature < 12.0f) {
+            // Frost creeps over the screen; the cold itself does the damage below.
+            player.setFrozenTicks(Math.max(player.getFrozenTicks(), 130));
+            if (player.age % 80 == 0) player.damage(player.getDamageSources().freeze(), 1.0f);
+        } else if (data.temperature > 90.0f && player.age % 80 == 0) {
+            player.damage(ModDamageTypes.of(player.getWorld(), ModDamageTypes.HEATSTROKE), 1.0f);
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 100));
+        }
+    }
+
+    private static void tickRest(ServerPlayerEntity player, SurvivalData data, DHConfig cfg) {
+        if (player.isSleeping()) {
+            data.addRest(0.5f);
+            return;
+        }
+        double drain = cfg.fatigueDrainPerTick;
+        if (player.isSprinting()) drain *= 1.5;
+        if (player.hasVehicle()) drain = -drain * 2.0; // sitting down is a short break
+        data.addRest((float) -drain);
+        if (data.rest < 25.0f && player.age % 200 == 0) {
+            refresh(player, StatusEffects.MINING_FATIGUE, 0);
+            if (player.getRandom().nextFloat() < (data.rest < 10.0f ? 0.6f : 0.25f)) {
+                // Eyes falling shut for a moment.
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 30, 0, false, false, false));
+                message(player, "message.deadhorizon.tired", Formatting.GRAY);
+            }
+        }
+        if (data.rest < 10.0f && player.age % 40 == 0) refresh(player, StatusEffects.SLOWNESS, 0);
+    }
+
+    private static void tickLoad(ServerPlayerEntity player, SurvivalData data) {
+        if (player.age % 20 != 0) return;
+        int load = Encumbrance.load(player);
+        if (load > data.load) {
+            message(player, load == 2 ? "message.deadhorizon.overloaded" : "message.deadhorizon.heavy", Formatting.YELLOW);
+        }
+        data.load = load;
+        if (load > 0) refresh(player, StatusEffects.SLOWNESS, load - 1);
+    }
+
+    /** One of our zombies got hold of the player: they are dragged to a near stop for a moment. */
+    public static void onZombieGrab(PlayerEntity player) {
+        if (player.getWorld().isClient || exempt(player)) return;
+        if (player.getRandom().nextDouble() < DHConfig.INSTANCE.zombieGrabChance) {
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 25, 3, false, false, false));
+            player.setSprinting(false);
+            message(player, "message.deadhorizon.grabbed", Formatting.RED);
         }
     }
 
@@ -218,6 +302,9 @@ public final class Survival {
         buf.writeFloat(data.thirst);
         buf.writeFloat(data.stamina);
         buf.writeBoolean(data.exhausted);
+        buf.writeFloat(data.temperature);
+        buf.writeFloat(data.rest);
+        buf.writeByte(data.load);
         ServerPlayNetworking.send(player, SYNC, buf);
     }
 

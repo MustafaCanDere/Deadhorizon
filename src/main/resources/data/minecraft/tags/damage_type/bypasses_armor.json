@@ -3,6 +3,7 @@
   "values": [
     "deadhorizon:infection",
     "deadhorizon:bleeding",
-    "deadhorizon:dehydration"
+    "deadhorizon:dehydration",
+    "deadhorizon:heatstroke"
   ]
 }

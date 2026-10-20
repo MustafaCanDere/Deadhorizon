@@ -1,6 +1,7 @@
 package com.deadhorizon.item;
 
 import com.deadhorizon.survival.Survival;
+import com.deadhorizon.survival.SurvivalData;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
@@ -20,20 +21,24 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-/** Something to drink: restores thirst and/or stamina, optionally with a short effect. */
+/** Something to drink: restores thirst, stamina or rest, can warm you up, optionally with a short effect. */
 public class DrinkItem extends Item {
     private final float thirst;
     private final float stamina;
+    private final float rest;
+    private final float warmth;
     private final boolean returnsBottle;
     @Nullable
     private final StatusEffect effect;
     private final int effectSeconds;
 
-    public DrinkItem(Settings settings, float thirst, float stamina, boolean returnsBottle,
+    public DrinkItem(Settings settings, float thirst, float stamina, float rest, float warmth, boolean returnsBottle,
                      @Nullable StatusEffect effect, int effectSeconds) {
         super(settings);
         this.thirst = thirst;
         this.stamina = stamina;
+        this.rest = rest;
+        this.warmth = warmth;
         this.returnsBottle = returnsBottle;
         this.effect = effect;
         this.effectSeconds = effectSeconds;
@@ -59,6 +64,11 @@ public class DrinkItem extends Item {
         if (!world.isClient && user instanceof PlayerEntity player) {
             if (thirst != 0) Survival.drink(player, thirst);
             if (stamina != 0) Survival.get(player).addStamina(stamina);
+            if (rest != 0) Survival.get(player).addRest(rest);
+            if (warmth != 0) {
+                SurvivalData data = Survival.get(player);
+                data.temperature = Math.min(100.0f, data.temperature + warmth);
+            }
             if (effect != null) player.addStatusEffect(new StatusEffectInstance(effect, effectSeconds * 20));
         }
         boolean creative = user instanceof PlayerEntity player && player.getAbilities().creativeMode;

@@ -88,5 +88,18 @@
   "message.deadhorizon.exhausted": "You're out of breath...",
   "message.deadhorizon.dirty_water": "That water wasn't clean. Your stomach turns.",
   "death.attack.deadhorizon.dehydration": "%1$s died of thirst",
-  "death.attack.deadhorizon.dehydration.player": "%1$s died of thirst while fleeing %2$s"
+  "death.attack.deadhorizon.dehydration.player": "%1$s died of thirst while fleeing %2$s",
+  "item.deadhorizon.coffee": "Coffee",
+  "item.deadhorizon.coffee.tooltip": "Keeps you awake and warms you up",
+  "message.deadhorizon.cold": "You're freezing. Light a fire, wear leather.",
+  "message.deadhorizon.hot": "You're overheating. Find shade, drink water.",
+  "message.deadhorizon.tired": "Your eyes are closing... You need sleep.",
+  "message.deadhorizon.heavy": "Your pack is getting heavy.",
+  "message.deadhorizon.overloaded": "You're carrying far too much!",
+  "message.deadhorizon.grabbed": "A zombie grabbed you!",
+  "hud.deadhorizon.tired": "Tired",
+  "hud.deadhorizon.heavy": "Heavy",
+  "hud.deadhorizon.overloaded": "Overloaded",
+  "death.attack.deadhorizon.heatstroke": "%1$s died of heatstroke",
+  "death.attack.deadhorizon.heatstroke.player": "%1$s died of heatstroke while fleeing %2$s"
 }

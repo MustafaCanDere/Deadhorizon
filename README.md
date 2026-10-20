@@ -24,7 +24,11 @@ Minecraft 1.20.1 (Fabric) için zombi kıyameti modu.
   - **Kırık bacak**: yüksekten düşünce bacağın kırılabilir; topallarsın ve koşamazsın. **Atel** (çubuk + bandaj) ile düzelir.
   - **Zombi duyuları**: karanlıkta elinde ışık yokken seni daha zor fark ederler; kanaman varsa daha uzaktan bulurlar. Enfekte olanları biraz geç fark ederler.
   - **Kafadan vuruş**: ok ve mermiler kafaya gelirse iki kat hasar verir.
-  - Yeni eşyalar: Temiz Su, Gazoz, Enerji İçeceği, Fasulye ve Çorba Konservesi, Enerji Barı, Askeri Tayın (MRE), Atel.
+  - **Vücut ısısı**: biyom, yükseklik, gece, yağmur, suya girmek ve yakındaki ateş/fırın/lav vücut ısını değiştirir (hotbarın solundaki termometre). Deri kıyafet soğuğu keser ama sıcakta bunaltır. Çok üşürsen yavaşlarsın, donarsın; çok ısınırsan susuzluk hızlanır, sıcak çarpması can götürür.
+  - **Uyku yorgunluğu**: uyumadan geçen her gün yorar. Uykusuzken gözlerin kapanır, kazman yavaşlar, dayanıklılığın geç dolar. Gece boyu yatakta uyumak tamamen dinlendirir; oturmak biraz dinlendirir. Kahve ve enerji içeceği uykunu açar.
+  - **Yük ağırlığı**: çanta doldukça (özellikle bloklarla) yavaşlarsın ve koşmak daha çok yorar.
+  - **Zombi yakalaması**: zombiler vurduğunda seni bir an yakalayıp durdurabilir. **Şok**: canın çok azalınca yavaşlar, güçsüzleşirsin.
+  - Yeni eşyalar: Kahve, Temiz Su, Gazoz, Enerji İçeceği, Fasulye ve Çorba Konservesi, Enerji Barı, Askeri Tayın (MRE), Atel.
 - **Yağmalama**: içinde loot olan dolaplar önce kısa bir süre "aranır" ve bu ses yakındaki zombileri çeker.
 
 Ayarlar: `config/deadhorizon.json` (oyun ilk açıldığında oluşur).

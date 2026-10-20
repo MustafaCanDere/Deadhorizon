@@ -7,11 +7,14 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.network.ClientPlayerEntity;
 
-/** The client's copy of the server's thirst and stamina, for the HUD and sprint blocking. */
+/** The client's copy of the server's survival stats, for the HUD and sprint blocking. */
 public final class ClientSurvival {
     public static float thirst = SurvivalData.MAX_THIRST;
     public static float stamina = SurvivalData.MAX_STAMINA;
     public static boolean exhausted;
+    public static float temperature = SurvivalData.NORMAL_TEMPERATURE;
+    public static float rest = SurvivalData.MAX_REST;
+    public static int load;
 
     private ClientSurvival() {
     }
@@ -25,10 +28,16 @@ public final class ClientSurvival {
             float newThirst = buf.readFloat();
             float newStamina = buf.readFloat();
             boolean newExhausted = buf.readBoolean();
+            float newTemperature = buf.readFloat();
+            float newRest = buf.readFloat();
+            int newLoad = buf.readByte();
             client.execute(() -> {
                 thirst = newThirst;
                 stamina = newStamina;
                 exhausted = newExhausted;
+                temperature = newTemperature;
+                rest = newRest;
+                load = newLoad;
             });
         });
         // Backup in case the sprint check mixin could not apply.

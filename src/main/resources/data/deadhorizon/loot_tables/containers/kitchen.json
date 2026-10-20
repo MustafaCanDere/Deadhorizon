@@ -162,6 +162,11 @@
               }
             }
           ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:coffee",
+          "weight": 3
         }
       ]
     }

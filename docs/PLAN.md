@@ -154,7 +154,7 @@ Her dekor bloğu bir işe yarar; yapıların içinde de doğal olarak bulunur.
 | **4 – Özel zombiler** ✓ | Çığlıkçı, Kusan, Patlayan, Sürünen, Zırhlı; GeckoLib modelleri. | Çeşitli tehditler. |
 | **5 – Silahlar** | Yakın dövüş, tam ateşli silah sistemi, mermi, eklentiler, atılabilirler. | Hazırlık ve ilerleme hissi. |
 | **6 – Yapılar (1. dalga)** | Evler, market, eczane, benzin istasyonu, polis karakolu, araç enkazları. | Keşfetmeye değer dünya. |
-| **7 – Hayatta kalma** (ilk kısmı öne çekildi ✓) | ✓ Susuzluk, ✓ dayanıklılık, ✓ kırık bacak, ✓ zombi duyuları ve kafadan vuruş, ✓ konserve/içecekler; kalan: yemek pişirme, bozulma, vücut ısısı, su toplama. | Tam hayatta kalma. |
+| **7 – Hayatta kalma** (ilk kısmı öne çekildi ✓) | ✓ Susuzluk, ✓ dayanıklılık, ✓ kırık bacak, ✓ zombi duyuları ve kafadan vuruş, ✓ konserve/içecekler, ✓ vücut ısısı, ✓ uyku yorgunluğu, ✓ yük ağırlığı, ✓ zombi yakalaması ve şok; kalan: yemek pişirme, bozulma, su toplama. | Tam hayatta kalma. |
 | **8 – Sürüler + olaylar** | Kıyamet gün sayacı, Kan Ayı, gezgin sürüler, erzak düşürme, radyo. | Sürekli artan baskı. |
 | **9 – Elektrik ve üretim** | Jeneratör, güneş paneli, kablolar, elektrikli çit, projektör; çalışma tezgahları, tamir. | Gelişmiş üs. |
 | **10 – Yapılar (2. dalga)** | Hastane, okul, hapishane, askeri üs, apartman, küçük kasaba. | Büyük keşif hedefleri. |

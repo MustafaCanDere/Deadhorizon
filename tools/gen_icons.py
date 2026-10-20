@@ -133,6 +133,16 @@ def mre():
     save(img, "item", "mre")
 
 
+def mug(name, drink):
+    img, d = canvas(16)
+    d.rectangle((3, 5, 11, 14), fill=(235, 235, 230, 255), outline=OUTLINE)
+    d.rectangle((4, 6, 10, 8), fill=drink)
+    d.arc((9, 7, 15, 12), 270, 90, fill=OUTLINE, width=2)
+    for x in (5, 8):
+        d.line((x, 1, x + 1, 3), fill=(220, 220, 220, 180))
+    save(img, "item", name)
+
+
 def effect_fracture():
     img, d = canvas(18)
     d.rectangle((7, 1, 10, 7), fill=(235, 230, 210, 255), outline=(120, 110, 90, 255))
@@ -184,3 +194,4 @@ energy_bar()
 mre()
 effect_fracture()
 gui_thirst()
+mug("coffee", (90, 55, 30, 255))
