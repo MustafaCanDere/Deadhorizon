@@ -34,6 +34,7 @@ public class DeadHorizonClient implements ClientModInitializer {
 
         ClientSurvival.register();
         SurvivalHud.register();
+        FreshnessTooltip.register();
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ModBlocks.BARBED_WIRE, ModBlocks.MEDICINE_CABINET);
     }

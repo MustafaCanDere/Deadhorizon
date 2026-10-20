@@ -29,6 +29,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.HashMap;
@@ -41,6 +42,8 @@ public final class Survival {
     private static final float EXHAUSTION_RECOVERY = 30.0f;
     private static final Map<Item, Float> FOOD_THIRST = new HashMap<>();
     private static final Map<Item, Float> FOOD_STAMINA = new HashMap<>();
+    /** Chance that eating it raw makes you ill. */
+    private static final Map<Item, Float> RAW_FOOD = new HashMap<>();
 
     private Survival() {
     }
@@ -73,6 +76,14 @@ public final class Survival {
         FOOD_STAMINA.put(ModItems.ENERGY_BAR, 35.0f);
         FOOD_STAMINA.put(ModItems.MRE, 20.0f);
         FOOD_STAMINA.put(Items.HONEY_BOTTLE, 10.0f);
+        RAW_FOOD.put(Items.CHICKEN, 0.6f);
+        RAW_FOOD.put(Items.BEEF, 0.35f);
+        RAW_FOOD.put(Items.PORKCHOP, 0.4f);
+        RAW_FOOD.put(Items.MUTTON, 0.35f);
+        RAW_FOOD.put(Items.RABBIT, 0.4f);
+        RAW_FOOD.put(Items.COD, 0.3f);
+        RAW_FOOD.put(Items.SALMON, 0.3f);
+        RAW_FOOD.put(Items.TROPICAL_FISH, 0.3f);
 
         ServerTickEvents.END_SERVER_TICK.register(server -> {
             for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
@@ -123,6 +134,7 @@ public final class Survival {
         DHConfig cfg = DHConfig.INSTANCE;
         if (!exempt(player) && player.isAlive()) {
             if (cfg.thirstEnabled) tickThirst(player, data, cfg);
+            if (cfg.wetnessEnabled) tickWetness(player, data);
             if (cfg.temperatureEnabled) tickTemperature(player, data);
             if (cfg.fatigueEnabled) tickRest(player, data, cfg);
             if (cfg.encumbranceEnabled) tickLoad(player, data);
@@ -193,7 +205,8 @@ public final class Survival {
     private static void tickTemperature(ServerPlayerEntity player, SurvivalData data) {
         if (player.age % 20 == 0) {
             float before = data.temperature;
-            data.temperature += (BodyTemperature.target(player) - data.temperature) * 0.04f;
+            float wetness = DHConfig.INSTANCE.wetnessEnabled ? data.wetness : 0.0f;
+            data.temperature += (BodyTemperature.target(player, wetness) - data.temperature) * 0.04f;
             if (data.temperature < 25.0f) {
                 refresh(player, StatusEffects.SLOWNESS, 0);
                 player.addExhaustion(0.4f); // shivering burns food
@@ -210,6 +223,23 @@ public final class Survival {
         } else if (data.temperature > 90.0f && player.age % 80 == 0) {
             player.damage(ModDamageTypes.of(player.getWorld(), ModDamageTypes.HEATSTROKE), 1.0f);
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 100));
+        }
+    }
+
+    private static void tickWetness(ServerPlayerEntity player, SurvivalData data) {
+        if (player.age % 20 != 0) return;
+        BlockPos head = BlockPos.ofFloored(player.getEyePos());
+        if (player.isSubmergedInWater()) {
+            data.wetness = 100.0f;
+        } else if (player.isTouchingWater()) {
+            data.wetness = Math.min(100.0f, data.wetness + 15.0f);
+        } else if (player.getWorld().hasRain(head)) {
+            data.wetness = Math.min(100.0f, data.wetness + 2.0f);
+        } else {
+            // Drying: fast by a fire or in the heat, slow otherwise.
+            float dry = 0.5f + Math.max(0.0f, data.temperature - 50.0f) * 0.1f;
+            if (player.isOnFire()) dry += 20.0f;
+            data.wetness = Math.max(0.0f, data.wetness - dry);
         }
     }
 
@@ -273,6 +303,13 @@ public final class Survival {
         if (thirst != null) get(player).addThirst(thirst);
         Float stamina = FOOD_STAMINA.get(stack.getItem());
         if (stamina != null) get(player).addStamina(stamina);
+        Float poisonChance = RAW_FOOD.get(stack.getItem());
+        if (poisonChance != null && DHConfig.INSTANCE.rawFoodPoisoning && player.getRandom().nextFloat() < poisonChance) {
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 20 * 30));
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 20 * 10));
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 20 * 5));
+            player.sendMessage(Text.translatable("message.deadhorizon.food_poisoning").formatted(Formatting.DARK_GREEN), true);
+        }
     }
 
     public static void drink(PlayerEntity player, float thirst) {
@@ -305,6 +342,7 @@ public final class Survival {
         buf.writeFloat(data.temperature);
         buf.writeFloat(data.rest);
         buf.writeByte(data.load);
+        buf.writeFloat(data.wetness);
         ServerPlayNetworking.send(player, SYNC, buf);
     }
 

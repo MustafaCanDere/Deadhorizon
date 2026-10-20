@@ -319,7 +319,7 @@ def gen_states():
 
 
 def gen_tags():
-    axe = ["kitchen_cabinet", "wardrobe", "crate", "chair", "stool", "sofa", "table", "barricade"]
+    axe = ["kitchen_cabinet", "wardrobe", "crate", "chair", "stool", "sofa", "table", "barricade", "rain_collector"]
     pickaxe = ["fridge", "medicine_cabinet", "safe", "trash_can", "dumpster", "table_lamp", "ceiling_lamp",
                "street_lamp", "barbed_wire", "traffic_cone", "concrete_barrier"]
     shovel = ["sandbags"]
@@ -365,6 +365,26 @@ def gen_recipes():
     shaped("barricade", ["P P", "PPP", "P P"], {"P": P}, 2)
     shaped("traffic_cone", [" T ", " W ", "TTT"], {"T": "minecraft:orange_terracotta", "W": "minecraft:white_wool"}, 2)
     shaped("concrete_barrier", [" C ", "CCC"], {"C": "minecraft:gray_concrete"}, 2)
+
+
+# ---------------------------------------------------------------- rain collector
+
+def gen_rain_collector():
+    noisy((60, 110, 200), 12, 41).save(ASSETS / "textures/block/rain_water.png")
+    walls = [el((2, 0, 2), (14, 14, 3), "wood"), el((2, 0, 13), (14, 14, 14), "wood"),
+             el((2, 0, 3), (3, 14, 13), "wood"), el((13, 0, 3), (14, 14, 13), "wood"),
+             el((3, 0, 3), (13, 1, 13), "wood"),
+             el((1.5, 3, 1.5), (14.5, 4, 14.5), "band", ("north", "south", "east", "west")),
+             el((1.5, 10, 1.5), (14.5, 11, 14.5), "band", ("north", "south", "east", "west"))]
+    for level in range(4):
+        water = [el((3, 1, 3), (13, 1 + level * 4, 13), "water", ("up",))] if level else []
+        model(f"rain_collector_{level}", walls + water,
+              {"wood": "wood_dark", "band": "metal_dark", "water": "rain_water"}, "wood")
+    write(ASSETS / "blockstates/rain_collector.json",
+          {"variants": {f"level={i}": {"model": f"{MOD}:block/rain_collector_{i}"} for i in range(4)}})
+    item_model("rain_collector", "rain_collector_2")
+    drop_self("rain_collector")
+    shaped("rain_collector", ["P P", "PBP", "PPP"], {"P": "#minecraft:planks", "B": "minecraft:bucket"})
 
 
 # ---------------------------------------------------------------- container loot (used by structures)
@@ -418,3 +438,4 @@ if __name__ == "__main__":
     gen_tags()
     gen_recipes()
     gen_container_loot()
+    gen_rain_collector()

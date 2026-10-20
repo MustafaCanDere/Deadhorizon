@@ -28,6 +28,10 @@ Minecraft 1.20.1 (Fabric) için zombi kıyameti modu.
   - **Uyku yorgunluğu**: uyumadan geçen her gün yorar. Uykusuzken gözlerin kapanır, kazman yavaşlar, dayanıklılığın geç dolar. Gece boyu yatakta uyumak tamamen dinlendirir; oturmak biraz dinlendirir. Kahve ve enerji içeceği uykunu açar.
   - **Yük ağırlığı**: çanta doldukça (özellikle bloklarla) yavaşlarsın ve koşmak daha çok yorar.
   - **Zombi yakalaması**: zombiler vurduğunda seni bir an yakalayıp durdurabilir. **Şok**: canın çok azalınca yavaşlar, güçsüzleşirsin.
+  - **Yemek bozulması**: çiğ et 2, pişmiş et 4, ekmek 5 oyun günü sonra çürür (bilgi kutusunda tazelik yazar). Buzdolabı bozulmayı 4 kat yavaşlatır; konserve ve MRE hiç bozulmaz.
+  - **Çiğ yemek**: çiğ et ve balık zehirleyebilir, özellikle tavuk.
+  - **Islaklık**: yağmur ve su seni ıslatır, ıslakken daha çok üşürsün. Ateşin yanında ya da sıcakta kurursun.
+  - **Yağmur Suyu Toplayıcı**: yağmurda dolan fıçı (tahtalar + kova). Şişeyle temiz su alınır.
   - Yeni eşyalar: Kahve, Temiz Su, Gazoz, Enerji İçeceği, Fasulye ve Çorba Konservesi, Enerji Barı, Askeri Tayın (MRE), Atel.
 - **Yağmalama**: içinde loot olan dolaplar önce kısa bir süre "aranır" ve bu ses yakındaki zombileri çeker.
 

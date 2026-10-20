@@ -15,6 +15,7 @@ public final class ClientSurvival {
     public static float temperature = SurvivalData.NORMAL_TEMPERATURE;
     public static float rest = SurvivalData.MAX_REST;
     public static int load;
+    public static float wetness;
 
     private ClientSurvival() {
     }
@@ -31,6 +32,7 @@ public final class ClientSurvival {
             float newTemperature = buf.readFloat();
             float newRest = buf.readFloat();
             int newLoad = buf.readByte();
+            float newWetness = buf.readFloat();
             client.execute(() -> {
                 thirst = newThirst;
                 stamina = newStamina;
@@ -38,6 +40,7 @@ public final class ClientSurvival {
                 temperature = newTemperature;
                 rest = newRest;
                 load = newLoad;
+                wetness = newWetness;
             });
         });
         // Backup in case the sprint check mixin could not apply.

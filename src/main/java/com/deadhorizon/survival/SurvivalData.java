@@ -21,6 +21,8 @@ public class SurvivalData {
     public float rest = MAX_REST;
     /** 0 = light, 1 = heavy, 2 = overloaded. Recomputed from the inventory, not saved. */
     public int load;
+    /** 0 = dry, 100 = soaked to the skin. */
+    public float wetness;
 
     public void addThirst(float amount) {
         thirst = Math.max(0.0f, Math.min(MAX_THIRST, thirst + amount));
@@ -37,6 +39,7 @@ public class SurvivalData {
     public void copyFrom(SurvivalData other) {
         temperature = other.temperature;
         rest = other.rest;
+        wetness = other.wetness;
         thirst = other.thirst;
         stamina = other.stamina;
         exhausted = other.exhausted;
@@ -50,6 +53,7 @@ public class SurvivalData {
         nbt.putBoolean("Exhausted", exhausted);
         nbt.putFloat("Temperature", temperature);
         nbt.putFloat("Rest", rest);
+        nbt.putFloat("Wetness", wetness);
         return nbt;
     }
 
@@ -59,5 +63,6 @@ public class SurvivalData {
         exhausted = nbt.getBoolean("Exhausted");
         if (nbt.contains("Temperature")) temperature = nbt.getFloat("Temperature");
         if (nbt.contains("Rest")) rest = nbt.getFloat("Rest");
+        wetness = nbt.getFloat("Wetness");
     }
 }

@@ -1,6 +1,8 @@
 package com.deadhorizon.block.entity;
 
 import com.deadhorizon.block.StorageBlock;
+import com.deadhorizon.food.Spoilage;
+import com.deadhorizon.registry.ModBlocks;
 import com.deadhorizon.registry.ModBlockEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
@@ -29,6 +31,8 @@ public class StorageBlockEntity extends LootableContainerBlockEntity {
     private DefaultedList<ItemStack> items;
     @Nullable
     private UUID owner;
+    /** Fridge only: world time it was last closed, or -1. Food inside ages at a quarter speed meanwhile. */
+    private long closedAt = -1L;
 
     public StorageBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.STORAGE, pos, state);
@@ -88,6 +92,7 @@ public class StorageBlockEntity extends LootableContainerBlockEntity {
             Inventories.readNbt(nbt, items);
         }
         this.owner = nbt.containsUuid("Owner") ? nbt.getUuid("Owner") : null;
+        this.closedAt = nbt.contains("ClosedAt") ? nbt.getLong("ClosedAt") : -1L;
     }
 
     @Override
@@ -97,11 +102,19 @@ public class StorageBlockEntity extends LootableContainerBlockEntity {
             Inventories.writeNbt(nbt, items);
         }
         if (owner != null) nbt.putUuid("Owner", owner);
+        if (closedAt >= 0) nbt.putLong("ClosedAt", closedAt);
     }
 
     @Override
     public void onOpen(PlayerEntity player) {
-        if (!player.isSpectator()) playSound(true);
+        if (player.isSpectator()) return;
+        playSound(true);
+        if (isFridge() && world != null && closedAt >= 0) {
+            long credit = (world.getTime() - closedAt) * 3 / 4;
+            for (ItemStack stack : items) Spoilage.preserve(stack, credit);
+            closedAt = -1L;
+            markDirty();
+        }
     }
 
     @Override
@@ -112,6 +125,14 @@ public class StorageBlockEntity extends LootableContainerBlockEntity {
             clear();
             markDirty();
         }
+        if (isFridge() && world != null) {
+            closedAt = world.getTime();
+            markDirty();
+        }
+    }
+
+    private boolean isFridge() {
+        return getCachedState().isOf(ModBlocks.FRIDGE);
     }
 
     private void playSound(boolean open) {

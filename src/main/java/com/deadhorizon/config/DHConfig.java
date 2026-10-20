@@ -71,6 +71,15 @@ public class DHConfig {
     public double fatigueDrainPerTick = 0.0017;
     public boolean encumbranceEnabled = true;
 
+    /** Soaked clothes make you colder; water and rain soak you, fire and sun dry you. */
+    public boolean wetnessEnabled = true;
+
+    // Food
+    public boolean foodSpoilageEnabled = true;
+    /** 1.0 = raw meat lasts two in-game days; 2.0 doubles every shelf life. */
+    public double foodShelfLifeMultiplier = 1.0;
+    public boolean rawFoodPoisoning = true;
+
     // Injuries
     public boolean fracturesEnabled = true;
     public int fractureMinutes = 10;

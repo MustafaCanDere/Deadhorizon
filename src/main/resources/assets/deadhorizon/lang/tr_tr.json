@@ -101,5 +101,13 @@
   "hud.deadhorizon.heavy": "Ağır",
   "hud.deadhorizon.overloaded": "Aşırı yük",
   "death.attack.deadhorizon.heatstroke": "%1$s sıcak çarpmasından öldü",
-  "death.attack.deadhorizon.heatstroke.player": "%1$s, %2$s elinden kaçarken sıcak çarpmasından öldü"
+  "death.attack.deadhorizon.heatstroke.player": "%1$s, %2$s elinden kaçarken sıcak çarpmasından öldü",
+  "block.deadhorizon.rain_collector": "Yağmur Suyu Toplayıcı",
+  "message.deadhorizon.spoiled": "%s bozuldu.",
+  "message.deadhorizon.food_poisoning": "Çiğ yedin. Miden ağrıyor...",
+  "tooltip.deadhorizon.fresh": "Taze",
+  "tooltip.deadhorizon.stale": "Bayatlıyor",
+  "tooltip.deadhorizon.rotting": "Bozulmak üzere",
+  "hud.deadhorizon.wet": "Islak",
+  "hud.deadhorizon.soaked": "Sırılsıklam"
 }

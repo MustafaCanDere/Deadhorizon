@@ -101,5 +101,13 @@
   "hud.deadhorizon.heavy": "Heavy",
   "hud.deadhorizon.overloaded": "Overloaded",
   "death.attack.deadhorizon.heatstroke": "%1$s died of heatstroke",
-  "death.attack.deadhorizon.heatstroke.player": "%1$s died of heatstroke while fleeing %2$s"
+  "death.attack.deadhorizon.heatstroke.player": "%1$s died of heatstroke while fleeing %2$s",
+  "block.deadhorizon.rain_collector": "Rain Collector",
+  "message.deadhorizon.spoiled": "%s went bad.",
+  "message.deadhorizon.food_poisoning": "You ate it raw. Your stomach cramps...",
+  "tooltip.deadhorizon.fresh": "Fresh",
+  "tooltip.deadhorizon.stale": "Going stale",
+  "tooltip.deadhorizon.rotting": "About to rot",
+  "hud.deadhorizon.wet": "Wet",
+  "hud.deadhorizon.soaked": "Soaked"
 }

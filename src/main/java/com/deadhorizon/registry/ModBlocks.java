@@ -6,6 +6,7 @@ import com.deadhorizon.block.BarricadeBlock;
 import com.deadhorizon.block.BarrierBlock;
 import com.deadhorizon.block.FurnitureBlock;
 import com.deadhorizon.block.LampBlock;
+import com.deadhorizon.block.RainCollectorBlock;
 import com.deadhorizon.block.SeatBlock;
 import com.deadhorizon.block.StorageBlock;
 import com.deadhorizon.block.StorageBlock.Kind;
@@ -74,6 +75,8 @@ public final class ModBlocks {
                     .sounds(BlockSoundGroup.CHAIN).noCollision().nonOpaque()));
     public static final Block BARRICADE = register("barricade",
             new BarricadeBlock(wood().strength(3.0f, 4.0f)));
+    public static final Block RAIN_COLLECTOR = register("rain_collector",
+            new RainCollectorBlock(wood().nonOpaque()));
     public static final Block TRAFFIC_CONE = register("traffic_cone",
             new FurnitureBlock(AbstractBlock.Settings.create().mapColor(MapColor.ORANGE).strength(0.5f)
                     .sounds(BlockSoundGroup.STONE).nonOpaque(), box(3, 0, 3, 13, 12, 13)));

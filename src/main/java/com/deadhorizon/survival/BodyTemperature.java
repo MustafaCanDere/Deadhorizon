@@ -21,7 +21,7 @@ public final class BodyTemperature {
     private BodyTemperature() {
     }
 
-    public static float target(ServerPlayerEntity player) {
+    public static float target(ServerPlayerEntity player, float wetness) {
         ServerWorld world = player.getServerWorld();
         BlockPos pos = player.getBlockPos();
         double t;
@@ -50,6 +50,7 @@ public final class BodyTemperature {
 
         if (player.isSubmergedInWater()) t -= 15.0;
         else if (player.isTouchingWater()) t -= 10.0;
+        t -= wetness * 0.15; // wet clothes
         if (player.isOnFire()) t += 25.0;
 
         t += Math.min(30.0, heatNearby(world, pos));

@@ -91,6 +91,12 @@ public final class SurvivalHud {
             ctx.drawTextWithShadow(client.textRenderer, text, x + 5 - client.textRenderer.getWidth(text), bottom - 8, 0xFFFFFF);
             bottom -= 10;
         }
+        if (DHConfig.INSTANCE.wetnessEnabled && ClientSurvival.wetness >= 20.0f) {
+            Formatting color = ClientSurvival.wetness >= 70.0f ? Formatting.BLUE : Formatting.AQUA;
+            Text text = Text.translatable(ClientSurvival.wetness >= 70.0f ? "hud.deadhorizon.soaked" : "hud.deadhorizon.wet").formatted(color);
+            ctx.drawTextWithShadow(client.textRenderer, text, x + 5 - client.textRenderer.getWidth(text), bottom - 8, 0xFFFFFF);
+            bottom -= 10;
+        }
         if (DHConfig.INSTANCE.encumbranceEnabled && ClientSurvival.load > 0) {
             Formatting color = ClientSurvival.load == 2 ? Formatting.RED : Formatting.YELLOW;
             Text text = Text.translatable(ClientSurvival.load == 2 ? "hud.deadhorizon.overloaded" : "hud.deadhorizon.heavy").formatted(color);
