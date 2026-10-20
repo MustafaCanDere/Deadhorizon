@@ -1,0 +1,9 @@
+{
+  "itemGroup.deadhorizon": "Dead Horizon",
+  "entity.deadhorizon.walker": "Walker",
+  "entity.deadhorizon.runner": "Runner",
+  "entity.deadhorizon.brute": "Brute",
+  "item.deadhorizon.walker_spawn_egg": "Walker Spawn Egg",
+  "item.deadhorizon.runner_spawn_egg": "Runner Spawn Egg",
+  "item.deadhorizon.brute_spawn_egg": "Brute Spawn Egg"
+}

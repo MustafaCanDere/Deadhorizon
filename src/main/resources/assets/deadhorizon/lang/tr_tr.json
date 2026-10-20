@@ -1,0 +1,9 @@
+{
+  "itemGroup.deadhorizon": "Dead Horizon",
+  "entity.deadhorizon.walker": "Yürüyen",
+  "entity.deadhorizon.runner": "Koşucu",
+  "entity.deadhorizon.brute": "Tank",
+  "item.deadhorizon.walker_spawn_egg": "Yürüyen Doğma Yumurtası",
+  "item.deadhorizon.runner_spawn_egg": "Koşucu Doğma Yumurtası",
+  "item.deadhorizon.brute_spawn_egg": "Tank Doğma Yumurtası"
+}
