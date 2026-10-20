@@ -5,6 +5,11 @@ import com.deadhorizon.item.DrinkItem;
 import com.deadhorizon.item.MedicalItem;
 import com.deadhorizon.item.MedicalItem.Treatment;
 import com.deadhorizon.item.TooltipItem;
+import com.deadhorizon.weapon.FireAxeItem;
+import com.deadhorizon.weapon.GunItem;
+import com.deadhorizon.weapon.GunSpec;
+import net.minecraft.item.SwordItem;
+import net.minecraft.item.ToolMaterials;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
@@ -69,6 +74,38 @@ public final class ModItems {
     public static final Item MRE = register("mre", new TooltipItem(new Item.Settings().maxCount(8)
             .food(new FoodComponent.Builder().hunger(10).saturationModifier(0.9f).build())));
 
+    // Ammunition
+    public static final Item AMMO_9MM = register("ammo_9mm", new TooltipItem(new Item.Settings().maxCount(64)));
+    public static final Item AMMO_556 = register("ammo_556", new TooltipItem(new Item.Settings().maxCount(64)));
+    public static final Item AMMO_762 = register("ammo_762", new TooltipItem(new Item.Settings().maxCount(64)));
+    public static final Item AMMO_12G = register("ammo_12g", new TooltipItem(new Item.Settings().maxCount(32)));
+
+    // Firearms: GunSpec(ammo, magazine, damage, pellets, interval, automatic, spread, recoil, range, reloadTicks, noise, zoom)
+    public static final Item PISTOL = register("pistol", new GunItem(gun(600),
+            new GunSpec(() -> AMMO_9MM, 15, 6.0f, 1, 4, false, 2.0f, 2.5f, 48, 30, 40, 0.85f)));
+    public static final Item SHOTGUN = register("shotgun", new GunItem(gun(400),
+            new GunSpec(() -> AMMO_12G, 6, 3.5f, 8, 18, false, 7.0f, 9.0f, 24, 60, 56, 0.85f)));
+    public static final Item HUNTING_RIFLE = register("hunting_rifle", new GunItem(gun(500),
+            new GunSpec(() -> AMMO_762, 5, 20.0f, 1, 25, false, 0.4f, 7.0f, 128, 50, 72, 0.3f)));
+    public static final Item AK47 = register("ak47", new GunItem(gun(800),
+            new GunSpec(() -> AMMO_762, 30, 8.0f, 1, 2, true, 2.6f, 2.2f, 80, 45, 64, 0.75f)));
+    public static final Item M4 = register("m4", new GunItem(gun(900),
+            new GunSpec(() -> AMMO_556, 30, 7.0f, 1, 2, true, 1.6f, 1.6f, 90, 40, 64, 0.65f)));
+
+    // Melee
+    public static final Item BASEBALL_BAT = register("baseball_bat",
+            new SwordItem(ToolMaterials.WOOD, 5, -3.0f, new Item.Settings().maxDamage(180)));
+    public static final Item NAIL_BAT = register("nail_bat",
+            new SwordItem(ToolMaterials.IRON, 4, -3.0f, new Item.Settings().maxDamage(220)));
+    public static final Item MACHETE = register("machete",
+            new SwordItem(ToolMaterials.IRON, 3, -2.2f, new Item.Settings()));
+    public static final Item CROWBAR = register("crowbar",
+            new SwordItem(ToolMaterials.IRON, 4, -2.8f, new Item.Settings().maxDamage(600)));
+    public static final Item KATANA = register("katana",
+            new SwordItem(ToolMaterials.IRON, 5, -2.4f, new Item.Settings().maxDamage(400)));
+    public static final Item FIRE_AXE = register("fire_axe",
+            new FireAxeItem(ToolMaterials.IRON, 8.0f, -3.2f, new Item.Settings().maxDamage(450)));
+
     public static final ItemGroup GROUP = Registry.register(Registries.ITEM_GROUP, DeadHorizon.id("main"),
             FabricItemGroup.builder()
                     .icon(() -> new ItemStack(WALKER_SPAWN_EGG))
@@ -96,11 +133,30 @@ public final class ModItems {
                         entries.add(CANNED_SOUP);
                         entries.add(ENERGY_BAR);
                         entries.add(MRE);
+                        entries.add(PISTOL);
+                        entries.add(SHOTGUN);
+                        entries.add(HUNTING_RIFLE);
+                        entries.add(AK47);
+                        entries.add(M4);
+                        entries.add(AMMO_9MM);
+                        entries.add(AMMO_556);
+                        entries.add(AMMO_762);
+                        entries.add(AMMO_12G);
+                        entries.add(BASEBALL_BAT);
+                        entries.add(NAIL_BAT);
+                        entries.add(MACHETE);
+                        entries.add(CROWBAR);
+                        entries.add(KATANA);
+                        entries.add(FIRE_AXE);
                         ModBlocks.ALL.forEach(entries::add);
                     })
                     .build());
 
     private ModItems() {
+    }
+
+    private static Item.Settings gun(int durability) {
+        return new Item.Settings().maxCount(1).maxDamage(durability);
     }
 
     private static Item register(String name, Item item) {

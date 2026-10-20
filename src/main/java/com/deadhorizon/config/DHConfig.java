@@ -98,6 +98,11 @@ public class DHConfig {
     public double coughNoiseRadius = 12.0;
     public boolean bloodEffects = true;
 
+    // Firearms
+    /** Chance per shot of a jam once a gun is below 30% condition. */
+    public double gunJamChance = 0.05;
+    public boolean bulletsBreakGlass = true;
+
     // Zombie senses and headshots
     public boolean zombieSensesEnabled = true;
     public double darknessVisibility = 0.55;

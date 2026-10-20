@@ -13,6 +13,7 @@ import com.deadhorizon.registry.ModItems;
 import com.deadhorizon.registry.ModLoot;
 import com.deadhorizon.registry.ModSpawns;
 import com.deadhorizon.survival.Survival;
+import com.deadhorizon.weapon.Guns;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
@@ -41,6 +42,7 @@ public class DeadHorizon implements ModInitializer {
         LootSearch.register();
         Survival.register();
         BloodEffects.register();
+        Guns.register();
         LOGGER.info("Dead Horizon loaded. The dead are walking.");
     }
 }

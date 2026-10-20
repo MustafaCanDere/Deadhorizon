@@ -396,6 +396,13 @@ def entry(item, weight, lo=1, hi=1):
     return e
 
 
+def gun(item, weight, loaded):
+    """A found gun: worn somewhere between 10% and 70%, with a few rounds left in it."""
+    return {"type": "minecraft:item", "name": item, "weight": weight, "functions": [
+        {"function": "minecraft:set_damage", "damage": {"type": "minecraft:uniform", "min": 0.3, "max": 0.9}},
+        {"function": "minecraft:set_nbt", "tag": "{Ammo:%d}" % loaded}]}
+
+
 def chest(name, rolls, entries):
     write(DATA / f"loot_tables/containers/{name}.json", {"type": "minecraft:chest", "pools": [
         {"rolls": {"type": "minecraft:uniform", "min": rolls[0], "max": rolls[1]}, "entries": entries}]})
@@ -422,13 +429,17 @@ def gen_container_loot():
     chest("crate", (2, 6), [entry(m("iron_ingot"), 6, 1, 3), entry(m("coal"), 8, 2, 8), entry(m("torch"), 8, 4, 12),
                             entry(m("arrow"), 6, 4, 16), entry(m("iron_nugget"), 8, 3, 9), entry(m("oak_planks"), 6, 4, 16),
                             entry(m("iron_axe"), 2), entry(m("bow"), 2), entry(m("shield"), 1),
-                            entry(d("mre"), 3), entry(d("canned_beans"), 4, 1, 3), entry(d("clean_water"), 3, 1, 2)])
+                            entry(d("mre"), 3), entry(d("canned_beans"), 4, 1, 3), entry(d("clean_water"), 3, 1, 2),
+                            entry(d("ammo_9mm"), 3, 2, 10), entry(d("ammo_12g"), 3, 1, 6), entry(d("crowbar"), 2),
+                            entry(d("baseball_bat"), 2), gun(d("pistol"), 1, 4), gun(d("shotgun"), 1, 2)])
     chest("dumpster", (2, 6), [entry(m("rotten_flesh"), 10, 1, 4), entry(m("bone"), 8, 1, 3), entry(m("string"), 6, 1, 3),
                                entry(m("paper"), 8, 1, 4), entry(m("glass_bottle"), 6, 1, 2), entry(m("leather"), 4),
                                entry(m("iron_nugget"), 5, 1, 4), entry(d("bandage"), 1),
                                entry(d("canned_beans"), 2), entry(d("soda"), 2)])
     chest("safe", (1, 4), [entry(m("gold_ingot"), 8, 1, 4), entry(m("emerald"), 6, 1, 3), entry(m("diamond"), 2, 1, 2),
-                           entry(d("antidote"), 3), entry(m("golden_apple"), 2), entry(m("name_tag"), 2)])
+                           entry(d("antidote"), 3), entry(m("golden_apple"), 2), entry(m("name_tag"), 2),
+                           gun(d("pistol"), 4, 8), entry(d("ammo_9mm"), 4, 4, 15), gun(d("hunting_rifle"), 1, 3),
+                           entry(d("ammo_762"), 2, 2, 8)])
 
 
 if __name__ == "__main__":

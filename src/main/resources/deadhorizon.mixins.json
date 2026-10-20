@@ -12,6 +12,7 @@
     "ZombieEntityMixin"
   ],
   "client": [
+    "client.AbstractClientPlayerEntityMixin",
     "client.ClientPlayerEntityMixin"
   ],
   "injectors": {

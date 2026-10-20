@@ -37,6 +37,13 @@ Minecraft 1.20.1 (Fabric) için zombi kıyameti modu.
   - **Sesler**: kapı, kapak ve çit kapısı açmak (eğilerek yarı ses), cam kırmak (eğilsen de) ve sert düşüş zombileri çeker.
   - **Kan**: vuruşlarda kan sıçrar (zombilerde koyu); canın azalınca ekran kenarları kızarır ve kalp atışını duyarsın.
   - Yeni eşyalar: Kahve, Temiz Su, Gazoz, Enerji İçeceği, Fasulye ve Çorba Konservesi, Enerji Barı, Askeri Tayın (MRE), Atel.
+- **Silahlar**:
+  - Ateşli: Tabanca (9mm, 15'lik), Pompalı (12 kalibre, 6 fişek, saçma), Dürbünlü Av Tüfeği (7.62, 5'lik, tek atışta ağır hasar), AK-47 (7.62, 30'luk, otomatik), M4 (5.56, 30'luk, otomatik).
+  - Sağ tık ateş eder, otomatik modda basılı tutunca tarar. **Eğilmek nişan almaktır**: yakınlaştırır, sekmeyi ve dağılmayı azaltır. Koşarken ve zıplarken isabet düşer.
+  - **R** doldurur, **B** atış modunu (otomatik/tek) değiştirir. Hotbarın sağında şarjör ve yedek mermi sayısı görünür.
+  - Her atış silahı yıpratır; yıpranmış silah tutukluk yapabilir (R ile açılır). Kafaya isabet iki kat hasar. Mermiler camı kırar. Silah sesi çok uzaktan zombileri çeker.
+  - Mermi: bakır + barut + demir parçacığından el yapımı üretilebilir. Silahlar üretilemez, sandıklarda, kasalarda ve asker zombilerde bulunur (yıpranmış ve az mermiyle).
+  - Yakın dövüş: Beyzbol Sopası, Çivili Sopa, Pala, Levye, Katana, Yangın Baltası.
 - **Yağmalama**: içinde loot olan dolaplar önce kısa bir süre "aranır" ve bu ses yakındaki zombileri çeker.
 
 Ayarlar: `config/deadhorizon.json` (oyun ilk açıldığında oluşur).

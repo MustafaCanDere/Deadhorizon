@@ -12,6 +12,7 @@ import net.minecraft.entity.ai.goal.BreakDoorGoal;
 import net.minecraft.entity.ai.pathing.MobNavigation;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.ZombieEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.sound.SoundCategory;
@@ -84,7 +85,8 @@ public abstract class DHZombieEntity extends ZombieEntity {
     }
 
     private boolean isHeadshot(@Nullable Entity projectile) {
-        if (projectile == null) return false;
+        // Hitscan guns work out their own headshots; this is for arrows and other real projectiles.
+        if (!(projectile instanceof ProjectileEntity)) return false;
         // The projectile is still where it was at the start of the tick, so trace its path into our box.
         Vec3d start = projectile.getPos();
         Vec3d end = start.add(projectile.getVelocity());

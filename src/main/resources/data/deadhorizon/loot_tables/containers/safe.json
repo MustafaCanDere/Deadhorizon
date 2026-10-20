@@ -67,6 +67,74 @@
           "type": "minecraft:item",
           "name": "minecraft:name_tag",
           "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:pistol",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "type": "minecraft:uniform",
+                "min": 0.3,
+                "max": 0.9
+              }
+            },
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Ammo:8}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:ammo_9mm",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 4,
+                "max": 15
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:hunting_rifle",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "type": "minecraft:uniform",
+                "min": 0.3,
+                "max": 0.9
+              }
+            },
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Ammo:3}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:ammo_762",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 2,
+                "max": 8
+              }
+            }
+          ]
         }
       ]
     }

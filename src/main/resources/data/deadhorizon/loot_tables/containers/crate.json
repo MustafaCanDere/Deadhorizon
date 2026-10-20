@@ -147,6 +147,84 @@
               }
             }
           ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:ammo_9mm",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 2,
+                "max": 10
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:ammo_12g",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 6
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:crowbar",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:baseball_bat",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:pistol",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "type": "minecraft:uniform",
+                "min": 0.3,
+                "max": 0.9
+              }
+            },
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Ammo:4}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:shotgun",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "type": "minecraft:uniform",
+                "min": 0.3,
+                "max": 0.9
+              }
+            },
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Ammo:2}"
+            }
+          ]
         }
       ]
     }
