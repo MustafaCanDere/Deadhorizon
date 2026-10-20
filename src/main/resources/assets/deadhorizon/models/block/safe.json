@@ -1,0 +1,139 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "body": "deadhorizon:block/metal_dark",
+    "door": "deadhorizon:block/metal_grey",
+    "dial": "deadhorizon:block/handle",
+    "particle": "deadhorizon:block/metal_dark"
+  },
+  "elements": [
+    {
+      "from": [
+        1,
+        0,
+        1
+      ],
+      "to": [
+        15,
+        14,
+        15
+      ],
+      "faces": {
+        "north": {
+          "texture": "#body"
+        },
+        "south": {
+          "texture": "#body"
+        },
+        "east": {
+          "texture": "#body"
+        },
+        "west": {
+          "texture": "#body"
+        },
+        "up": {
+          "texture": "#body"
+        },
+        "down": {
+          "texture": "#body"
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        1,
+        0.5
+      ],
+      "to": [
+        14,
+        13,
+        1
+      ],
+      "faces": {
+        "north": {
+          "texture": "#door"
+        },
+        "south": {
+          "texture": "#door"
+        },
+        "east": {
+          "texture": "#door"
+        },
+        "west": {
+          "texture": "#door"
+        },
+        "up": {
+          "texture": "#door"
+        },
+        "down": {
+          "texture": "#door"
+        }
+      }
+    },
+    {
+      "from": [
+        7,
+        6,
+        0
+      ],
+      "to": [
+        9,
+        8,
+        0.5
+      ],
+      "faces": {
+        "north": {
+          "texture": "#dial"
+        },
+        "south": {
+          "texture": "#dial"
+        },
+        "east": {
+          "texture": "#dial"
+        },
+        "west": {
+          "texture": "#dial"
+        },
+        "up": {
+          "texture": "#dial"
+        },
+        "down": {
+          "texture": "#dial"
+        }
+      }
+    },
+    {
+      "from": [
+        11,
+        5,
+        0
+      ],
+      "to": [
+        12,
+        9,
+        0.5
+      ],
+      "faces": {
+        "north": {
+          "texture": "#dial"
+        },
+        "south": {
+          "texture": "#dial"
+        },
+        "east": {
+          "texture": "#dial"
+        },
+        "west": {
+          "texture": "#dial"
+        },
+        "up": {
+          "texture": "#dial"
+        },
+        "down": {
+          "texture": "#dial"
+        }
+      }
+    }
+  ]
+}

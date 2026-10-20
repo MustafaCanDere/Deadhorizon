@@ -45,6 +45,7 @@ public final class ModItems {
                         entries.add(PAINKILLERS);
                         entries.add(ANTIBIOTICS);
                         entries.add(ANTIDOTE);
+                        ModBlocks.ALL.forEach(entries::add);
                     })
                     .build());
 

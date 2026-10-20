@@ -6,6 +6,7 @@ import com.deadhorizon.entity.zombie.BruteEntity;
 import com.deadhorizon.entity.zombie.DHZombieEntity;
 import com.deadhorizon.entity.zombie.RunnerEntity;
 import com.deadhorizon.entity.zombie.WalkerEntity;
+import com.deadhorizon.entity.misc.SeatEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
@@ -30,6 +31,14 @@ public final class ModEntities {
             register("runner", RunnerEntity::new, 0.6f, 1.95f, RunnerEntity::createAttributes);
     public static final EntityType<BruteEntity> BRUTE =
             register("brute", BruteEntity::new, 0.9f, 2.6f, BruteEntity::createAttributes);
+
+    public static final EntityType<SeatEntity> SEAT = Registry.register(Registries.ENTITY_TYPE, DeadHorizon.id("seat"),
+            FabricEntityTypeBuilder.<SeatEntity>create(SpawnGroup.MISC, SeatEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.001f, 0.001f))
+                    .disableSaving()
+                    .disableSummon()
+                    .fireImmune()
+                    .build());
 
     private ModEntities() {
     }

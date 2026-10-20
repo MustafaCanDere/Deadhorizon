@@ -2,7 +2,10 @@ package com.deadhorizon;
 
 import com.deadhorizon.config.DHConfig;
 import com.deadhorizon.infection.Infection;
+import com.deadhorizon.loot.LootSearch;
 import com.deadhorizon.noise.NoiseEvents;
+import com.deadhorizon.registry.ModBlockEntities;
+import com.deadhorizon.registry.ModBlocks;
 import com.deadhorizon.registry.ModEffects;
 import com.deadhorizon.registry.ModEntities;
 import com.deadhorizon.registry.ModItems;
@@ -25,12 +28,15 @@ public class DeadHorizon implements ModInitializer {
     public void onInitialize() {
         DHConfig.load();
         ModEffects.register();
+        ModBlocks.register();
+        ModBlockEntities.register();
         ModEntities.register();
         ModItems.register();
         ModSpawns.register();
         ModLoot.register();
         NoiseEvents.register();
         Infection.register();
+        LootSearch.register();
         LOGGER.info("Dead Horizon loaded. The dead are walking.");
     }
 }

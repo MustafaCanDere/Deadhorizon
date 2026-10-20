@@ -1,6 +1,7 @@
 package com.deadhorizon.entity.zombie;
 
 import com.deadhorizon.config.DHConfig;
+import com.deadhorizon.entity.ai.BreakBarricadeGoal;
 import com.deadhorizon.entity.ai.InvestigateNoiseGoal;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.EntityType;
@@ -35,11 +36,17 @@ public abstract class DHZombieEntity extends ZombieEntity {
         return 240;
     }
 
+    /** How much damage each blow does to a barricade (it breaks after more than 3). */
+    public int barricadeDamage() {
+        return 1;
+    }
+
     @Override
     protected void initCustomGoals() {
         super.initCustomGoals();
         this.goalSelector.add(1, new BreakDoorGoal(this, doorBreakTime(),
                 difficulty -> DHConfig.INSTANCE.doorBreakingOnAllDifficulties || difficulty == Difficulty.HARD));
+        this.goalSelector.add(1, new BreakBarricadeGoal(this));
         this.goalSelector.add(6, new InvestigateNoiseGoal(this, 1.0));
         if (NavigationConditions.hasMobNavigation(this)) {
             ((MobNavigation) this.getNavigation()).setCanPathThroughDoors(true);

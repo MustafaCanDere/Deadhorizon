@@ -14,6 +14,9 @@ public final class ModDamageTypes {
     public static final RegistryKey<DamageType> BLEEDING =
             RegistryKey.of(RegistryKeys.DAMAGE_TYPE, DeadHorizon.id("bleeding"));
 
+    public static final RegistryKey<DamageType> BARBED_WIRE =
+            RegistryKey.of(RegistryKeys.DAMAGE_TYPE, DeadHorizon.id("barbed_wire"));
+
     private ModDamageTypes() {
     }
 

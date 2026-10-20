@@ -28,4 +28,9 @@ public class BruteEntity extends DHZombieEntity {
     protected int doorBreakTime() {
         return 80;
     }
+
+    @Override
+    public int barricadeDamage() {
+        return 2;
+    }
 }
