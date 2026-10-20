@@ -1,0 +1,41 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "bags": "deadhorizon:block/sandbags",
+    "particle": "deadhorizon:block/sandbags"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#bags"
+        },
+        "south": {
+          "texture": "#bags"
+        },
+        "east": {
+          "texture": "#bags"
+        },
+        "west": {
+          "texture": "#bags"
+        },
+        "up": {
+          "texture": "#bags"
+        },
+        "down": {
+          "texture": "#bags"
+        }
+      }
+    }
+  ]
+}

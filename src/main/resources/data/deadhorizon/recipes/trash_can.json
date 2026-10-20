@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "ITI",
+    "I I",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "T": {
+      "item": "minecraft:iron_trapdoor"
+    }
+  },
+  "result": {
+    "item": "deadhorizon:trash_can",
+    "count": 1
+  }
+}
