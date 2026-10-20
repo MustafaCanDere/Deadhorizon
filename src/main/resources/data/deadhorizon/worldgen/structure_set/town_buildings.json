@@ -1,0 +1,30 @@
+{
+  "structures": [
+    {
+      "structure": "deadhorizon:house",
+      "weight": 6
+    },
+    {
+      "structure": "deadhorizon:market",
+      "weight": 2
+    },
+    {
+      "structure": "deadhorizon:pharmacy",
+      "weight": 2
+    },
+    {
+      "structure": "deadhorizon:gas_station",
+      "weight": 2
+    },
+    {
+      "structure": "deadhorizon:police_station",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 14,
+    "separation": 5,
+    "salt": 48151623
+  }
+}

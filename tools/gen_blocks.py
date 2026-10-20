@@ -587,6 +587,20 @@ def gen_container_loot():
                                   entry(d("ammo_762"), 4, 8, 24), entry(d("ammo_12g"), 4, 4, 12), entry(d("frag_grenade"), 2, 1, 3),
                                   gun(d("m4"), 1, 30), gun(d("shotgun"), 1, 6), entry(d("energy_drink"), 3, 1, 2),
                                   entry(d("jerry_can"), 4, 1, 2)])
+    chest("gas_station", (2, 5), [entry(d("jerry_can"), 8, 1, 2), entry(d("soda"), 8, 1, 3), entry(d("energy_bar"), 8, 1, 3),
+                                  entry(d("energy_drink"), 5, 1, 2), entry(d("canned_beans"), 4, 1, 2), entry(m("coal"), 6, 2, 6),
+                                  entry(m("torch"), 4, 2, 6), entry(d("clean_water"), 5, 1, 2), entry(d("crowbar"), 1),
+                                  entry(d("bandage"), 3, 1, 2), entry(m("flint_and_steel"), 2), entry(d("molotov"), 1)])
+    chest("police", (3, 6), [gun(d("pistol"), 8, 6), gun(d("shotgun"), 4, 3), gun(d("m4"), 1, 10), gun(d("mp5"), 2, 10),
+                             entry(d("ammo_9mm"), 10, 6, 18), entry(d("ammo_12g"), 6, 3, 10), entry(d("ammo_556"), 3, 5, 15),
+                             entry(d("bandage"), 5, 1, 3), entry(d("first_aid_kit"), 2), entry(d("radio"), 2),
+                             entry(m("chainmail_chestplate"), 2), entry(d("extended_mag"), 1), entry(d("frag_grenade"), 1),
+                             entry(m("iron_ingot"), 3, 1, 3)])
+    chest("market", (2, 6), [entry(d("canned_beans"), 10, 1, 3), entry(d("canned_soup"), 10, 1, 3), entry(d("soda"), 8, 1, 3),
+                             entry(d("clean_water"), 8, 1, 3), entry(d("energy_bar"), 6, 1, 4), entry(d("coffee"), 4, 1, 2),
+                             entry(m("bread"), 5, 1, 3), entry(m("rotten_flesh"), 6, 1, 3), entry(m("sugar"), 4, 1, 3),
+                             entry(m("potato"), 5, 1, 4), entry(m("carrot"), 5, 1, 4), entry(m("bowl"), 4, 1, 3),
+                             entry(m("glass_bottle"), 5, 1, 3), entry(d("jerry_can"), 1), entry(d("mre"), 1)])
     chest("safe", (1, 4), [entry(m("gold_ingot"), 8, 1, 4), entry(m("emerald"), 6, 1, 3), entry(m("diamond"), 2, 1, 2),
                            entry(d("antidote"), 3), entry(m("golden_apple"), 2), entry(m("name_tag"), 2),
                            gun(d("pistol"), 4, 8), entry(d("ammo_9mm"), 4, 4, 15), gun(d("hunting_rifle"), 1, 3),

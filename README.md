@@ -60,6 +60,13 @@ Minecraft 1.20.1 (Fabric) için zombi kıyameti modu.
   - **Projektör**: elektrik varken en güçlü ışığı verir.
   - **Buzdolabı** artık elektrik ister; elektriksiz buzdolabında yemek normal hızda bozulur.
   - **Silah tezgahı**: elinde aşınmış silah ya da yakın dövüş silahıyla kullan, bir demir külçe dayanıklılığın dörtte birini geri verir ve tutukluğu açar.
+- **Silah animasyonları**: eğilince silah ekranın ortasına, göz hizasına gelir (nişan). Koşarken namlu aşağı iner. Her atışta silah geri teper. Şarjör değiştirirken silah yana yatar, şarjör çıkar, yenisi takılır ve kurma kolu çekilir. Tutukluk olunca silah yan tutulur. Dürbünlü silahla nişan alınca dürbün görüntüsü açılır. Üçüncü şahısta silah iki elle omuza alınır. Her atışta silahın inip kalkması kaldırıldı.
+- **Terk edilmiş binalar**: düzlük, orman, savan, tayga, kar ve çölde dağınık kasaba binaları çıkar. Hepsinin içinde zombi doğar, camların bir kısmı kırık, duvarlar yosunlu ve çatlak, lambalar sönük.
+  - **Ev**: mutfak, buzdolabı, yatak odası, gardırop, ecza dolabı.
+  - **Market**: raf koridorları, buzdolabı sırası, kasa. Konserve, içecek, sebze.
+  - **Eczane**: duvar boyu ecza dolapları ve tezgah.
+  - **Benzin istasyonu**: pompalar, sundurma, dükkan. Benzin bidonu, atıştırmalık, kömür.
+  - **Polis karakolu**: nezarethane, kasa ve sandıklarda tabanca, pompalı, MP5, mermi, telsiz.
 - **Yemek pişirme**: tencereyi yanan kamp ateşi, ateş, lav, magma ya da yanan fırın üstüne koy, kova ya da şişeyle su doldur.
   - Boş kaynatılan su temiz suya döner (3 şişe). Kirli suyu içmeden önce kaynat.
   - En fazla 4 malzeme: et ve sebze **Etli Güveç** (en doyurucu, su, dayanıklılık ve sıcaklık verir), iki sebze **Sebze Çorbası**, diğer her şey **Lapa** olur. Çürük et her şeyi lapaya çevirir.
