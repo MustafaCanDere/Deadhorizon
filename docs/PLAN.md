@@ -158,7 +158,7 @@ Her dekor bloğu bir işe yarar; yapıların içinde de doğal olarak bulunur.
 | **8 – Sürüler + olaylar** ✓ (gün sayacı ve güçlenen zombiler, Kan Ayı, gezgin sürüler, erzak düşürme, telsiz) | Kıyamet gün sayacı, Kan Ayı, gezgin sürüler, erzak düşürme, radyo. | Sürekli artan baskı. |
 | **9 – Elektrik ve üretim** (✓ jeneratör, güneş paneli, elektrikli çit, projektör, elektrikli buzdolabı, silah tezgahı; kablosuz 12 blok menzil; kalan: üretim tezgahları) | Jeneratör, güneş paneli, kablolar, elektrikli çit, projektör; çalışma tezgahları, tamir. | Gelişmiş üs. |
 | **10 – Yapılar (2. dalga)** | Hastane, okul, hapishane, askeri üs, apartman, küçük kasaba. | Büyük keşif hedefleri. |
-| **11 – İnsanlar** | Tüccarlar, haydutlar, hayatta kalan kampları; beceri sistemi. | Canlı dünya. |
+| **11 – İnsanlar** (✓ haydutlar, stalkerlar, tüccar, ruble; ✓ STALKER bölgesi: radyasyon, anomaliler, artefaktlar; ✓ tekme, kaçınma, tırmanma; ✓ STALKER arayüzü ve PDA; kalan: görevler, beceri sistemi) | Tüccarlar, haydutlar, hayatta kalan kampları; beceri sistemi. | Canlı dünya. |
 | **12 – Boss + cila** | Alfa boss, ses efektleri, el çizimi dokular, denge, performans. | Yayına hazır sürüm. |
 
 Her faz sonunda indirilebilir bir `.jar` ve kısa test notları gelir.

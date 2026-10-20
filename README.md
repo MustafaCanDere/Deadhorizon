@@ -61,6 +61,23 @@ Minecraft 1.20.1 (Fabric) için zombi kıyameti modu.
   - **Projektör**: elektrik varken en güçlü ışığı verir.
   - **Buzdolabı** artık elektrik ister; elektriksiz buzdolabında yemek normal hızda bozulur.
   - **Silah tezgahı**: elinde aşınmış silah ya da yakın dövüş silahıyla kullan, bir demir külçe dayanıklılığın dörtte birini geri verir ve tutukluğu açar.
+- **İnsanlar** (STALKER gibi):
+  - **Haydutlar**: tabanca, çifte, AK, Uzi ya da palayla gezer. Oyuncuya ve stalkerlara ateş eder, siper mesafesini korur, seri atar, şarjör değiştirir, canı azalınca kaçar. Ölünce yıpranmış silahını, ruble ve mermi düşürebilir.
+  - **Stalkerlar** (hayatta kalanlar): zombileri ve haydutları avlar, sana ancak saldırırsan döner.
+  - **Tüccar**: sığınağında oturur. Ruble ile mermi, ilaç, anti-radyasyon, silah, dedektör satar; artefakt, silah, altın alır.
+  - Zombiler insanlara da saldırır.
+- **Bölge** (STALKER):
+  - **Radyasyon**: radyoaktif varil ve moloz yakınında doz birikir. 30'da halsizlik, 60'ta hasar, 85'te ölüm. Anti-radyasyon iğnesi yarısını, votka biraz alır. Koruyucu tulumun her parçası dozu azaltır.
+  - **Geiger sayacı**: üstündeyken radyasyonda tıklar; kullanınca dozu ve doz hızını gösterir.
+  - **Anomaliler** (görünmez): Yakıcı tutuşturur, Elektro çarpar, Sıçratıcı havaya fırlatır. Sadece hafif bir titreşim belli eder. **Cıvata** at, anomali sende değil cıvatada patlasın. **Dedektör** elde öter ve anomalilerin sınırını gösterir.
+  - **Artefaktlar** anomalilerin yanında zamanla oluşur: Denizanası (iyileştirir, kanamayı durdurur), Taş Çiçek (dayanıklılık), Ateş Topu (ısıtır, ateşe dayanıklılık). Kemerde (hızlı erişim çubuğu ya da sol el) çalışırlar ama radyoaktiftirler.
+  - Yapılar: **haydut kampı**, **tüccar sığınağı** (korumalı), **radyoaktif alan** (kaza yapmış kamyon), **anomali alanı** (son stalkerın zulası).
+- **Yakın dövüş** (Dying Light / Zomboid):
+  - **Tekme** (V): zombiyi iter ve sersemletir. Eğilerek basarsan yerdeki zombinin kafasını ezer.
+  - **Kaçınma** (sol Alt + yön): hızlı yana ya da geri sıçrama.
+  - **Tırmanma**: 2 blok yüksek duvara zıplayıp boşluğa basılı tutunca üstüne tırmanırsın.
+  - Hepsi dayanıklılık harcar.
+- **Arayüz** (STALKER): üstte pusula, sağ altta can/dayanıklılık/radyasyon çubukları ve renkli durum rozetleri (sarı, turuncu, kırmızı), vurulunca nişangahın etrafında hasarın geldiği yönü gösteren kırmızı işaret. **PDA** (P): gün ve saat, Kan Ayına kalan gün, tüm vücut değerleri ve aktif durumlar.
 - **Silah animasyonları**: eğilince silah ekranın ortasına, göz hizasına gelir (nişan). Koşarken namlu aşağı iner. Her atışta silah geri teper. Şarjör değiştirirken silah yana yatar, şarjör çıkar, yenisi takılır ve kurma kolu çekilir. Tutukluk olunca silah yan tutulur. Dürbünlü silahla nişan alınca dürbün görüntüsü açılır. Üçüncü şahısta silah iki elle omuza alınır. Her atışta silahın inip kalkması kaldırıldı.
 - **Terk edilmiş binalar**: düzlük, orman, savan, tayga, kar ve çölde dağınık kasaba binaları çıkar. Hepsinin içinde zombi doğar, camların bir kısmı kırık, duvarlar yosunlu ve çatlak, lambalar sönük.
   - **Ev**: mutfak, buzdolabı, yatak odası, gardırop, ecza dolabı.

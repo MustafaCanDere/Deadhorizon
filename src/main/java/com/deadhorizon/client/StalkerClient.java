@@ -4,6 +4,10 @@ import com.deadhorizon.block.AnomalyBlock;
 import com.deadhorizon.registry.ModItems;
 import com.deadhorizon.stalker.ArtifactItem;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.minecraft.client.option.KeyBinding;
+import net.minecraft.client.util.InputUtil;
+import org.lwjgl.glfw.GLFW;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.ItemEntity;
@@ -22,13 +26,21 @@ public final class StalkerClient {
     private StalkerClient() {
     }
 
+    private static KeyBinding pda;
+
     public static void register() {
+        pda = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.deadhorizon.pda",
+                InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_P, "category.deadhorizon"));
         ClientTickEvents.END_CLIENT_TICK.register(StalkerClient::tick);
+        StalkerHud.register();
     }
 
     private static void tick(MinecraftClient client) {
         ClientPlayerEntity player = client.player;
         if (player == null || client.isPaused()) return;
+        while (pda.wasPressed()) {
+            if (client.currentScreen == null) client.setScreen(new PdaScreen());
+        }
 
         if (ClientSurvival.exposure > 0.02f && player.getInventory().contains(new ItemStack(ModItems.GEIGER_COUNTER))) {
             float chance = Math.min(0.9f, ClientSurvival.exposure * 0.35f);

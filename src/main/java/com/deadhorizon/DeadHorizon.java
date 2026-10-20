@@ -1,5 +1,6 @@
 package com.deadhorizon;
 
+import com.deadhorizon.combat.Combat;
 import com.deadhorizon.config.DHConfig;
 import com.deadhorizon.effect.BloodEffects;
 import com.deadhorizon.event.Apocalypse;
@@ -45,6 +46,7 @@ public class DeadHorizon implements ModInitializer {
         BloodEffects.register();
         Guns.register();
         Apocalypse.register();
+        Combat.register();
         LOGGER.info("Dead Horizon loaded. The dead are walking.");
     }
 }

@@ -49,6 +49,7 @@ public class DeadHorizonClient implements ClientModInitializer {
         GunClient.register();
         GunAnimation.register();
         StalkerClient.register();
+        CombatClient.register();
         ColorProviderRegistry.ITEM.register((stack, tint) -> tint > 0 ? -1 : ((DyeableItem) stack.getItem()).getColor(stack),
                 ModItems.HAZMAT_MASK, ModItems.HAZMAT_SUIT, ModItems.HAZMAT_PANTS, ModItems.HAZMAT_BOOTS);
 
