@@ -214,5 +214,8 @@
   "message.deadhorizon.pot_no_heat": "Tencereyi ateşin ya da yanan kamp ateşinin üstüne koy (%s/%s malzeme)",
   "message.deadhorizon.pot_cooking": "Pişiyor: %s/%s malzeme, %%%s",
   "message.deadhorizon.pot_need_bowl": "Kase lazım",
-  "message.deadhorizon.pot_need_bottle": "Kaynamış su: cam şişe doldur"
+  "message.deadhorizon.pot_need_bottle": "Kaynamış su: cam şişe doldur",
+  "item.deadhorizon.sniper_rifle": "Keskin Nişancı Tüfeği (7.62)",
+  "item.deadhorizon.uzi": "Uzi (9mm)",
+  "item.deadhorizon.double_barrel": "Çifte (12g)"
 }

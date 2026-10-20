@@ -223,6 +223,25 @@ def jerry_can():
     save(img, "jerry_can")
 
 
+def uzi():
+    img, d = canvas()
+    d.rectangle((3, 5, 11, 8), fill=POLYMER)
+    d.line((11, 6, 13, 6), fill=STEEL)
+    d.rectangle((6, 9, 7, 14), fill=STEEL)                        # magazine through the grip
+    d.line((4, 5, 10, 5), fill=STEEL_LIGHT)
+    save(img, "uzi")
+
+
+def double_barrel():
+    img, d = canvas()
+    d.rectangle((0, 8, 4, 11), fill=WOOD)
+    d.rectangle((4, 7, 7, 9), fill=STEEL)
+    d.line((7, 7, 15, 7), fill=STEEL)
+    d.line((7, 8, 15, 8), fill=STEEL_LIGHT)
+    d.rectangle((8, 9, 12, 9), fill=WOOD_DARK)                    # fore-end
+    save(img, "double_barrel")
+
+
 pistol()
 long_gun("shotgun", WOOD, STEEL, 15, pump=(10, 9, 13, 9))
 long_gun("hunting_rifle", WOOD, STEEL, 15, scope=True)
@@ -248,4 +267,7 @@ frag_grenade()
 molotov()
 pipe_bomb()
 radio()
+long_gun("sniper_rifle", (70, 80, 60, 255), STEEL, 15, scope=True)
+uzi()
+double_barrel()
 jerry_can()

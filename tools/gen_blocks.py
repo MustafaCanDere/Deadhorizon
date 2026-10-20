@@ -573,7 +573,7 @@ def gen_container_loot():
                             entry(m("iron_axe"), 2), entry(m("bow"), 2), entry(m("shield"), 1),
                             entry(d("mre"), 3), entry(d("canned_beans"), 4, 1, 3), entry(d("clean_water"), 3, 1, 2),
                             entry(d("ammo_9mm"), 3, 2, 10), entry(d("ammo_12g"), 3, 1, 6), entry(d("crowbar"), 2),
-                            entry(d("baseball_bat"), 2), gun(d("pistol"), 1, 4), gun(d("shotgun"), 1, 2),
+                            entry(d("baseball_bat"), 2), gun(d("pistol"), 1, 4), gun(d("shotgun"), 1, 2), gun(d("double_barrel"), 1, 1),
                             entry(d("molotov"), 2), entry(d("pipe_bomb"), 1), entry(d("ammo_357"), 2, 2, 8),
                             entry(d("jerry_can"), 3, 1, 2)])
     chest("dumpster", (2, 6), [entry(m("rotten_flesh"), 10, 1, 4), entry(m("bone"), 8, 1, 3), entry(m("string"), 6, 1, 3),
@@ -591,7 +591,8 @@ def gen_container_loot():
                                   entry(d("energy_drink"), 5, 1, 2), entry(d("canned_beans"), 4, 1, 2), entry(m("coal"), 6, 2, 6),
                                   entry(m("torch"), 4, 2, 6), entry(d("clean_water"), 5, 1, 2), entry(d("crowbar"), 1),
                                   entry(d("bandage"), 3, 1, 2), entry(m("flint_and_steel"), 2), entry(d("molotov"), 1)])
-    chest("police", (3, 6), [gun(d("pistol"), 8, 6), gun(d("shotgun"), 4, 3), gun(d("m4"), 1, 10), gun(d("mp5"), 2, 10),
+    chest("police", (3, 6), [gun(d("pistol"), 8, 6), gun(d("shotgun"), 4, 3), gun(d("m4"), 1, 10), gun(d("mp5"), 2, 10), gun(d("sniper_rifle"), 1, 3),
+                             gun(d("uzi"), 2, 12),
                              entry(d("ammo_9mm"), 10, 6, 18), entry(d("ammo_12g"), 6, 3, 10), entry(d("ammo_556"), 3, 5, 15),
                              entry(d("bandage"), 5, 1, 3), entry(d("first_aid_kit"), 2), entry(d("radio"), 2),
                              entry(m("chainmail_chestplate"), 2), entry(d("extended_mag"), 1), entry(d("frag_grenade"), 1),

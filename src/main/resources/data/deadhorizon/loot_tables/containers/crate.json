@@ -228,6 +228,25 @@
         },
         {
           "type": "minecraft:item",
+          "name": "deadhorizon:double_barrel",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "type": "minecraft:uniform",
+                "min": 0.3,
+                "max": 0.9
+              }
+            },
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Ammo:1}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
           "name": "deadhorizon:molotov",
           "weight": 2
         },

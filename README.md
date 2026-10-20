@@ -44,6 +44,7 @@ Minecraft 1.20.1 (Fabric) için zombi kıyameti modu.
   - Her atış silahı yıpratır; yıpranmış silah tutukluk yapabilir (R ile açılır). Kafaya isabet iki kat hasar. Mermiler camı kırar. Silah sesi çok uzaktan zombileri çeker.
   - Mermi: bakır + barut + demir parçacığından el yapımı üretilebilir. Silahlar üretilemez, sandıklarda, kasalarda ve asker zombilerde bulunur (yıpranmış ve az mermiyle).
   - Ayrıca MP5 (9mm, otomatik) ve Revolver (.357, 6'lık, güçlü).
+  - **Keskin Nişancı Tüfeği** (7.62, 5'lik, tek atışta çoğu zombiyi öldürür, çok yavaş ve çok gürültülü, güçlü dürbün), **Uzi** (9mm, 32'lik, çok dağınık), **Çifte** (12g, iki fişek, yakında yıkıcı, hızlı dolar).
   - **Eklentiler**: Susturucu (sesi dörtte bire indirir), Uzatılmış Şarjör (+%50), Dürbün (uzun namlulularda güçlü yakınlaştırma ve isabet). Silahı sol ele al, eklentiyi sağ elle kullan.
   - **Atılabilirler**: El Bombası (2.5 sn sonra patlar), Molotof (çarptığı yeri yakar), Sesli Tuzak Bombası (öterek zombileri toplar, sonra patlar). Patlamalar varsayılan olarak blok kırmaz.
   - Yakın dövüş: Beyzbol Sopası, Çivili Sopa, Pala, Levye, Katana, Yangın Baltası. Katana, pala ve baltayla kritik vuruş (zıplayıp düşerken) zombinin kafasını keser; sopa ve levye zombiyi sersemletir.

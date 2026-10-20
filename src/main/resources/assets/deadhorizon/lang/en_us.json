@@ -214,5 +214,8 @@
   "message.deadhorizon.pot_no_heat": "Put the pot over a fire or a lit campfire (%s/%s ingredients)",
   "message.deadhorizon.pot_cooking": "Cooking: %s/%s ingredients, %s%%",
   "message.deadhorizon.pot_need_bowl": "You need a bowl",
-  "message.deadhorizon.pot_need_bottle": "Boiled water: fill glass bottles"
+  "message.deadhorizon.pot_need_bottle": "Boiled water: fill glass bottles",
+  "item.deadhorizon.sniper_rifle": "Sniper Rifle (7.62)",
+  "item.deadhorizon.uzi": "Uzi (9mm)",
+  "item.deadhorizon.double_barrel": "Double-Barrel Shotgun (12g)"
 }

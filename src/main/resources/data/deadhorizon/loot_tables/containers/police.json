@@ -86,6 +86,44 @@
         },
         {
           "type": "minecraft:item",
+          "name": "deadhorizon:sniper_rifle",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "type": "minecraft:uniform",
+                "min": 0.3,
+                "max": 0.9
+              }
+            },
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Ammo:3}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:uzi",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "type": "minecraft:uniform",
+                "min": 0.3,
+                "max": 0.9
+              }
+            },
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Ammo:12}"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
           "name": "deadhorizon:ammo_9mm",
           "weight": 10,
           "functions": [

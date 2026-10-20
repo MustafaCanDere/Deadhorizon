@@ -101,6 +101,14 @@ public final class ModItems {
             new GunSpec(() -> AMMO_9MM, 30, 5.0f, 1, 2, true, 2.2f, 1.2f, 50, 35, 44, 0.8f)));
     public static final Item REVOLVER = register("revolver", new GunItem(gun(900),
             new GunSpec(() -> AMMO_357, 6, 11.0f, 1, 8, false, 1.2f, 6.0f, 60, 70, 56, 0.8f)));
+    // Bolt-action .308-class sniper: one hit kills most zombies, slow to cycle and very loud.
+    public static final Item SNIPER_RIFLE = register("sniper_rifle", new GunItem(gun(450),
+            new GunSpec(() -> AMMO_762, 5, 28.0f, 1, 32, false, 0.15f, 9.0f, 160, 70, 96, 0.2f)));
+    public static final Item UZI = register("uzi", new GunItem(gun(500),
+            new GunSpec(() -> AMMO_9MM, 32, 4.5f, 1, 2, true, 4.0f, 1.0f, 36, 35, 44, 0.9f)));
+    /** Both barrels close together; reloads fast because it is just two shells. */
+    public static final Item DOUBLE_BARREL = register("double_barrel", new GunItem(gun(350),
+            new GunSpec(() -> AMMO_12G, 2, 4.0f, 9, 6, false, 8.0f, 11.0f, 20, 35, 60, 0.9f)));
 
     // Attachments: hold the gun in the off hand and use the part
     public static final Item SUPPRESSOR = register("suppressor",
@@ -180,6 +188,9 @@ public final class ModItems {
                         entries.add(M4);
                         entries.add(MP5);
                         entries.add(REVOLVER);
+                        entries.add(SNIPER_RIFLE);
+                        entries.add(UZI);
+                        entries.add(DOUBLE_BARREL);
                         entries.add(SUPPRESSOR);
                         entries.add(EXTENDED_MAG);
                         entries.add(SCOPE);
