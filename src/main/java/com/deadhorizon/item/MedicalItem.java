@@ -55,7 +55,8 @@ public class MedicalItem extends Item {
             if (treatment.heal() > 0) user.heal(treatment.heal());
             if (treatment.stopsBleeding()) user.removeStatusEffect(ModEffects.BLEEDING);
             if (treatment.curesPoison()) user.removeStatusEffect(StatusEffects.POISON);
-            if (treatment.curesFracture() && user.removeStatusEffect(ModEffects.FRACTURE)) {
+            if (treatment.curesFracture()
+                    && (user.removeStatusEffect(ModEffects.FRACTURE) | user.removeStatusEffect(ModEffects.BROKEN_ARM))) {
                 message(user, "message.deadhorizon.fracture.splinted", Formatting.GREEN);
             }
             if (treatment.regenSeconds() > 0) {

@@ -153,6 +153,22 @@ def effect_fracture():
     save(img, "mob_effect", "fracture")
 
 
+def effect_broken_arm():
+    img, d = canvas(18)
+    d.line((3, 14, 8, 9), fill=(235, 230, 210, 255), width=3)
+    d.line((10, 8, 15, 3), fill=(235, 230, 210, 255), width=3)
+    d.polygon([(8, 8), (11, 9), (9, 11)], fill=(200, 40, 40, 255))
+    save(img, "mob_effect", "broken_arm")
+
+
+def effect_cold():
+    img, d = canvas(18)
+    for a, b in [((9, 1), (9, 17)), ((1, 9), (17, 9)), ((3, 3), (15, 15)), ((15, 3), (3, 15))]:
+        d.line((*a, *b), fill=(160, 210, 240, 255), width=1)
+    d.ellipse((6, 6, 12, 12), fill=(220, 240, 255, 255), outline=(90, 140, 180, 255))
+    save(img, "mob_effect", "cold")
+
+
 def gui_thirst():
     """27x9 strip: empty drop, full drop, half drop."""
     img = Image.new("RGBA", (27, 9), (0, 0, 0, 0))
@@ -195,3 +211,5 @@ mre()
 effect_fracture()
 gui_thirst()
 mug("coffee", (90, 55, 30, 255))
+effect_broken_arm()
+effect_cold()

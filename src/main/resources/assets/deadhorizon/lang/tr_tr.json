@@ -67,7 +67,7 @@
   "item.deadhorizon.acid_glob": "Asit Topağı",
   "entity.deadhorizon.acid_spit": "Asit Tükürüğü",
   "item.deadhorizon.splint": "Atel",
-  "item.deadhorizon.splint.tooltip": "Kırık bacağı sabitler",
+  "item.deadhorizon.splint.tooltip": "Kırık bacağı ya da kolu sabitler",
   "item.deadhorizon.clean_water": "Temiz Su",
   "item.deadhorizon.clean_water.tooltip": "Kaynatılmış, içmesi güvenli",
   "item.deadhorizon.soda": "Gazoz",
@@ -109,5 +109,11 @@
   "tooltip.deadhorizon.stale": "Bayatlıyor",
   "tooltip.deadhorizon.rotting": "Bozulmak üzere",
   "hud.deadhorizon.wet": "Islak",
-  "hud.deadhorizon.soaked": "Sırılsıklam"
+  "hud.deadhorizon.soaked": "Sırılsıklam",
+  "effect.deadhorizon.broken_arm": "Kırık Kol",
+  "effect.deadhorizon.cold": "Soğuk Algınlığı",
+  "message.deadhorizon.broken_arm": "Kolun kırıldı! Atel lazım.",
+  "message.deadhorizon.caught_cold": "Üşüttün. Burnun akıyor...",
+  "message.deadhorizon.cough": "Öksürdün. Duymuş olabilirler...",
+  "message.deadhorizon.cold_gone": "İyi bir uyku soğuk algınlığını geçirdi."
 }

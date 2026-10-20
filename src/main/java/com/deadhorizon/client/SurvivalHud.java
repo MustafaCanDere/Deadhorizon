@@ -33,6 +33,7 @@ public final class SurvivalHud {
                 || !client.interactionManager.hasStatusBars()) return;
         int width = ctx.getScaledWindowWidth();
         int height = ctx.getScaledWindowHeight();
+        drawLowHealth(ctx, player, width, height);
         if (DHConfig.INSTANCE.thirstEnabled) drawThirst(ctx, player, width, height);
         if (DHConfig.INSTANCE.staminaEnabled) drawStamina(ctx, width, height);
         drawStatus(ctx, client, width, height);
@@ -102,6 +103,18 @@ public final class SurvivalHud {
             Text text = Text.translatable(ClientSurvival.load == 2 ? "hud.deadhorizon.overloaded" : "hud.deadhorizon.heavy").formatted(color);
             ctx.drawTextWithShadow(client.textRenderer, text, x + 5 - client.textRenderer.getWidth(text), bottom - 8, 0xFFFFFF);
         }
+    }
+
+    /** A pulsing red edge when badly hurt, in time with the heartbeat (see ClientSurvival). */
+    private static void drawLowHealth(DrawContext ctx, ClientPlayerEntity player, int width, int height) {
+        if (!DHConfig.INSTANCE.bloodEffects || player.isCreative() || player.getHealth() > 6.0f || !player.isAlive()) return;
+        float danger = 1.0f - player.getHealth() / 6.0f;
+        float pulse = 0.5f + 0.5f * (float) Math.sin(player.age * 0.3);
+        int alpha = (int) (60 + 100 * danger * pulse);
+        int red = (alpha << 24) | 0x8A0000;
+        int band = height / 5;
+        ctx.fillGradient(0, 0, width, band, red, 0x008A0000);
+        ctx.fillGradient(0, height - band, width, height, 0x008A0000, red);
     }
 
     private static int temperatureColor(float t) {

@@ -38,6 +38,8 @@ public class DHConfig {
     public double sprintNoiseRadius = 12.0;
     public double blockBreakNoiseRadius = 10.0;
     public double attackNoiseRadius = 8.0;
+    public double doorNoiseRadius = 6.0;
+    public double landingNoiseRadius = 8.0;
 
     // Infection
     public boolean infectionEnabled = true;
@@ -87,6 +89,14 @@ public class DHConfig {
     public double zombieGrabChance = 0.35;
     /** At or below this much health you go into shock: slow and weak. 0 turns it off. */
     public double shockHealth = 4.0;
+    /** Chance that a Brute's hit breaks your arm. */
+    public double bruteBoneBreakChance = 0.2;
+    /** Chance, every 30 seconds spent cold or soaked, of catching a cold. */
+    public boolean illnessEnabled = true;
+    public double coldCatchChance = 0.06;
+    public int coldMinutes = 10;
+    public double coughNoiseRadius = 12.0;
+    public boolean bloodEffects = true;
 
     // Zombie senses and headshots
     public boolean zombieSensesEnabled = true;

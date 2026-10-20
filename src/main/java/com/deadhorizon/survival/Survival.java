@@ -2,6 +2,7 @@ package com.deadhorizon.survival;
 
 import com.deadhorizon.DeadHorizon;
 import com.deadhorizon.config.DHConfig;
+import com.deadhorizon.noise.NoiseSystem;
 import com.deadhorizon.registry.ModDamageTypes;
 import com.deadhorizon.registry.ModEffects;
 import com.deadhorizon.registry.ModItems;
@@ -117,6 +118,8 @@ public final class Survival {
         EntitySleepEvents.STOP_SLEEPING.register((entity, sleepingPos) -> {
             if (entity instanceof ServerPlayerEntity player && player.getWorld().isDay()) {
                 get(player).rest = SurvivalData.MAX_REST;
+                // A good night's sleep sees off a cold.
+                if (player.removeStatusEffect(ModEffects.COLD)) message(player, "message.deadhorizon.cold_gone", Formatting.GREEN);
             }
         });
 
@@ -139,6 +142,7 @@ public final class Survival {
             if (cfg.fatigueEnabled) tickRest(player, data, cfg);
             if (cfg.encumbranceEnabled) tickLoad(player, data);
             if (cfg.staminaEnabled) tickStamina(player, data, cfg);
+            if (cfg.illnessEnabled) tickIllness(player, data, cfg);
             if (cfg.shockHealth > 0 && player.getHealth() <= cfg.shockHealth && player.age % 40 == 0) {
                 refresh(player, StatusEffects.SLOWNESS, 0);
                 refresh(player, StatusEffects.WEAKNESS, 0);
@@ -184,6 +188,7 @@ public final class Survival {
             if (data.thirst < 6.0f) regen *= 0.5;
             if (player.hasStatusEffect(ModEffects.FRACTURE)) regen *= 0.5;
             if (data.rest < 25.0f) regen *= 0.6;
+            if (player.hasStatusEffect(ModEffects.COLD)) regen *= 0.7;
             if (data.temperature < 25.0f || data.temperature > 75.0f) regen *= 0.7;
             if (player.isSneaking() || player.getVelocity().horizontalLengthSquared() < 1.0E-4) regen *= 1.5;
             data.addStamina((float) regen);
@@ -240,6 +245,38 @@ public final class Survival {
             float dry = 0.5f + Math.max(0.0f, data.temperature - 50.0f) * 0.1f;
             if (player.isOnFire()) dry += 20.0f;
             data.wetness = Math.max(0.0f, data.wetness - dry);
+        }
+    }
+
+    private static void tickIllness(ServerPlayerEntity player, SurvivalData data, DHConfig cfg) {
+        if (player.hasStatusEffect(ModEffects.COLD)) {
+            // Painkillers (regeneration) hold the coughing back.
+            if (player.age % 300 == 0 && !player.hasStatusEffect(StatusEffects.REGENERATION)
+                    && player.getRandom().nextFloat() < 0.5f) {
+                player.getWorld().playSound(null, player.getBlockPos(), SoundEvents.ENTITY_PANDA_SNEEZE,
+                        SoundCategory.PLAYERS, 1.0f, 0.6f);
+                NoiseSystem.emit(player.getServerWorld(), player.getPos(), cfg.coughNoiseRadius);
+                data.addStamina(-10.0f);
+                message(player, "message.deadhorizon.cough", Formatting.GRAY);
+            }
+            return;
+        }
+        if (player.age % 600 != 0) return;
+        boolean chilled = data.temperature < 25.0f || (data.wetness > 70.0f && data.temperature < 45.0f);
+        if (chilled && player.getRandom().nextDouble() < cfg.coldCatchChance) {
+            player.addStatusEffect(new StatusEffectInstance(ModEffects.COLD, cfg.coldMinutes * 60 * 20, 0, false, false, true));
+            message(player, "message.deadhorizon.caught_cold", Formatting.AQUA);
+        }
+    }
+
+    /** A Brute hits hard enough to break bones. */
+    public static void onBruteHit(PlayerEntity player) {
+        if (player.getWorld().isClient || exempt(player) || player.hasStatusEffect(ModEffects.BROKEN_ARM)) return;
+        if (player.getRandom().nextDouble() < DHConfig.INSTANCE.bruteBoneBreakChance) {
+            player.addStatusEffect(new StatusEffectInstance(ModEffects.BROKEN_ARM,
+                    DHConfig.INSTANCE.fractureMinutes * 60 * 20, 0, false, false, true));
+            player.getWorld().playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.PLAYERS, 1.0f, 0.5f);
+            message(player, "message.deadhorizon.broken_arm", Formatting.RED);
         }
     }
 

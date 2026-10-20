@@ -67,7 +67,7 @@
   "item.deadhorizon.acid_glob": "Acid Glob",
   "entity.deadhorizon.acid_spit": "Acid Spit",
   "item.deadhorizon.splint": "Splint",
-  "item.deadhorizon.splint.tooltip": "Sets a broken leg",
+  "item.deadhorizon.splint.tooltip": "Sets a broken leg or arm",
   "item.deadhorizon.clean_water": "Clean Water",
   "item.deadhorizon.clean_water.tooltip": "Boiled and safe to drink",
   "item.deadhorizon.soda": "Soda",
@@ -109,5 +109,11 @@
   "tooltip.deadhorizon.stale": "Going stale",
   "tooltip.deadhorizon.rotting": "About to rot",
   "hud.deadhorizon.wet": "Wet",
-  "hud.deadhorizon.soaked": "Soaked"
+  "hud.deadhorizon.soaked": "Soaked",
+  "effect.deadhorizon.broken_arm": "Broken Arm",
+  "effect.deadhorizon.cold": "Common Cold",
+  "message.deadhorizon.broken_arm": "Your arm snapped! You need a splint.",
+  "message.deadhorizon.caught_cold": "You caught a cold. Your nose is running...",
+  "message.deadhorizon.cough": "You coughed. They may have heard...",
+  "message.deadhorizon.cold_gone": "A good night's sleep shook off your cold."
 }

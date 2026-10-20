@@ -1,6 +1,7 @@
 package com.deadhorizon;
 
 import com.deadhorizon.config.DHConfig;
+import com.deadhorizon.effect.BloodEffects;
 import com.deadhorizon.infection.Infection;
 import com.deadhorizon.loot.LootSearch;
 import com.deadhorizon.noise.NoiseEvents;
@@ -39,6 +40,7 @@ public class DeadHorizon implements ModInitializer {
         Infection.register();
         LootSearch.register();
         Survival.register();
+        BloodEffects.register();
         LOGGER.info("Dead Horizon loaded. The dead are walking.");
     }
 }

@@ -1,11 +1,15 @@
 package com.deadhorizon.client;
 
+import com.deadhorizon.config.DHConfig;
 import com.deadhorizon.registry.ModEffects;
 import com.deadhorizon.survival.Survival;
 import com.deadhorizon.survival.SurvivalData;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.sound.PositionedSoundInstance;
+import net.minecraft.sound.SoundEvents;
 
 /** The client's copy of the server's survival stats, for the HUD and sprint blocking. */
 public final class ClientSurvival {
@@ -22,6 +26,22 @@ public final class ClientSurvival {
 
     public static boolean blocksSprint(ClientPlayerEntity player) {
         return !player.isCreative() && (exhausted || player.hasStatusEffect(ModEffects.FRACTURE));
+    }
+
+    private static int beatTimer;
+
+    /** Hear your own heart pounding at low health, faster the closer you are to death. */
+    private static void heartbeat(MinecraftClient client, ClientPlayerEntity player) {
+        if (!DHConfig.INSTANCE.bloodEffects || player.isCreative() || !player.isAlive() || player.getHealth() > 6.0f) {
+            beatTimer = 0;
+            return;
+        }
+        int interval = 14 + Math.round(player.getHealth() * 3);
+        if (beatTimer == 0 || beatTimer == 6) {
+            float pitch = beatTimer == 0 ? 0.55f : 0.5f;
+            client.getSoundManager().play(PositionedSoundInstance.master(SoundEvents.BLOCK_NOTE_BLOCK_BASEDRUM.value(), pitch, 0.7f));
+        }
+        beatTimer = (beatTimer + 1) % interval;
     }
 
     public static void register() {
@@ -47,6 +67,7 @@ public final class ClientSurvival {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             ClientPlayerEntity player = client.player;
             if (player != null && player.isSprinting() && blocksSprint(player)) player.setSprinting(false);
+            if (player != null) heartbeat(client, player);
         });
     }
 }

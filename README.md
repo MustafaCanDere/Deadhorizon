@@ -32,6 +32,10 @@ Minecraft 1.20.1 (Fabric) için zombi kıyameti modu.
   - **Çiğ yemek**: çiğ et ve balık zehirleyebilir, özellikle tavuk.
   - **Islaklık**: yağmur ve su seni ıslatır, ıslakken daha çok üşürsün. Ateşin yanında ya da sıcakta kurursun.
   - **Yağmur Suyu Toplayıcı**: yağmurda dolan fıçı (tahtalar + kova). Şişeyle temiz su alınır.
+  - **Soğuk algınlığı**: üşüyünce ya da sırılsıklamken hastalanabilirsin. Öksürük sesi zombileri çeker ve nefesini keser; ağrı kesici öksürüğü bastırır, gece boyu uyumak iyileştirir.
+  - **Kırık kol**: Tank zombinin vuruşu kolunu kırabilir; vuruşların zayıflar. Atel ile düzelir.
+  - **Sesler**: kapı, kapak ve çit kapısı açmak (eğilerek yarı ses), cam kırmak (eğilsen de) ve sert düşüş zombileri çeker.
+  - **Kan**: vuruşlarda kan sıçrar (zombilerde koyu); canın azalınca ekran kenarları kızarır ve kalp atışını duyarsın.
   - Yeni eşyalar: Kahve, Temiz Su, Gazoz, Enerji İçeceği, Fasulye ve Çorba Konservesi, Enerji Barı, Askeri Tayın (MRE), Atel.
 - **Yağmalama**: içinde loot olan dolaplar önce kısa bir süre "aranır" ve bu ses yakındaki zombileri çeker.
 

@@ -1,5 +1,6 @@
 package com.deadhorizon.mixin;
 
+import com.deadhorizon.entity.zombie.BruteEntity;
 import com.deadhorizon.entity.zombie.DHZombieEntity;
 import com.deadhorizon.infection.Infection;
 import com.deadhorizon.survival.Survival;
@@ -19,6 +20,7 @@ public abstract class ZombieEntityMixin {
         if (cir.getReturnValueZ() && target instanceof PlayerEntity player) {
             Infection.onZombieHit(player, (Object) this instanceof DHZombieEntity);
             if ((Object) this instanceof DHZombieEntity) Survival.onZombieGrab(player);
+            if ((Object) this instanceof BruteEntity) Survival.onBruteHit(player);
         }
     }
 }
