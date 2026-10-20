@@ -431,7 +431,8 @@ def gen_container_loot():
                             entry(m("iron_axe"), 2), entry(m("bow"), 2), entry(m("shield"), 1),
                             entry(d("mre"), 3), entry(d("canned_beans"), 4, 1, 3), entry(d("clean_water"), 3, 1, 2),
                             entry(d("ammo_9mm"), 3, 2, 10), entry(d("ammo_12g"), 3, 1, 6), entry(d("crowbar"), 2),
-                            entry(d("baseball_bat"), 2), gun(d("pistol"), 1, 4), gun(d("shotgun"), 1, 2)])
+                            entry(d("baseball_bat"), 2), gun(d("pistol"), 1, 4), gun(d("shotgun"), 1, 2),
+                            entry(d("molotov"), 2), entry(d("pipe_bomb"), 1), entry(d("ammo_357"), 2, 2, 8)])
     chest("dumpster", (2, 6), [entry(m("rotten_flesh"), 10, 1, 4), entry(m("bone"), 8, 1, 3), entry(m("string"), 6, 1, 3),
                                entry(m("paper"), 8, 1, 4), entry(m("glass_bottle"), 6, 1, 2), entry(m("leather"), 4),
                                entry(m("iron_nugget"), 5, 1, 4), entry(d("bandage"), 1),
@@ -439,7 +440,9 @@ def gen_container_loot():
     chest("safe", (1, 4), [entry(m("gold_ingot"), 8, 1, 4), entry(m("emerald"), 6, 1, 3), entry(m("diamond"), 2, 1, 2),
                            entry(d("antidote"), 3), entry(m("golden_apple"), 2), entry(m("name_tag"), 2),
                            gun(d("pistol"), 4, 8), entry(d("ammo_9mm"), 4, 4, 15), gun(d("hunting_rifle"), 1, 3),
-                           entry(d("ammo_762"), 2, 2, 8)])
+                           entry(d("ammo_762"), 2, 2, 8),
+                           gun(d("revolver"), 2, 3), entry(d("suppressor"), 1), entry(d("scope"), 1),
+                           entry(d("extended_mag"), 1), entry(d("frag_grenade"), 1, 1, 2)])
 
 
 if __name__ == "__main__":

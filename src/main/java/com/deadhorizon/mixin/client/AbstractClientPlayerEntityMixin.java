@@ -14,7 +14,7 @@ public abstract class AbstractClientPlayerEntityMixin {
     private void deadhorizon$aim(CallbackInfoReturnable<Float> cir) {
         AbstractClientPlayerEntity self = (AbstractClientPlayerEntity) (Object) this;
         if (self.isSneaking() && self.getMainHandStack().getItem() instanceof GunItem gun) {
-            cir.setReturnValue(cir.getReturnValue() * gun.spec().zoom());
+            cir.setReturnValue(cir.getReturnValue() * gun.zoom(self.getMainHandStack()));
         }
     }
 }

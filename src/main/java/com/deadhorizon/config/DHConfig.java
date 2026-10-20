@@ -102,6 +102,9 @@ public class DHConfig {
     /** Chance per shot of a jam once a gun is below 30% condition. */
     public double gunJamChance = 0.05;
     public boolean bulletsBreakGlass = true;
+    public boolean grenadesBreakBlocks = false;
+    /** Critical hits with a katana, machete or fire axe take a zombie's head off. */
+    public boolean decapitation = true;
 
     // Zombie senses and headshots
     public boolean zombieSensesEnabled = true;

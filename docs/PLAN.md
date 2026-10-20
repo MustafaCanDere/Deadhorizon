@@ -152,7 +152,7 @@ Her dekor bloğu bir işe yarar; yapıların içinde de doğal olarak bulunur.
 | **2 – Enfeksiyon + tıbbi eşyalar** ✓ | Enfeksiyon aşamaları, HUD, bandaj, antibiyotik, antidot, kanama. | Isırığın bir anlamı var. |
 | **3 – Temel dekorasyon ve yağmalama** ✓ | Dolaplar, buzdolabı, raf, kasa, koltuk/sandalye, masa, lamba, çöp kutusu, kum torbası, barikat tahtası, dikenli tel; yağmalama sistemi. | Üs kurulabiliyor, yapılar doldurulabiliyor. |
 | **4 – Özel zombiler** ✓ | Çığlıkçı, Kusan, Patlayan, Sürünen, Zırhlı; GeckoLib modelleri. | Çeşitli tehditler. |
-| **5 – Silahlar** (ilk kısım ✓: 5 ateşli silah, 4 mermi, 6 yakın dövüş; kalan: eklentiler, el bombası, 3D modeller) | Yakın dövüş, tam ateşli silah sistemi, mermi, eklentiler, atılabilirler. | Hazırlık ve ilerleme hissi. |
+| **5 – Silahlar** (✓ 7 ateşli silah, 5 mermi, 6 yakın dövüş, eklentiler, el bombası/molotof/tuzak bombası, kafa kesme; kalan: 3D modeller, nişan animasyonu) | Yakın dövüş, tam ateşli silah sistemi, mermi, eklentiler, atılabilirler. | Hazırlık ve ilerleme hissi. |
 | **6 – Yapılar (1. dalga)** | Evler, market, eczane, benzin istasyonu, polis karakolu, araç enkazları. | Keşfetmeye değer dünya. |
 | **7 – Hayatta kalma** (ilk kısmı öne çekildi ✓) | ✓ Susuzluk, ✓ dayanıklılık, ✓ kırık bacak, ✓ zombi duyuları ve kafadan vuruş, ✓ konserve/içecekler, ✓ vücut ısısı, ✓ uyku yorgunluğu, ✓ yük ağırlığı, ✓ zombi yakalaması ve şok, ✓ yemek bozulması ve buzdolabı, ✓ çiğ yemek zehirlenmesi, ✓ ıslaklık, ✓ yağmur suyu toplama; ✓ soğuk algınlığı ve öksürük, ✓ kırık kol, ✓ kapı/cam/düşüş sesleri, ✓ kan efektleri ve kalp atışı; kalan: yemek pişirme tarifleri. | Tam hayatta kalma. |
 | **8 – Sürüler + olaylar** | Kıyamet gün sayacı, Kan Ayı, gezgin sürüler, erzak düşürme, radyo. | Sürekli artan baskı. |

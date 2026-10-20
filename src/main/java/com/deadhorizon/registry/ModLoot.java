@@ -75,6 +75,11 @@ public final class ModLoot {
                         .with(ammo(ModItems.AMMO_762, 4, 3, 12))
                         .with(ammo(ModItems.AMMO_556, 3, 3, 12))
                         .with(entry(ModItems.KATANA, 1))
+                        .with(gun(ModItems.MP5, 2, 8))
+                        .with(entry(ModItems.FRAG_GRENADE, 2))
+                        .with(entry(ModItems.SUPPRESSOR, 1))
+                        .with(entry(ModItems.SCOPE, 1))
+                        .with(entry(ModItems.EXTENDED_MAG, 1))
                         .with(EmptyEntry.builder().weight(6)));
             }
         });

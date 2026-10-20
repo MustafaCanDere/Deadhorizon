@@ -65,7 +65,7 @@ public final class GunClient {
         } else if (GunItem.reloadUntil(stack) > 0) {
             text = Text.translatable("hud.deadhorizon.gun.reloading").formatted(Formatting.YELLOW);
         } else {
-            Formatting color = loaded == 0 ? Formatting.RED : loaded <= gun.spec().magazine() / 4 ? Formatting.GOLD : Formatting.WHITE;
+            Formatting color = loaded == 0 ? Formatting.RED : loaded <= gun.magazine(stack) / 4 ? Formatting.GOLD : Formatting.WHITE;
             MutableText counter = Text.literal(loaded + " / " + reserve).formatted(color);
             if (gun.spec().automatic()) {
                 counter.append(Text.literal("  ")).append(Text.translatable(gun.isAuto(stack)

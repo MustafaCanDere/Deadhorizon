@@ -43,7 +43,10 @@ Minecraft 1.20.1 (Fabric) için zombi kıyameti modu.
   - **R** doldurur, **B** atış modunu (otomatik/tek) değiştirir. Hotbarın sağında şarjör ve yedek mermi sayısı görünür.
   - Her atış silahı yıpratır; yıpranmış silah tutukluk yapabilir (R ile açılır). Kafaya isabet iki kat hasar. Mermiler camı kırar. Silah sesi çok uzaktan zombileri çeker.
   - Mermi: bakır + barut + demir parçacığından el yapımı üretilebilir. Silahlar üretilemez, sandıklarda, kasalarda ve asker zombilerde bulunur (yıpranmış ve az mermiyle).
-  - Yakın dövüş: Beyzbol Sopası, Çivili Sopa, Pala, Levye, Katana, Yangın Baltası.
+  - Ayrıca MP5 (9mm, otomatik) ve Revolver (.357, 6'lık, güçlü).
+  - **Eklentiler**: Susturucu (sesi dörtte bire indirir), Uzatılmış Şarjör (+%50), Dürbün (uzun namlulularda güçlü yakınlaştırma ve isabet). Silahı sol ele al, eklentiyi sağ elle kullan.
+  - **Atılabilirler**: El Bombası (2.5 sn sonra patlar), Molotof (çarptığı yeri yakar), Sesli Tuzak Bombası (öterek zombileri toplar, sonra patlar). Patlamalar varsayılan olarak blok kırmaz.
+  - Yakın dövüş: Beyzbol Sopası, Çivili Sopa, Pala, Levye, Katana, Yangın Baltası. Katana, pala ve baltayla kritik vuruş (zıplayıp düşerken) zombinin kafasını keser; sopa ve levye zombiyi sersemletir.
 - **Yağmalama**: içinde loot olan dolaplar önce kısa bir süre "aranır" ve bu ses yakındaki zombileri çeker.
 
 Ayarlar: `config/deadhorizon.json` (oyun ilk açıldığında oluşur).

@@ -131,6 +131,77 @@ def fire_axe():
     save(img, "fire_axe")
 
 
+def mp5():
+    img, d = canvas()
+    d.rectangle((2, 6, 11, 8), fill=POLYMER)
+    d.line((11, 7, 14, 7), fill=STEEL)
+    d.rectangle((5, 9, 6, 12), fill=POLYMER)
+    d.polygon([(8, 9), (9, 9), (10, 13), (9, 13)], fill=STEEL)
+    d.line((0, 7, 2, 7), fill=STEEL_LIGHT)
+    save(img, "mp5")
+
+
+def revolver():
+    img, d = canvas()
+    d.line((5, 5, 14, 5), fill=STEEL_LIGHT, width=2)
+    d.ellipse((5, 4, 9, 8), fill=STEEL, outline=POLYMER)
+    d.polygon([(4, 7), (7, 7), (5, 13), (2, 13)], fill=WOOD)
+    save(img, "revolver")
+
+
+def suppressor():
+    img, d = canvas()
+    d.rectangle((2, 6, 13, 9), fill=POLYMER, outline=STEEL)
+    d.line((3, 7, 12, 7), fill=STEEL_LIGHT)
+    save(img, "suppressor")
+
+
+def extended_mag():
+    img, d = canvas()
+    d.polygon([(5, 1), (9, 1), (12, 14), (8, 14)], fill=POLYMER, outline=STEEL)
+    d.point((7, 2), fill=BRASS)
+    save(img, "extended_mag")
+
+
+def scope():
+    img, d = canvas()
+    d.rectangle((2, 6, 13, 9), fill=POLYMER)
+    d.ellipse((11, 5, 15, 10), fill=STEEL)
+    d.ellipse((12, 6, 14, 9), fill=(120, 180, 220, 255))
+    d.rectangle((6, 10, 8, 11), fill=STEEL)
+    save(img, "scope")
+
+
+def frag_grenade():
+    img, d = canvas()
+    d.ellipse((3, 5, 12, 14), fill=(70, 90, 50, 255), outline=(40, 50, 30, 255))
+    d.rectangle((6, 2, 9, 5), fill=STEEL)
+    d.ellipse((9, 1, 12, 4), outline=(180, 180, 180, 255))
+    d.line((5, 9, 10, 9), fill=(50, 65, 35, 255))
+    save(img, "frag_grenade")
+
+
+def molotov():
+    img, d = canvas()
+    d.rectangle((5, 6, 10, 15), fill=(90, 140, 70, 200), outline=(40, 60, 30, 255))
+    d.rectangle((6, 3, 9, 6), fill=(90, 140, 70, 200))
+    d.rectangle((6, 9, 9, 14), fill=(200, 140, 40, 220))
+    d.polygon([(7, 3), (6, 0), (9, 1), (8, 3)], fill=(230, 220, 200, 255))
+    d.point((7, 0), fill=(255, 150, 30, 255))
+    save(img, "molotov")
+
+
+def pipe_bomb():
+    img, d = canvas()
+    d.rectangle((2, 6, 13, 10), fill=(120, 122, 128, 255), outline=STEEL)
+    d.rectangle((1, 5, 2, 11), fill=STEEL)
+    d.rectangle((13, 5, 14, 11), fill=STEEL)
+    d.rectangle((6, 4, 9, 6), fill=(30, 30, 30, 255))
+    d.point((8, 5), fill=(255, 40, 40, 255))
+    d.line((4, 8, 11, 8), fill=(200, 40, 40, 255))
+    save(img, "pipe_bomb")
+
+
 pistol()
 long_gun("shotgun", WOOD, STEEL, 15, pump=(10, 9, 13, 9))
 long_gun("hunting_rifle", WOOD, STEEL, 15, scope=True)
@@ -146,3 +217,12 @@ machete()
 crowbar()
 katana()
 fire_axe()
+mp5()
+revolver()
+ammo("ammo_357", BRASS, (180, 180, 185, 255), 2)
+suppressor()
+extended_mag()
+scope()
+frag_grenade()
+molotov()
+pipe_bomb()

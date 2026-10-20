@@ -5,7 +5,9 @@ import com.deadhorizon.item.DrinkItem;
 import com.deadhorizon.item.MedicalItem;
 import com.deadhorizon.item.MedicalItem.Treatment;
 import com.deadhorizon.item.TooltipItem;
+import com.deadhorizon.weapon.AttachmentItem;
 import com.deadhorizon.weapon.FireAxeItem;
+import com.deadhorizon.weapon.GrenadeItem;
 import com.deadhorizon.weapon.GunItem;
 import com.deadhorizon.weapon.GunSpec;
 import net.minecraft.item.SwordItem;
@@ -79,6 +81,7 @@ public final class ModItems {
     public static final Item AMMO_556 = register("ammo_556", new TooltipItem(new Item.Settings().maxCount(64)));
     public static final Item AMMO_762 = register("ammo_762", new TooltipItem(new Item.Settings().maxCount(64)));
     public static final Item AMMO_12G = register("ammo_12g", new TooltipItem(new Item.Settings().maxCount(32)));
+    public static final Item AMMO_357 = register("ammo_357", new TooltipItem(new Item.Settings().maxCount(64)));
 
     // Firearms: GunSpec(ammo, magazine, damage, pellets, interval, automatic, spread, recoil, range, reloadTicks, noise, zoom)
     public static final Item PISTOL = register("pistol", new GunItem(gun(600),
@@ -91,6 +94,27 @@ public final class ModItems {
             new GunSpec(() -> AMMO_762, 30, 8.0f, 1, 2, true, 2.6f, 2.2f, 80, 45, 64, 0.75f)));
     public static final Item M4 = register("m4", new GunItem(gun(900),
             new GunSpec(() -> AMMO_556, 30, 7.0f, 1, 2, true, 1.6f, 1.6f, 90, 40, 64, 0.65f)));
+
+    public static final Item MP5 = register("mp5", new GunItem(gun(700),
+            new GunSpec(() -> AMMO_9MM, 30, 5.0f, 1, 2, true, 2.2f, 1.2f, 50, 35, 44, 0.8f)));
+    public static final Item REVOLVER = register("revolver", new GunItem(gun(900),
+            new GunSpec(() -> AMMO_357, 6, 11.0f, 1, 8, false, 1.2f, 6.0f, 60, 70, 56, 0.8f)));
+
+    // Attachments: hold the gun in the off hand and use the part
+    public static final Item SUPPRESSOR = register("suppressor",
+            new AttachmentItem(new Item.Settings().maxCount(1), AttachmentItem.Type.SUPPRESSOR));
+    public static final Item EXTENDED_MAG = register("extended_mag",
+            new AttachmentItem(new Item.Settings().maxCount(1), AttachmentItem.Type.EXTENDED_MAG));
+    public static final Item SCOPE = register("scope",
+            new AttachmentItem(new Item.Settings().maxCount(1), AttachmentItem.Type.SCOPE));
+
+    // Throwables
+    public static final Item FRAG_GRENADE = register("frag_grenade",
+            new GrenadeItem(new Item.Settings().maxCount(8), GrenadeItem.Kind.FRAG));
+    public static final Item MOLOTOV = register("molotov",
+            new GrenadeItem(new Item.Settings().maxCount(8), GrenadeItem.Kind.MOLOTOV));
+    public static final Item PIPE_BOMB = register("pipe_bomb",
+            new GrenadeItem(new Item.Settings().maxCount(8), GrenadeItem.Kind.PIPE_BOMB));
 
     // Melee
     public static final Item BASEBALL_BAT = register("baseball_bat",
@@ -138,10 +162,19 @@ public final class ModItems {
                         entries.add(HUNTING_RIFLE);
                         entries.add(AK47);
                         entries.add(M4);
+                        entries.add(MP5);
+                        entries.add(REVOLVER);
+                        entries.add(SUPPRESSOR);
+                        entries.add(EXTENDED_MAG);
+                        entries.add(SCOPE);
+                        entries.add(FRAG_GRENADE);
+                        entries.add(MOLOTOV);
+                        entries.add(PIPE_BOMB);
                         entries.add(AMMO_9MM);
                         entries.add(AMMO_556);
                         entries.add(AMMO_762);
                         entries.add(AMMO_12G);
+                        entries.add(AMMO_357);
                         entries.add(BASEBALL_BAT);
                         entries.add(NAIL_BAT);
                         entries.add(MACHETE);

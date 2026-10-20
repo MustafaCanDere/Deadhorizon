@@ -3,6 +3,7 @@ package com.deadhorizon.entity.zombie;
 import com.deadhorizon.config.DHConfig;
 import com.deadhorizon.entity.ai.BreakBarricadeGoal;
 import com.deadhorizon.entity.ai.InvestigateNoiseGoal;
+import com.deadhorizon.registry.ModItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.EntityType;
@@ -11,6 +12,10 @@ import net.minecraft.entity.ai.NavigationConditions;
 import net.minecraft.entity.ai.goal.BreakDoorGoal;
 import net.minecraft.entity.ai.pathing.MobNavigation;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -81,7 +86,27 @@ public abstract class DHZombieEntity extends ZombieEntity {
             this.getWorld().playSound(null, this.getBlockPos(), SoundEvents.ENTITY_ARROW_HIT_PLAYER,
                     SoundCategory.PLAYERS, 0.6f, 0.5f);
         }
+        if (source.getAttacker() instanceof PlayerEntity player && source.getSource() == player
+                && !source.isIn(DamageTypeTags.IS_PROJECTILE)) {
+            amount = melee(player, amount);
+        }
         return super.damage(source, amount);
+    }
+
+    /** Blades take heads off on a critical hit; blunt weapons stagger. */
+    private float melee(PlayerEntity player, float amount) {
+        ItemStack weapon = player.getMainHandStack();
+        boolean critical = player.fallDistance > 0.0f && !player.isOnGround() && !player.isClimbing() && !player.isTouchingWater();
+        if (DHConfig.INSTANCE.decapitation && critical
+                && (weapon.isOf(ModItems.KATANA) || weapon.isOf(ModItems.MACHETE) || weapon.isOf(ModItems.FIRE_AXE))) {
+            this.getWorld().playSound(null, this.getBlockPos(), SoundEvents.ENTITY_PLAYER_ATTACK_CRIT, SoundCategory.PLAYERS, 1.0f, 0.6f);
+            return Math.max(amount, this.getHealth() + 20.0f);
+        }
+        if (weapon.isOf(ModItems.BASEBALL_BAT) || weapon.isOf(ModItems.NAIL_BAT) || weapon.isOf(ModItems.CROWBAR)) {
+            this.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 30, 3));
+            this.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 30, 1));
+        }
+        return amount;
     }
 
     private boolean isHeadshot(@Nullable Entity projectile) {

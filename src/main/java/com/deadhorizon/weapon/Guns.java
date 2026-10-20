@@ -81,7 +81,7 @@ public final class Guns {
         stack.damage(1, player, p -> p.sendToolBreakStatus(p.getActiveHand()));
 
         float spread = spec.spread();
-        if (player.isSneaking()) spread *= 0.4f; // aiming down the sights
+        if (player.isSneaking()) spread *= GunItem.has(stack, AttachmentItem.Type.SCOPE) ? 0.2f : 0.4f; // aiming down the sights
         if (player.isSprinting()) spread *= 1.8f;
         else if (player.getVelocity().horizontalLengthSquared() > 0.003) spread *= 1.4f;
         if (!player.isOnGround()) spread *= 2.0f;
@@ -95,10 +95,15 @@ public final class Guns {
         world.spawnParticles(ParticleTypes.SMOKE, muzzle.x, muzzle.y, muzzle.z, 3, 0.03, 0.03, 0.03, 0.01);
         world.spawnParticles(ParticleTypes.FLAME, muzzle.x, muzzle.y, muzzle.z, 1, 0.0, 0.0, 0.0, 0.0);
         boolean shotgun = spec.pellets() > 1;
-        world.playSound(null, player.getX(), player.getY(), player.getZ(),
-                shotgun ? SoundEvents.ENTITY_GENERIC_EXPLODE : SoundEvents.ENTITY_FIREWORK_ROCKET_BLAST,
-                SoundCategory.PLAYERS, shotgun ? 1.2f : 2.5f, shotgun ? 1.9f : 0.55f + player.getRandom().nextFloat() * 0.1f);
-        NoiseSystem.emit(world, player.getPos(), spec.noise());
+        if (GunItem.has(stack, AttachmentItem.Type.SUPPRESSOR)) {
+            world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ARROW_SHOOT,
+                    SoundCategory.PLAYERS, 0.8f, 1.6f + player.getRandom().nextFloat() * 0.2f);
+        } else {
+            world.playSound(null, player.getX(), player.getY(), player.getZ(),
+                    shotgun ? SoundEvents.ENTITY_GENERIC_EXPLODE : SoundEvents.ENTITY_FIREWORK_ROCKET_BLAST,
+                    SoundCategory.PLAYERS, shotgun ? 1.2f : 2.5f, shotgun ? 1.9f : 0.55f + player.getRandom().nextFloat() * 0.1f);
+        }
+        NoiseSystem.emit(world, player.getPos(), gun.noise(stack));
 
         float recoil = spec.recoil() * (player.isSneaking() ? 0.6f : 1.0f);
         PacketByteBuf buf = PacketByteBufs.create();
@@ -179,7 +184,7 @@ public final class Guns {
             player.sendMessage(Text.translatable("message.deadhorizon.gun.unjammed").formatted(Formatting.GRAY), true);
             return;
         }
-        if (GunItem.ammo(stack) >= gun.spec().magazine()) return;
+        if (GunItem.ammo(stack) >= gun.magazine(stack)) return;
         if (!player.isCreative() && count(player.getInventory(), gun.spec().ammo().get()) == 0) {
             player.sendMessage(Text.translatable("message.deadhorizon.gun.no_ammo").formatted(Formatting.GRAY), true);
             return;
@@ -190,7 +195,7 @@ public final class Guns {
     }
 
     public static void finishReload(ServerPlayerEntity player, ItemStack stack, GunItem gun) {
-        int needed = gun.spec().magazine() - GunItem.ammo(stack);
+        int needed = gun.magazine(stack) - GunItem.ammo(stack);
         int taken = player.isCreative() ? needed : take(player.getInventory(), gun.spec().ammo().get(), needed);
         GunItem.setAmmo(stack, GunItem.ammo(stack) + taken);
         player.getWorld().playSound(null, player.getBlockPos(), SoundEvents.ITEM_CROSSBOW_LOADING_END,

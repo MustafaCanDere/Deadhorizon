@@ -30,6 +30,7 @@ public class DeadHorizonClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.SOLDIER,
                 ctx -> new DHZombieRenderer(ctx, DeadHorizon.id("textures/entity/zombie/soldier.png"), 1.0f));
         EntityRendererRegistry.register(ModEntities.ACID_SPIT, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.GRENADE, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.SEAT, EmptyEntityRenderer::new);
 
         ClientSurvival.register();

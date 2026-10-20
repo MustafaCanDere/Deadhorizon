@@ -27,6 +27,7 @@ public class GunItem extends Item {
     private static final String AUTO = "Auto";
     private static final String RELOAD_UNTIL = "ReloadUntil";
     private static final String JAMMED = "Jammed";
+    private static final String ATTACHMENTS = "Attachments";
 
     private final GunSpec spec;
 
@@ -37,6 +38,32 @@ public class GunItem extends Item {
 
     public GunSpec spec() {
         return spec;
+    }
+
+    public static boolean has(ItemStack stack, AttachmentItem.Type type) {
+        NbtCompound nbt = stack.getNbt();
+        return nbt != null && nbt.getCompound(ATTACHMENTS).getBoolean(type.id());
+    }
+
+    public static void attach(ItemStack stack, AttachmentItem.Type type) {
+        NbtCompound attachments = stack.getOrCreateNbt().getCompound(ATTACHMENTS);
+        attachments.putBoolean(type.id(), true);
+        stack.getOrCreateNbt().put(ATTACHMENTS, attachments);
+    }
+
+    /** Magazine size, counting an extended magazine. */
+    public int magazine(ItemStack stack) {
+        return has(stack, AttachmentItem.Type.EXTENDED_MAG) ? spec.magazine() * 3 / 2 : spec.magazine();
+    }
+
+    /** How far zombies hear it, counting a suppressor. */
+    public double noise(ItemStack stack) {
+        return has(stack, AttachmentItem.Type.SUPPRESSOR) ? spec.noise() * 0.25 : spec.noise();
+    }
+
+    /** FOV multiplier while aiming, counting a scope. */
+    public float zoom(ItemStack stack) {
+        return has(stack, AttachmentItem.Type.SCOPE) ? Math.min(spec.zoom(), 0.35f) : spec.zoom();
     }
 
     public static int ammo(ItemStack stack) {
@@ -131,11 +158,16 @@ public class GunItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.translatable("tooltip.deadhorizon.gun.ammo", ammo(stack), spec.magazine(),
+        tooltip.add(Text.translatable("tooltip.deadhorizon.gun.ammo", ammo(stack), magazine(stack),
                 Text.translatable(spec.ammo().get().getTranslationKey())).formatted(Formatting.GRAY));
         if (spec.automatic()) {
             tooltip.add(Text.translatable(isAuto(stack) ? "tooltip.deadhorizon.gun.auto" : "tooltip.deadhorizon.gun.semi")
                     .formatted(Formatting.DARK_GRAY));
+        }
+        for (AttachmentItem.Type type : AttachmentItem.Type.values()) {
+            if (has(stack, type)) {
+                tooltip.add(Text.literal("+ ").append(Text.translatable("item.deadhorizon." + type.id())).formatted(Formatting.BLUE));
+            }
         }
         if (isJammed(stack)) tooltip.add(Text.translatable("tooltip.deadhorizon.gun.jammed").formatted(Formatting.RED));
         tooltip.add(Text.translatable("tooltip.deadhorizon.gun.keys").formatted(Formatting.DARK_GRAY));

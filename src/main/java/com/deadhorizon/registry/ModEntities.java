@@ -3,6 +3,7 @@ package com.deadhorizon.registry;
 import com.deadhorizon.DeadHorizon;
 import com.deadhorizon.config.DHConfig;
 import com.deadhorizon.entity.projectile.AcidSpitEntity;
+import com.deadhorizon.entity.projectile.GrenadeEntity;
 import com.deadhorizon.entity.zombie.BloaterEntity;
 import com.deadhorizon.entity.zombie.BruteEntity;
 import com.deadhorizon.entity.zombie.CrawlerEntity;
@@ -50,6 +51,13 @@ public final class ModEntities {
 
     public static final EntityType<AcidSpitEntity> ACID_SPIT = Registry.register(Registries.ENTITY_TYPE, DeadHorizon.id("acid_spit"),
             FabricEntityTypeBuilder.<AcidSpitEntity>create(SpawnGroup.MISC, AcidSpitEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
+                    .trackRangeChunks(4)
+                    .trackedUpdateRate(10)
+                    .build());
+
+    public static final EntityType<GrenadeEntity> GRENADE = Registry.register(Registries.ENTITY_TYPE, DeadHorizon.id("grenade"),
+            FabricEntityTypeBuilder.<GrenadeEntity>create(SpawnGroup.MISC, GrenadeEntity::new)
                     .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
                     .trackRangeChunks(4)
                     .trackedUpdateRate(10)
