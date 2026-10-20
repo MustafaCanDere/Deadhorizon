@@ -11,6 +11,10 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.NavigationConditions;
 import net.minecraft.entity.ai.goal.BreakDoorGoal;
 import net.minecraft.entity.ai.pathing.MobNavigation;
+import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.entity.attribute.EntityAttributeInstance;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -75,7 +79,25 @@ public abstract class DHZombieEntity extends ZombieEntity {
         if (entityData == null) {
             entityData = new ZombieEntity.ZombieData(false, false);
         }
-        return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+        EntityData data = super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+        if (DHConfig.INSTANCE.dayScaling) scaleWithDay(world.toServerWorld().getTimeOfDay() / 24000L);
+        return data;
+    }
+
+    /** The longer the world has gone on, the tougher new zombies are: +3% health a day (max +100%) and so on. */
+    private void scaleWithDay(long days) {
+        if (days <= 0) return;
+        addModifier(EntityAttributes.GENERIC_MAX_HEALTH, "Day scaling health", Math.min(1.0, days * 0.03));
+        addModifier(EntityAttributes.GENERIC_ATTACK_DAMAGE, "Day scaling damage", Math.min(0.5, days * 0.015));
+        addModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, "Day scaling speed", Math.min(0.15, days * 0.005));
+        setHealth(getMaxHealth());
+    }
+
+    private void addModifier(EntityAttribute attribute, String name, double amount) {
+        EntityAttributeInstance instance = getAttributeInstance(attribute);
+        if (instance != null) {
+            instance.addPersistentModifier(new EntityAttributeModifier(name, amount, EntityAttributeModifier.Operation.MULTIPLY_BASE));
+        }
     }
 
     /** Projectiles that hit the head do extra damage. */

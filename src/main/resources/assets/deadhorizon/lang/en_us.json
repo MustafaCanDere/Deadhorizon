@@ -173,5 +173,18 @@
   "item.deadhorizon.molotov.tooltip": "Sets where it lands on fire",
   "item.deadhorizon.pipe_bomb": "Pipe Bomb",
   "item.deadhorizon.pipe_bomb.tooltip": "Beeps where it lands, drawing zombies in, then explodes",
-  "entity.deadhorizon.grenade": "Grenade"
+  "entity.deadhorizon.grenade": "Grenade",
+  "item.deadhorizon.radio": "Radio",
+  "item.deadhorizon.radio.tooltip": "Reports the day, the Blood Moon and supply drops",
+  "title.deadhorizon.day": "Day %s",
+  "title.deadhorizon.blood_moon_tonight": "The Blood Moon rises tonight...",
+  "message.deadhorizon.blood_moon.start": "The Blood Moon has risen. Find somewhere to hide.",
+  "message.deadhorizon.blood_moon.end": "The Blood Moon has set. You made it through.",
+  "message.deadhorizon.horde": "You hear a horde moaning in the distance... and it's coming your way.",
+  "message.deadhorizon.supply_drop": "[Radio] Supplies dropped at X %s, Z %s. Follow the smoke. They heard it too.",
+  "radio.deadhorizon.report": "[Radio] Day %s. %s %s",
+  "radio.deadhorizon.blood_moon_today": "Blood Moon tonight!",
+  "radio.deadhorizon.blood_moon_in": "Blood Moon in %s days.",
+  "radio.deadhorizon.drop": "Last drop: X %s, Z %s.",
+  "radio.deadhorizon.no_drop": "No drops yet."
 }

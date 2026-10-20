@@ -173,5 +173,18 @@
   "item.deadhorizon.molotov.tooltip": "Çarptığı yeri ateşe verir",
   "item.deadhorizon.pipe_bomb": "Sesli Tuzak Bombası",
   "item.deadhorizon.pipe_bomb.tooltip": "Düştüğü yerde öter, zombileri toplar, sonra patlar",
-  "entity.deadhorizon.grenade": "El Bombası"
+  "entity.deadhorizon.grenade": "El Bombası",
+  "item.deadhorizon.radio": "Telsiz",
+  "item.deadhorizon.radio.tooltip": "Gün, Kan Ayı ve erzak bilgisini verir",
+  "title.deadhorizon.day": "Gün %s",
+  "title.deadhorizon.blood_moon_tonight": "Bu gece Kan Ayı doğuyor...",
+  "message.deadhorizon.blood_moon.start": "Kan Ayı doğdu. Saklanacak bir yer bul.",
+  "message.deadhorizon.blood_moon.end": "Kan Ayı battı. Bu geceyi atlattın.",
+  "message.deadhorizon.horde": "Uzaktan bir sürünün iniltisi geliyor... ve sana doğru yaklaşıyor.",
+  "message.deadhorizon.supply_drop": "[Telsiz] Erzak bırakıldı: X %s, Z %s. Dumanı takip et. Sesi onlar da duydu.",
+  "radio.deadhorizon.report": "[Telsiz] Gün %s. %s %s",
+  "radio.deadhorizon.blood_moon_today": "Kan Ayı bu gece!",
+  "radio.deadhorizon.blood_moon_in": "Kan Ayına %s gün var.",
+  "radio.deadhorizon.drop": "Son erzak: X %s, Z %s.",
+  "radio.deadhorizon.no_drop": "Henüz erzak bırakılmadı."
 }

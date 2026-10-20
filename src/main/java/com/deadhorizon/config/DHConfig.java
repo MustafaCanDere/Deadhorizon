@@ -98,6 +98,17 @@ public class DHConfig {
     public double coughNoiseRadius = 12.0;
     public boolean bloodEffects = true;
 
+    // World events
+    /** Zombies get tougher every day survived (health, damage, speed), up to a cap. */
+    public boolean dayScaling = true;
+    /** A Blood Moon every this many nights; 0 turns it off. */
+    public int bloodMoonEveryDays = 7;
+    public boolean hordesEnabled = true;
+    public int hordeMinMinutes = 20;
+    public int hordeMaxMinutes = 40;
+    /** A supply drop every this many days; 0 turns it off. */
+    public int supplyDropEveryDays = 2;
+
     // Firearms
     /** Chance per shot of a jam once a gun is below 30% condition. */
     public double gunJamChance = 0.05;

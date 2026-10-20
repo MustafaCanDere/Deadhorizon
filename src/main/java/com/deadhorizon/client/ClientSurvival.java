@@ -1,10 +1,12 @@
 package com.deadhorizon.client;
 
 import com.deadhorizon.config.DHConfig;
+import com.deadhorizon.event.Apocalypse;
 import com.deadhorizon.registry.ModEffects;
 import com.deadhorizon.survival.Survival;
 import com.deadhorizon.survival.SurvivalData;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -20,6 +22,7 @@ public final class ClientSurvival {
     public static float rest = SurvivalData.MAX_REST;
     public static int load;
     public static float wetness;
+    public static boolean bloodMoon;
 
     private ClientSurvival() {
     }
@@ -63,6 +66,11 @@ public final class ClientSurvival {
                 wetness = newWetness;
             });
         });
+        ClientPlayNetworking.registerGlobalReceiver(Apocalypse.BLOOD_MOON_SYNC, (client, handler, buf, responseSender) -> {
+            boolean active = buf.readBoolean();
+            client.execute(() -> bloodMoon = active);
+        });
+        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> bloodMoon = false);
         // Backup in case the sprint check mixin could not apply.
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             ClientPlayerEntity player = client.player;

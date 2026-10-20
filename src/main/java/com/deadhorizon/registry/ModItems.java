@@ -4,6 +4,7 @@ import com.deadhorizon.DeadHorizon;
 import com.deadhorizon.item.DrinkItem;
 import com.deadhorizon.item.MedicalItem;
 import com.deadhorizon.item.MedicalItem.Treatment;
+import com.deadhorizon.item.RadioItem;
 import com.deadhorizon.item.TooltipItem;
 import com.deadhorizon.weapon.AttachmentItem;
 import com.deadhorizon.weapon.FireAxeItem;
@@ -116,6 +117,8 @@ public final class ModItems {
     public static final Item PIPE_BOMB = register("pipe_bomb",
             new GrenadeItem(new Item.Settings().maxCount(8), GrenadeItem.Kind.PIPE_BOMB));
 
+    public static final Item RADIO = register("radio", new RadioItem(new Item.Settings().maxCount(1)));
+
     // Melee
     public static final Item BASEBALL_BAT = register("baseball_bat",
             new SwordItem(ToolMaterials.WOOD, 5, -3.0f, new Item.Settings().maxDamage(180)));
@@ -170,6 +173,7 @@ public final class ModItems {
                         entries.add(FRAG_GRENADE);
                         entries.add(MOLOTOV);
                         entries.add(PIPE_BOMB);
+                        entries.add(RADIO);
                         entries.add(AMMO_9MM);
                         entries.add(AMMO_556);
                         entries.add(AMMO_762);

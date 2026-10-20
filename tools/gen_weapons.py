@@ -202,6 +202,17 @@ def pipe_bomb():
     save(img, "pipe_bomb")
 
 
+def radio():
+    img, d = canvas()
+    d.rectangle((4, 4, 12, 15), fill=(50, 52, 48, 255), outline=POLYMER)
+    d.line((10, 4, 10, 0), fill=STEEL_LIGHT)
+    d.rectangle((5, 5, 11, 8), fill=(120, 160, 90, 255))
+    for y in (10, 12, 14):
+        d.line((5, y, 11, y), fill=(30, 30, 30, 255))
+    d.point((6, 6), fill=(200, 230, 150, 255))
+    save(img, "radio")
+
+
 pistol()
 long_gun("shotgun", WOOD, STEEL, 15, pump=(10, 9, 13, 9))
 long_gun("hunting_rifle", WOOD, STEEL, 15, scope=True)
@@ -226,3 +237,4 @@ scope()
 frag_grenade()
 molotov()
 pipe_bomb()
+radio()

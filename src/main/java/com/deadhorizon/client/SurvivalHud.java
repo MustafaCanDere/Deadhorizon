@@ -33,6 +33,7 @@ public final class SurvivalHud {
                 || !client.interactionManager.hasStatusBars()) return;
         int width = ctx.getScaledWindowWidth();
         int height = ctx.getScaledWindowHeight();
+        if (ClientSurvival.bloodMoon) ctx.fill(0, 0, width, height, 0x1C8A0000); // the world looks red tonight
         drawLowHealth(ctx, player, width, height);
         if (DHConfig.INSTANCE.thirstEnabled) drawThirst(ctx, player, width, height);
         if (DHConfig.INSTANCE.staminaEnabled) drawStamina(ctx, width, height);

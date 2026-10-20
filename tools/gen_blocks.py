@@ -437,6 +437,11 @@ def gen_container_loot():
                                entry(m("paper"), 8, 1, 4), entry(m("glass_bottle"), 6, 1, 2), entry(m("leather"), 4),
                                entry(m("iron_nugget"), 5, 1, 4), entry(d("bandage"), 1),
                                entry(d("canned_beans"), 2), entry(d("soda"), 2)])
+    chest("supply_drop", (5, 9), [entry(d("clean_water"), 8, 2, 4), entry(d("mre"), 8, 1, 3), entry(d("canned_beans"), 6, 2, 4),
+                                  entry(d("first_aid_kit"), 4), entry(d("antibiotics"), 4, 1, 2), entry(d("bandage"), 6, 2, 5),
+                                  entry(d("splint"), 3), entry(d("ammo_9mm"), 5, 8, 20), entry(d("ammo_556"), 4, 10, 30),
+                                  entry(d("ammo_762"), 4, 8, 24), entry(d("ammo_12g"), 4, 4, 12), entry(d("frag_grenade"), 2, 1, 3),
+                                  gun(d("m4"), 1, 30), gun(d("shotgun"), 1, 6), entry(d("energy_drink"), 3, 1, 2)])
     chest("safe", (1, 4), [entry(m("gold_ingot"), 8, 1, 4), entry(m("emerald"), 6, 1, 3), entry(m("diamond"), 2, 1, 2),
                            entry(d("antidote"), 3), entry(m("golden_apple"), 2), entry(m("name_tag"), 2),
                            gun(d("pistol"), 4, 8), entry(d("ammo_9mm"), 4, 4, 15), gun(d("hunting_rifle"), 1, 3),

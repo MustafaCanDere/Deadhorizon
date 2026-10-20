@@ -47,6 +47,12 @@ Minecraft 1.20.1 (Fabric) için zombi kıyameti modu.
   - **Eklentiler**: Susturucu (sesi dörtte bire indirir), Uzatılmış Şarjör (+%50), Dürbün (uzun namlulularda güçlü yakınlaştırma ve isabet). Silahı sol ele al, eklentiyi sağ elle kullan.
   - **Atılabilirler**: El Bombası (2.5 sn sonra patlar), Molotof (çarptığı yeri yakar), Sesli Tuzak Bombası (öterek zombileri toplar, sonra patlar). Patlamalar varsayılan olarak blok kırmaz.
   - Yakın dövüş: Beyzbol Sopası, Çivili Sopa, Pala, Levye, Katana, Yangın Baltası. Katana, pala ve baltayla kritik vuruş (zıplayıp düşerken) zombinin kafasını keser; sopa ve levye zombiyi sersemletir.
+- **Kıyamet olayları**:
+  - **Gün sayacı**: her sabah ekranda "Gün N" yazar. Zombiler her gün biraz daha güçlenir (can +%3/gün, en fazla iki kat; hasar ve hız da artar).
+  - **Kan Ayı**: her 7. gece gökyüzü kızarır, her 30 saniyede bir öfkeli zombi dalgası gelir.
+  - **Gezgin sürüler**: 20-40 dakikada bir, birinin yakınında bir sürü belirip ona doğru yürür.
+  - **Erzak düşürme**: iki günde bir öğlen telsizden koordinat gelir. Erzak sandığının yanında dumanlı işaret ateşi yanar ama zombiler de sesi duyar.
+  - **Telsiz**: günü, Kan Ayına kaç gün kaldığını ve son erzağın yerini söyler.
 - **Yağmalama**: içinde loot olan dolaplar önce kısa bir süre "aranır" ve bu ses yakındaki zombileri çeker.
 
 Ayarlar: `config/deadhorizon.json` (oyun ilk açıldığında oluşur).
