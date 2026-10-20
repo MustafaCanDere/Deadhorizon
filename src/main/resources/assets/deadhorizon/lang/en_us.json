@@ -53,5 +53,17 @@
   "message.deadhorizon.locked": "It's locked.",
   "death.attack.deadhorizon.barbed_wire": "%1$s was shredded by barbed wire",
   "death.attack.deadhorizon.barbed_wire.player": "%1$s was shredded by barbed wire while fleeing %2$s",
-  "entity.deadhorizon.seat": "Seat"
+  "entity.deadhorizon.seat": "Seat",
+  "entity.deadhorizon.screamer": "Screamer",
+  "item.deadhorizon.screamer_spawn_egg": "Screamer Spawn Egg",
+  "entity.deadhorizon.spitter": "Spitter",
+  "item.deadhorizon.spitter_spawn_egg": "Spitter Spawn Egg",
+  "entity.deadhorizon.bloater": "Bloater",
+  "item.deadhorizon.bloater_spawn_egg": "Bloater Spawn Egg",
+  "entity.deadhorizon.crawler": "Crawler",
+  "item.deadhorizon.crawler_spawn_egg": "Crawler Spawn Egg",
+  "entity.deadhorizon.soldier": "Soldier Zombie",
+  "item.deadhorizon.soldier_spawn_egg": "Soldier Zombie Spawn Egg",
+  "item.deadhorizon.acid_glob": "Acid Glob",
+  "entity.deadhorizon.acid_spit": "Acid Spit"
 }

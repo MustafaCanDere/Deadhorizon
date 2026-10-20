@@ -19,6 +19,17 @@ public final class ModItems {
             new SpawnEggItem(ModEntities.RUNNER, 0x96A58C, 0x822828, new Item.Settings()));
     public static final Item BRUTE_SPAWN_EGG = register("brute_spawn_egg",
             new SpawnEggItem(ModEntities.BRUTE, 0x465F3C, 0x3C462D, new Item.Settings()));
+    public static final Item SCREAMER_SPAWN_EGG = register("screamer_spawn_egg",
+            new SpawnEggItem(ModEntities.SCREAMER, 0xB8B0A0, 0x7A1010, new Item.Settings()));
+    public static final Item SPITTER_SPAWN_EGG = register("spitter_spawn_egg",
+            new SpawnEggItem(ModEntities.SPITTER, 0x8FA43A, 0xC8D640, new Item.Settings()));
+    public static final Item BLOATER_SPAWN_EGG = register("bloater_spawn_egg",
+            new SpawnEggItem(ModEntities.BLOATER, 0x6E5A6E, 0x9AB05A, new Item.Settings()));
+    public static final Item CRAWLER_SPAWN_EGG = register("crawler_spawn_egg",
+            new SpawnEggItem(ModEntities.CRAWLER, 0x4A5040, 0x3A2A20, new Item.Settings()));
+    public static final Item SOLDIER_SPAWN_EGG = register("soldier_spawn_egg",
+            new SpawnEggItem(ModEntities.SOLDIER, 0x55603A, 0x3A4228, new Item.Settings()));
+    public static final Item ACID_GLOB = register("acid_glob", new Item(new Item.Settings()));
 
     // Treatment(useTicks, heal, stopsBleeding, slowsInfection, curesInfection, curesPoison, regenSeconds)
     public static final Item BANDAGE = register("bandage", new MedicalItem(new Item.Settings().maxCount(16),
@@ -40,6 +51,11 @@ public final class ModItems {
                         entries.add(WALKER_SPAWN_EGG);
                         entries.add(RUNNER_SPAWN_EGG);
                         entries.add(BRUTE_SPAWN_EGG);
+                        entries.add(SCREAMER_SPAWN_EGG);
+                        entries.add(SPITTER_SPAWN_EGG);
+                        entries.add(BLOATER_SPAWN_EGG);
+                        entries.add(CRAWLER_SPAWN_EGG);
+                        entries.add(SOLDIER_SPAWN_EGG);
                         entries.add(BANDAGE);
                         entries.add(FIRST_AID_KIT);
                         entries.add(PAINKILLERS);

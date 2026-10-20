@@ -81,6 +81,15 @@ def effect_immunity():
     save(img, "mob_effect", "immunity")
 
 
+def acid_glob():
+    img, d = canvas(16)
+    d.ellipse((3, 4, 12, 13), fill=(150, 200, 40, 255), outline=(70, 100, 20, 255))
+    d.ellipse((5, 6, 8, 9), fill=(210, 240, 120, 255))
+    d.point([(12, 3), (2, 11), (13, 13)], fill=(150, 200, 40, 255))
+    save(img, "item", "acid_glob")
+
+
+acid_glob()
 bandage()
 first_aid_kit()
 pill_bottle("painkillers", (240, 240, 240, 255), (40, 90, 200, 255), (250, 210, 60, 255))

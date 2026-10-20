@@ -23,6 +23,11 @@ public class DHConfig {
     public int walkerSpawnWeight = 100;
     public int runnerSpawnWeight = 40;
     public int bruteSpawnWeight = 10;
+    public int screamerSpawnWeight = 8;
+    public int spitterSpawnWeight = 10;
+    public int bloaterSpawnWeight = 8;
+    public int crawlerSpawnWeight = 15;
+    public int soldierSpawnWeight = 6;
 
     // Behaviour
     public boolean doorBreakingOnAllDifficulties = true;

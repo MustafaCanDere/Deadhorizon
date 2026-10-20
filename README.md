@@ -11,6 +11,7 @@ Minecraft 1.20.1 (Fabric) için zombi kıyameti modu.
 - **Yürüyen**: yavaş, dayanıklı, kalabalık gelir.
 - **Koşucu**: hızlı ama zayıf, gece daha da hızlanır.
 - **Tank**: dev, zırhlı, sert vurur, kapıları hızla kırar.
+- **Özel zombiler** (Faz 4): **Çığlıkçı** seni görünce çığlık atar ve çevredeki tüm zombileri üstüne çeker; **Kusan** uzaktan zehirli asit tükürür; **Patlayan** ölünce zehirli bulut saçar; **Sürünen** yerde sürünür, 1 bloklu boşluklardan geçer ve ayağını yavaşlatır; **Asker Zombi** zırhlıdır ve ok/mermi hasarının yarısını yer.
 - Hiçbiri güneşte yanmaz, gündüz de doğarlar.
 - Her zorlukta kapı kırarlar.
 - Ses sistemi: koşmak, blok kırmak ve saldırmak yakındaki zombileri çeker. Eğilerek hareket etmek sessizdir.

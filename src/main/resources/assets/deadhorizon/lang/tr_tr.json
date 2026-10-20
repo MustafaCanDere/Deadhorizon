@@ -53,5 +53,17 @@
   "message.deadhorizon.locked": "Kilitli.",
   "death.attack.deadhorizon.barbed_wire": "%1$s dikenli tele takılıp parçalandı",
   "death.attack.deadhorizon.barbed_wire.player": "%1$s, %2$s elinden kaçarken dikenli tele takıldı",
-  "entity.deadhorizon.seat": "Oturak"
+  "entity.deadhorizon.seat": "Oturak",
+  "entity.deadhorizon.screamer": "Çığlıkçı",
+  "item.deadhorizon.screamer_spawn_egg": "Çığlıkçı Doğma Yumurtası",
+  "entity.deadhorizon.spitter": "Kusan",
+  "item.deadhorizon.spitter_spawn_egg": "Kusan Doğma Yumurtası",
+  "entity.deadhorizon.bloater": "Patlayan",
+  "item.deadhorizon.bloater_spawn_egg": "Patlayan Doğma Yumurtası",
+  "entity.deadhorizon.crawler": "Sürünen",
+  "item.deadhorizon.crawler_spawn_egg": "Sürünen Doğma Yumurtası",
+  "entity.deadhorizon.soldier": "Asker Zombi",
+  "item.deadhorizon.soldier_spawn_egg": "Asker Zombi Doğma Yumurtası",
+  "item.deadhorizon.acid_glob": "Asit Topağı",
+  "entity.deadhorizon.acid_spit": "Asit Tükürüğü"
 }

@@ -16,6 +16,11 @@ public final class ModSpawns {
         add(ModEntities.WALKER, cfg.walkerSpawnWeight, 2, 5);
         add(ModEntities.RUNNER, cfg.runnerSpawnWeight, 1, 3);
         add(ModEntities.BRUTE, cfg.bruteSpawnWeight, 1, 1);
+        add(ModEntities.SCREAMER, cfg.screamerSpawnWeight, 1, 1);
+        add(ModEntities.SPITTER, cfg.spitterSpawnWeight, 1, 2);
+        add(ModEntities.BLOATER, cfg.bloaterSpawnWeight, 1, 1);
+        add(ModEntities.CRAWLER, cfg.crawlerSpawnWeight, 1, 3);
+        add(ModEntities.SOLDIER, cfg.soldierSpawnWeight, 1, 2);
     }
 
     private static void add(EntityType<?> type, int weight, int min, int max) {

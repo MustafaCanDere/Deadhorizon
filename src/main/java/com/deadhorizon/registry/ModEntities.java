@@ -2,7 +2,13 @@ package com.deadhorizon.registry;
 
 import com.deadhorizon.DeadHorizon;
 import com.deadhorizon.config.DHConfig;
+import com.deadhorizon.entity.projectile.AcidSpitEntity;
+import com.deadhorizon.entity.zombie.BloaterEntity;
 import com.deadhorizon.entity.zombie.BruteEntity;
+import com.deadhorizon.entity.zombie.CrawlerEntity;
+import com.deadhorizon.entity.zombie.ScreamerEntity;
+import com.deadhorizon.entity.zombie.SoldierEntity;
+import com.deadhorizon.entity.zombie.SpitterEntity;
 import com.deadhorizon.entity.zombie.DHZombieEntity;
 import com.deadhorizon.entity.zombie.RunnerEntity;
 import com.deadhorizon.entity.zombie.WalkerEntity;
@@ -31,6 +37,23 @@ public final class ModEntities {
             register("runner", RunnerEntity::new, 0.6f, 1.95f, RunnerEntity::createAttributes);
     public static final EntityType<BruteEntity> BRUTE =
             register("brute", BruteEntity::new, 0.9f, 2.6f, BruteEntity::createAttributes);
+    public static final EntityType<ScreamerEntity> SCREAMER =
+            register("screamer", ScreamerEntity::new, 0.6f, 1.95f, ScreamerEntity::createAttributes);
+    public static final EntityType<SpitterEntity> SPITTER =
+            register("spitter", SpitterEntity::new, 0.6f, 1.95f, SpitterEntity::createAttributes);
+    public static final EntityType<BloaterEntity> BLOATER =
+            register("bloater", BloaterEntity::new, 0.85f, 2.1f, BloaterEntity::createAttributes);
+    public static final EntityType<CrawlerEntity> CRAWLER =
+            register("crawler", CrawlerEntity::new, 0.8f, 0.6f, CrawlerEntity::createAttributes);
+    public static final EntityType<SoldierEntity> SOLDIER =
+            register("soldier", SoldierEntity::new, 0.6f, 1.95f, SoldierEntity::createAttributes);
+
+    public static final EntityType<AcidSpitEntity> ACID_SPIT = Registry.register(Registries.ENTITY_TYPE, DeadHorizon.id("acid_spit"),
+            FabricEntityTypeBuilder.<AcidSpitEntity>create(SpawnGroup.MISC, AcidSpitEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
+                    .trackRangeChunks(4)
+                    .trackedUpdateRate(10)
+                    .build());
 
     public static final EntityType<SeatEntity> SEAT = Registry.register(Registries.ENTITY_TYPE, DeadHorizon.id("seat"),
             FabricEntityTypeBuilder.<SeatEntity>create(SpawnGroup.MISC, SeatEntity::new)
