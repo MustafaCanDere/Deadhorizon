@@ -158,11 +158,6 @@ public class GunItem extends Item {
     }
 
     @Override
-    public boolean allowNbtUpdateAnimation(PlayerEntity player, Hand hand, ItemStack oldStack, ItemStack newStack) {
-        return false; // don't bob the gun every time a round is fired
-    }
-
-    @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.translatable("tooltip.deadhorizon.gun.ammo", ammo(stack), magazine(stack),
                 Text.translatable(spec.ammo().get().getTranslationKey())).formatted(Formatting.GRAY));
