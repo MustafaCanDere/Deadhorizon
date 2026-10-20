@@ -88,3 +88,67 @@ make("spitter", skin=(140, 160, 60), shirt=(90, 110, 50), pants=(60, 70, 40), sh
 make("bloater", skin=(110, 95, 110), shirt=(0, 0, 0), pants=(70, 60, 50), shoes=(40, 35, 30), shirtless=True, seed=6)
 make("crawler", skin=(75, 85, 65), shirt=(55, 45, 35), pants=(45, 40, 35), shoes=(30, 25, 20), seed=7)
 make("soldier", skin=(95, 120, 85), shirt=(0, 0, 0), pants=(0, 0, 0), shoes=(30, 28, 24), seed=8, camo=True)
+
+
+# ---------------------------------------------------------------- humans (64x64 player layout)
+
+HUMANS = Path("src/main/resources/assets/deadhorizon/textures/entity/human")
+
+
+def human(name, skin, face, jacket, pants, boots, hood=None, mask=None, seed=0, patch=None):
+    rng = random.Random(seed)
+    img = Image.new("RGBA", (64, 64), (0, 0, 0, 0))
+
+    def head_px(x, y, h):
+        if hood and (y < 2 or x in (0, 7)):
+            return jitter(rng, hood, 6)
+        return jitter(rng, skin, 6)
+
+    box(img, rng, 0, 0, 8, 8, 8, head_px)
+    # face (front of head at u 8..15, v 8..15)
+    for x, y in ((9, 11), (10, 11), (13, 11), (14, 11)):
+        img.putpixel((x, y), (250, 250, 250, 255))
+    img.putpixel((10, 11), face)
+    img.putpixel((13, 11), face)
+    if mask:  # balaclava / gas mask over the lower face
+        for x in range(8, 16):
+            for y in range(12, 16):
+                img.putpixel((x, y), jitter(rng, mask, 4))
+        if hood:
+            for x in range(8, 16):
+                for y in range(8, 10):
+                    img.putpixel((x, y), jitter(rng, mask, 4))
+    else:
+        for x in range(10, 14):
+            img.putpixel((x, 14), (120, 70, 60, 255))
+
+    def body_px(x, y, h):
+        if patch and h == 12 and 1 <= x <= 2 and 2 <= y <= 3:
+            return patch + (255,)
+        if h == 12 and y == 8:
+            return jitter(rng, (50, 40, 30), 4)  # belt
+        return jitter(rng, jacket, 8)
+
+    box(img, rng, 16, 16, 8, 12, 4, body_px)
+
+    def arm_px(x, y, h):
+        return jitter(rng, skin, 6) if h == 12 and y >= 10 else jitter(rng, jacket, 8)
+
+    box(img, rng, 40, 16, 4, 12, 4, arm_px)
+    box(img, rng, 32, 48, 4, 12, 4, arm_px)
+
+    def leg_px(x, y, h):
+        return jitter(rng, boots, 5) if h == 12 and y >= 9 else jitter(rng, pants, 8)
+
+    box(img, rng, 0, 16, 4, 12, 4, leg_px)
+    box(img, rng, 16, 48, 4, 12, 4, leg_px)
+    HUMANS.mkdir(parents=True, exist_ok=True)
+    img.save(HUMANS / f"{name}.png")
+
+
+human("bandit", skin=(200, 160, 130), face=(60, 40, 30, 255), jacket=(30, 30, 32), pants=(50, 55, 75),
+      boots=(25, 22, 20), hood=(40, 40, 42), mask=(25, 25, 25), seed=21)
+human("survivor", skin=(205, 165, 135), face=(70, 90, 60, 255), jacket=(78, 92, 58), pants=(70, 78, 50),
+      boots=(40, 34, 26), hood=(70, 84, 52), seed=22, patch=(200, 170, 40))
+human("trader", skin=(215, 170, 140), face=(60, 50, 40, 255), jacket=(110, 75, 45), pants=(60, 50, 40),
+      boots=(35, 28, 22), seed=23)

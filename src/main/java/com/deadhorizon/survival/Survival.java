@@ -1,5 +1,6 @@
 package com.deadhorizon.survival;
 
+import com.deadhorizon.stalker.Radiation;
 import com.deadhorizon.DeadHorizon;
 import com.deadhorizon.config.DHConfig;
 import com.deadhorizon.noise.NoiseSystem;
@@ -143,6 +144,7 @@ public final class Survival {
             if (cfg.encumbranceEnabled) tickLoad(player, data);
             if (cfg.staminaEnabled) tickStamina(player, data, cfg);
             if (cfg.illnessEnabled) tickIllness(player, data, cfg);
+            if (cfg.radiationEnabled && player.age % 20 == 0) Radiation.tick(player, data);
             if (cfg.shockHealth > 0 && player.getHealth() <= cfg.shockHealth && player.age % 40 == 0) {
                 refresh(player, StatusEffects.SLOWNESS, 0);
                 refresh(player, StatusEffects.WEAKNESS, 0);
@@ -380,6 +382,8 @@ public final class Survival {
         buf.writeFloat(data.rest);
         buf.writeByte(data.load);
         buf.writeFloat(data.wetness);
+        buf.writeFloat(data.radiation);
+        buf.writeFloat(data.exposure);
         ServerPlayNetworking.send(player, SYNC, buf);
     }
 

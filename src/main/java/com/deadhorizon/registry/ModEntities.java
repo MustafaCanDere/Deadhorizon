@@ -14,6 +14,10 @@ import com.deadhorizon.entity.zombie.DHZombieEntity;
 import com.deadhorizon.entity.zombie.RunnerEntity;
 import com.deadhorizon.entity.zombie.WalkerEntity;
 import com.deadhorizon.entity.misc.SeatEntity;
+import com.deadhorizon.entity.npc.HumanNpcEntity;
+import com.deadhorizon.entity.npc.TraderEntity;
+import com.deadhorizon.stalker.BoltEntity;
+import net.minecraft.entity.mob.MobEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
@@ -63,6 +67,24 @@ public final class ModEntities {
                     .trackedUpdateRate(10)
                     .build());
 
+    public static final EntityType<HumanNpcEntity> BANDIT = human("bandit", HumanNpcEntity.Faction.BANDIT);
+    public static final EntityType<HumanNpcEntity> SURVIVOR = human("survivor", HumanNpcEntity.Faction.SURVIVOR);
+    public static final EntityType<TraderEntity> TRADER = Registry.register(Registries.ENTITY_TYPE, DeadHorizon.id("trader"),
+            FabricEntityTypeBuilder.<TraderEntity>createMob()
+                    .spawnGroup(SpawnGroup.MISC)
+                    .entityFactory(TraderEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.6f, 1.95f))
+                    .trackRangeChunks(8)
+                    .defaultAttributes(TraderEntity::createAttributes)
+                    .build());
+
+    public static final EntityType<BoltEntity> BOLT = Registry.register(Registries.ENTITY_TYPE, DeadHorizon.id("bolt"),
+            FabricEntityTypeBuilder.<BoltEntity>create(SpawnGroup.MISC, BoltEntity::new)
+                    .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
+                    .trackRangeChunks(4)
+                    .trackedUpdateRate(10)
+                    .build());
+
     public static final EntityType<SeatEntity> SEAT = Registry.register(Registries.ENTITY_TYPE, DeadHorizon.id("seat"),
             FabricEntityTypeBuilder.<SeatEntity>create(SpawnGroup.MISC, SeatEntity::new)
                     .dimensions(EntityDimensions.fixed(0.001f, 0.001f))
@@ -85,6 +107,19 @@ public final class ModEntities {
                 .defaultAttributes(attributes)
                 .spawnRestriction(SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
                         ModEntities::canSpawn)
+                .build();
+        return Registry.register(Registries.ENTITY_TYPE, DeadHorizon.id(name), type);
+    }
+
+    private static EntityType<HumanNpcEntity> human(String name, HumanNpcEntity.Faction faction) {
+        EntityType<HumanNpcEntity> type = FabricEntityTypeBuilder.<HumanNpcEntity>createMob()
+                .spawnGroup(SpawnGroup.MONSTER)
+                .entityFactory((t, w) -> new HumanNpcEntity(t, w, faction))
+                .dimensions(EntityDimensions.fixed(0.6f, 1.95f))
+                .trackRangeChunks(8)
+                .defaultAttributes(HumanNpcEntity::createAttributes)
+                .spawnRestriction(SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
+                        MobEntity::canMobSpawn)
                 .build();
         return Registry.register(Registries.ENTITY_TYPE, DeadHorizon.id(name), type);
     }

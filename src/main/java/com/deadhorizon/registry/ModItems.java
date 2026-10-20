@@ -6,6 +6,14 @@ import com.deadhorizon.item.MedicalItem;
 import com.deadhorizon.item.MedicalItem.Treatment;
 import com.deadhorizon.item.RadioItem;
 import com.deadhorizon.item.SoupItem;
+import com.deadhorizon.stalker.ArtifactItem;
+import com.deadhorizon.stalker.BoltItem;
+import com.deadhorizon.stalker.GeigerItem;
+import com.deadhorizon.stalker.HazmatItem;
+import com.deadhorizon.stalker.RadMedItem;
+import com.deadhorizon.stalker.VodkaItem;
+import net.minecraft.item.ArmorItem;
+import net.minecraft.util.Rarity;
 import com.deadhorizon.item.TooltipItem;
 import com.deadhorizon.weapon.AttachmentItem;
 import com.deadhorizon.weapon.FireAxeItem;
@@ -42,6 +50,12 @@ public final class ModItems {
             new SpawnEggItem(ModEntities.CRAWLER, 0x4A5040, 0x3A2A20, new Item.Settings()));
     public static final Item SOLDIER_SPAWN_EGG = register("soldier_spawn_egg",
             new SpawnEggItem(ModEntities.SOLDIER, 0x55603A, 0x3A4228, new Item.Settings()));
+    public static final Item BANDIT_SPAWN_EGG = register("bandit_spawn_egg",
+            new SpawnEggItem(ModEntities.BANDIT, 0x2B2B2B, 0x7A1F1F, new Item.Settings()));
+    public static final Item SURVIVOR_SPAWN_EGG = register("survivor_spawn_egg",
+            new SpawnEggItem(ModEntities.SURVIVOR, 0x4E5B3A, 0xA89060, new Item.Settings()));
+    public static final Item TRADER_SPAWN_EGG = register("trader_spawn_egg",
+            new SpawnEggItem(ModEntities.TRADER, 0x6B4A2B, 0xD8C090, new Item.Settings()));
     public static final Item ACID_GLOB = register("acid_glob", new Item(new Item.Settings()));
 
     // Treatment(useTicks, heal, stopsBleeding, slowsInfection, curesInfection, curesPoison, regenSeconds, curesFracture)
@@ -134,6 +148,24 @@ public final class ModItems {
     public static final Item GRUEL = register("gruel", new SoupItem(new Item.Settings().maxCount(1)
             .food(new FoodComponent.Builder().hunger(4).saturationModifier(0.3f).build()), 3.0f, 0.0f, 4.0f));
 
+    // The Zone
+    public static final Item RUBLE = register("ruble", new TooltipItem(new Item.Settings().maxCount(64)));
+    public static final Item ANTI_RAD = register("anti_rad", new RadMedItem(new Item.Settings().maxCount(8)));
+    public static final Item VODKA = register("vodka", new VodkaItem(new Item.Settings().maxCount(8)));
+    public static final Item GEIGER_COUNTER = register("geiger_counter", new GeigerItem(new Item.Settings().maxCount(1)));
+    public static final Item DETECTOR = register("detector", new TooltipItem(new Item.Settings().maxCount(1)));
+    public static final Item BOLT = register("bolt", new BoltItem(new Item.Settings().maxCount(64)));
+    public static final Item ARTIFACT_JELLYFISH = register("artifact_jellyfish", new ArtifactItem(
+            new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON), ArtifactItem.Kind.JELLYFISH));
+    public static final Item ARTIFACT_STONE_FLOWER = register("artifact_stone_flower", new ArtifactItem(
+            new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON), ArtifactItem.Kind.STONE_FLOWER));
+    public static final Item ARTIFACT_FIREBALL = register("artifact_fireball", new ArtifactItem(
+            new Item.Settings().maxCount(1).rarity(Rarity.RARE), ArtifactItem.Kind.FIREBALL));
+    public static final Item HAZMAT_MASK = register("hazmat_mask", new HazmatItem(ArmorItem.Type.HELMET, new Item.Settings()));
+    public static final Item HAZMAT_SUIT = register("hazmat_suit", new HazmatItem(ArmorItem.Type.CHESTPLATE, new Item.Settings()));
+    public static final Item HAZMAT_PANTS = register("hazmat_pants", new HazmatItem(ArmorItem.Type.LEGGINGS, new Item.Settings()));
+    public static final Item HAZMAT_BOOTS = register("hazmat_boots", new HazmatItem(ArmorItem.Type.BOOTS, new Item.Settings()));
+
     public static final Item JERRY_CAN = register("jerry_can", new TooltipItem(new Item.Settings().maxCount(4)));
     public static final Item RADIO = register("radio", new RadioItem(new Item.Settings().maxCount(1)));
 
@@ -199,6 +231,22 @@ public final class ModItems {
                         entries.add(PIPE_BOMB);
                         entries.add(RADIO);
                         entries.add(JERRY_CAN);
+                        entries.add(BANDIT_SPAWN_EGG);
+                        entries.add(SURVIVOR_SPAWN_EGG);
+                        entries.add(TRADER_SPAWN_EGG);
+                        entries.add(RUBLE);
+                        entries.add(ANTI_RAD);
+                        entries.add(VODKA);
+                        entries.add(GEIGER_COUNTER);
+                        entries.add(DETECTOR);
+                        entries.add(BOLT);
+                        entries.add(ARTIFACT_JELLYFISH);
+                        entries.add(ARTIFACT_STONE_FLOWER);
+                        entries.add(ARTIFACT_FIREBALL);
+                        entries.add(HAZMAT_MASK);
+                        entries.add(HAZMAT_SUIT);
+                        entries.add(HAZMAT_PANTS);
+                        entries.add(HAZMAT_BOOTS);
                         entries.add(AMMO_9MM);
                         entries.add(AMMO_556);
                         entries.add(AMMO_762);

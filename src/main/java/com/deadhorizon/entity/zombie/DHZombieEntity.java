@@ -3,12 +3,14 @@ package com.deadhorizon.entity.zombie;
 import com.deadhorizon.config.DHConfig;
 import com.deadhorizon.entity.ai.BreakBarricadeGoal;
 import com.deadhorizon.entity.ai.InvestigateNoiseGoal;
+import com.deadhorizon.entity.npc.HumanNpcEntity;
 import com.deadhorizon.registry.ModItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.NavigationConditions;
+import net.minecraft.entity.ai.goal.ActiveTargetGoal;
 import net.minecraft.entity.ai.goal.BreakDoorGoal;
 import net.minecraft.entity.ai.pathing.MobNavigation;
 import net.minecraft.entity.attribute.EntityAttribute;
@@ -66,6 +68,7 @@ public abstract class DHZombieEntity extends ZombieEntity {
                 difficulty -> DHConfig.INSTANCE.doorBreakingOnAllDifficulties || difficulty == Difficulty.HARD));
         this.goalSelector.add(1, new BreakBarricadeGoal(this));
         this.goalSelector.add(6, new InvestigateNoiseGoal(this, 1.0));
+        this.targetSelector.add(3, new ActiveTargetGoal<>(this, HumanNpcEntity.class, true));
         if (NavigationConditions.hasMobNavigation(this)) {
             ((MobNavigation) this.getNavigation()).setCanPathThroughDoors(true);
         }

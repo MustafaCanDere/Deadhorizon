@@ -3,6 +3,9 @@ package com.deadhorizon.client;
 import com.deadhorizon.DeadHorizon;
 import com.deadhorizon.registry.ModBlocks;
 import com.deadhorizon.registry.ModEntities;
+import com.deadhorizon.registry.ModItems;
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.minecraft.item.DyeableItem;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.EmptyEntityRenderer;
@@ -32,12 +35,22 @@ public class DeadHorizonClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.ACID_SPIT, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.GRENADE, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.SEAT, EmptyEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.BOLT, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ModEntities.BANDIT,
+                ctx -> new HumanRenderer<>(ctx, DeadHorizon.id("textures/entity/human/bandit.png")));
+        EntityRendererRegistry.register(ModEntities.SURVIVOR,
+                ctx -> new HumanRenderer<>(ctx, DeadHorizon.id("textures/entity/human/survivor.png")));
+        EntityRendererRegistry.register(ModEntities.TRADER,
+                ctx -> new HumanRenderer<>(ctx, DeadHorizon.id("textures/entity/human/trader.png")));
 
         ClientSurvival.register();
         SurvivalHud.register();
         FreshnessTooltip.register();
         GunClient.register();
         GunAnimation.register();
+        StalkerClient.register();
+        ColorProviderRegistry.ITEM.register((stack, tint) -> tint > 0 ? -1 : ((DyeableItem) stack.getItem()).getColor(stack),
+                ModItems.HAZMAT_MASK, ModItems.HAZMAT_SUIT, ModItems.HAZMAT_PANTS, ModItems.HAZMAT_BOOTS);
 
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ModBlocks.BARBED_WIRE, ModBlocks.MEDICINE_CABINET,
                 ModBlocks.ELECTRIC_FENCE);

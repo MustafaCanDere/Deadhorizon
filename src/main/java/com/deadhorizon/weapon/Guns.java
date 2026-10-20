@@ -88,21 +88,10 @@ public final class Guns {
 
         Vec3d eye = player.getEyePos();
         for (int i = 0; i < spec.pellets(); i++) {
-            shoot(player, world, eye, direction(player, spread, player.getRandom()), spec);
+            shoot(player, world, eye, direction(player, spread, player.getRandom()), spec, 1.0f);
         }
 
-        Vec3d muzzle = eye.add(player.getRotationVec(1.0f).multiply(0.9)).add(0, -0.15, 0);
-        world.spawnParticles(ParticleTypes.SMOKE, muzzle.x, muzzle.y, muzzle.z, 3, 0.03, 0.03, 0.03, 0.01);
-        world.spawnParticles(ParticleTypes.FLAME, muzzle.x, muzzle.y, muzzle.z, 1, 0.0, 0.0, 0.0, 0.0);
-        boolean shotgun = spec.pellets() > 1;
-        if (GunItem.has(stack, AttachmentItem.Type.SUPPRESSOR)) {
-            world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ARROW_SHOOT,
-                    SoundCategory.PLAYERS, 0.8f, 1.6f + player.getRandom().nextFloat() * 0.2f);
-        } else {
-            world.playSound(null, player.getX(), player.getY(), player.getZ(),
-                    shotgun ? SoundEvents.ENTITY_GENERIC_EXPLODE : SoundEvents.ENTITY_FIREWORK_ROCKET_BLAST,
-                    SoundCategory.PLAYERS, shotgun ? 1.2f : 2.5f, shotgun ? 1.9f : 0.55f + player.getRandom().nextFloat() * 0.1f);
-        }
+        muzzle(world, player, spec, GunItem.has(stack, AttachmentItem.Type.SUPPRESSOR));
         NoiseSystem.emit(world, player.getPos(), gun.noise(stack));
 
         float recoil = spec.recoil() * (player.isSneaking() ? 0.6f : 1.0f);
@@ -112,13 +101,31 @@ public final class Guns {
         ServerPlayNetworking.send(player, RECOIL, buf);
     }
 
+    /** Muzzle smoke, flash and the report, for players and NPCs alike. */
+    public static void muzzle(ServerWorld world, LivingEntity player, GunSpec spec, boolean suppressed) {
+        Vec3d muzzle = player.getEyePos().add(player.getRotationVec(1.0f).multiply(0.9)).add(0, -0.15, 0);
+        world.spawnParticles(ParticleTypes.SMOKE, muzzle.x, muzzle.y, muzzle.z, 3, 0.03, 0.03, 0.03, 0.01);
+        world.spawnParticles(ParticleTypes.FLAME, muzzle.x, muzzle.y, muzzle.z, 1, 0.0, 0.0, 0.0, 0.0);
+        boolean shotgun = spec.pellets() > 1;
+        if (suppressed) {
+            world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ARROW_SHOOT,
+                    SoundCategory.PLAYERS, 0.8f, 1.6f + player.getRandom().nextFloat() * 0.2f);
+        } else {
+            world.playSound(null, player.getX(), player.getY(), player.getZ(),
+                    shotgun ? SoundEvents.ENTITY_GENERIC_EXPLODE : SoundEvents.ENTITY_FIREWORK_ROCKET_BLAST,
+                    SoundCategory.PLAYERS, shotgun ? 1.2f : 2.5f, shotgun ? 1.9f : 0.55f + player.getRandom().nextFloat() * 0.1f);
+        }
+        if (!(player instanceof ServerPlayerEntity)) NoiseSystem.emit(world, player.getPos(), spec.noise());
+    }
+
     private static Vec3d direction(ServerPlayerEntity player, float spread, Random random) {
         float pitch = player.getPitch() + (float) random.nextGaussian() * spread * 0.5f;
         float yaw = player.getYaw() + (float) random.nextGaussian() * spread * 0.5f;
         return Vec3d.fromPolar(MathHelper.clamp(pitch, -90.0f, 90.0f), yaw);
     }
 
-    private static void shoot(ServerPlayerEntity player, ServerWorld world, Vec3d eye, Vec3d dir, GunSpec spec) {
+    /** One hitscan round from any shooter (players and armed NPCs). */
+    public static void shoot(LivingEntity player, ServerWorld world, Vec3d eye, Vec3d dir, GunSpec spec, float damageScale) {
         Vec3d end = eye.add(dir.multiply(spec.range()));
         BlockHitResult block = world.raycast(new RaycastContext(eye, end, RaycastContext.ShapeType.COLLIDER,
                 RaycastContext.FluidHandling.NONE, player));
@@ -132,7 +139,7 @@ public final class Guns {
 
         if (hit != null) {
             Entity target = hit.getEntity();
-            float damage = spec.damage();
+            float damage = spec.damage() * damageScale;
             boolean headshot = impact.y >= target.getY() + target.getHeight() * 0.78;
             if (headshot && DHConfig.INSTANCE.headshots) damage *= (float) DHConfig.INSTANCE.headshotMultiplier;
             // Each round is its own hit: don't let the hurt cooldown swallow full-auto fire or pellets.
@@ -163,7 +170,7 @@ public final class Guns {
         }
     }
 
-    private static DamageSource bullet(ServerWorld world, ServerPlayerEntity shooter) {
+    private static DamageSource bullet(ServerWorld world, LivingEntity shooter) {
         return new DamageSource(world.getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).entryOf(ModDamageTypes.BULLET),
                 shooter, shooter);
     }

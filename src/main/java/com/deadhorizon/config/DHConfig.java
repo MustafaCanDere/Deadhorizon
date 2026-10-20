@@ -109,6 +109,17 @@ public class DHConfig {
     /** A supply drop every this many days; 0 turns it off. */
     public int supplyDropEveryDays = 2;
 
+    // The Zone: radiation, anomalies, artifacts
+    public boolean radiationEnabled = true;
+    public double radiationDecayPerSecond = 0.05;
+    public boolean anomaliesEnabled = true;
+    /** Chance per random tick that an anomaly grows an artifact (if none is lying nearby). */
+    public float artifactSpawnChance = 0.004f;
+
+    // Humans
+    public int banditSpawnWeight = 4;
+    public int survivorSpawnWeight = 2;
+
     // Electricity
     /** Devices (fences, floodlights, fridges) run when a working generator or lit solar panel is this close. */
     public int powerRange = 12;

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "deadhorizon:sandbags"
+    "deadhorizon:sandbags",
+    "deadhorizon:radioactive_debris"
   ]
 }

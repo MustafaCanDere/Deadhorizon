@@ -1,0 +1,26 @@
+{
+  "structures": [
+    {
+      "structure": "deadhorizon:bandit_camp",
+      "weight": 3
+    },
+    {
+      "structure": "deadhorizon:trader_bunker",
+      "weight": 2
+    },
+    {
+      "structure": "deadhorizon:radioactive_zone",
+      "weight": 2
+    },
+    {
+      "structure": "deadhorizon:anomaly_field",
+      "weight": 3
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 24,
+    "separation": 8,
+    "salt": 20060322
+  }
+}

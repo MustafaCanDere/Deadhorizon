@@ -242,6 +242,83 @@ def double_barrel():
     save(img, "double_barrel")
 
 
+def ruble():
+    img, d = canvas()
+    d.rectangle((1, 4, 14, 11), fill=(170, 150, 110, 255), outline=(90, 70, 50, 255))
+    d.rectangle((2, 5, 13, 10), outline=(120, 100, 70, 255))
+    d.ellipse((6, 6, 9, 9), outline=(90, 70, 50, 255))
+    save(img, "ruble")
+
+
+def anti_rad():
+    img, d = canvas()
+    d.rectangle((6, 2, 9, 12), fill=(230, 230, 235, 255), outline=POLYMER)       # syringe body
+    d.rectangle((7, 4, 8, 10), fill=(220, 60, 60, 255))
+    d.line((7, 0, 8, 0), fill=POLYMER)
+    d.line((7, 1, 7, 2), fill=POLYMER)
+    d.line((7, 13, 7, 15), fill=STEEL_LIGHT)                                      # needle
+    save(img, "anti_rad")
+
+
+def vodka():
+    img, d = canvas()
+    d.rectangle((6, 0, 9, 2), fill=(200, 40, 40, 255))
+    d.rectangle((6, 3, 9, 5), fill=(220, 230, 235, 140), outline=OUTLINE_GLASS)
+    d.rectangle((4, 6, 11, 15), fill=(220, 230, 235, 150), outline=OUTLINE_GLASS)
+    d.rectangle((5, 9, 10, 12), fill=(240, 240, 240, 255))
+    d.line((6, 10, 9, 10), fill=(200, 40, 40, 255))
+    save(img, "vodka")
+
+
+def geiger():
+    img, d = canvas()
+    d.rectangle((3, 5, 12, 14), fill=(200, 160, 40, 255), outline=POLYMER)
+    d.rectangle((5, 7, 10, 10), fill=(30, 40, 30, 255))
+    d.line((6, 9, 9, 8), fill=(120, 240, 90, 255))
+    d.line((12, 8, 15, 5), fill=POLYMER)                                           # probe cable
+    d.rectangle((13, 2, 15, 5), fill=STEEL_LIGHT)
+    save(img, "geiger_counter")
+
+
+def detector():
+    img, d = canvas()
+    d.rectangle((4, 3, 11, 14), fill=(60, 64, 60, 255), outline=POLYMER)
+    d.ellipse((5, 4, 10, 9), fill=(20, 30, 20, 255), outline=(120, 220, 100, 255))
+    d.point((7, 6), fill=(140, 255, 120, 255))
+    d.rectangle((6, 11, 9, 12), fill=(200, 50, 50, 255))
+    save(img, "detector")
+
+
+def bolt():
+    img, d = canvas()
+    d.rectangle((6, 3, 9, 5), fill=STEEL_LIGHT, outline=POLYMER)                  # head
+    d.line((7, 6, 7, 13), fill=STEEL, width=2)
+    for y in (7, 9, 11):
+        d.point((9, y), fill=STEEL_LIGHT)
+    d.rectangle((5, 13, 10, 14), fill=(200, 60, 40, 255))                         # rag tied on
+    save(img, "bolt")
+
+
+def artifact(name, core, rim):
+    img, d = canvas()
+    d.ellipse((3, 3, 12, 12), fill=rim)
+    d.ellipse((5, 5, 10, 10), fill=core)
+    d.point([(6, 6), (7, 5)], fill=(255, 255, 255, 230))
+    for x, y in ((2, 7), (13, 8), (7, 1), (8, 14)):
+        d.point((x, y), fill=rim)
+    save(img, name)
+
+
+def anomaly(name, color):
+    img, d = canvas()
+    for r, a in ((7, 60), (5, 110), (3, 170)):
+        d.ellipse((8 - r, 8 - r, 7 + r, 7 + r), outline=color + (a,))
+    save(img, name)
+
+
+OUTLINE_GLASS = (90, 110, 120, 255)
+
+
 pistol()
 long_gun("shotgun", WOOD, STEEL, 15, pump=(10, 9, 13, 9))
 long_gun("hunting_rifle", WOOD, STEEL, 15, scope=True)
@@ -270,4 +347,16 @@ radio()
 long_gun("sniper_rifle", (70, 80, 60, 255), STEEL, 15, scope=True)
 uzi()
 double_barrel()
+ruble()
+anti_rad()
+vodka()
+geiger()
+detector()
+bolt()
+artifact("artifact_jellyfish", (120, 200, 255, 255), (60, 110, 200, 200))
+artifact("artifact_stone_flower", (170, 200, 120, 255), (110, 120, 90, 230))
+artifact("artifact_fireball", (255, 220, 90, 255), (230, 90, 30, 220))
+anomaly("anomaly_burner", (255, 120, 30))
+anomaly("anomaly_electro", (140, 200, 255))
+anomaly("anomaly_springboard", (180, 140, 255))
 jerry_can()

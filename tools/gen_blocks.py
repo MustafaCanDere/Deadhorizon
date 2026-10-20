@@ -323,8 +323,10 @@ def gen_tags():
            "weapon_bench"]
     pickaxe = ["fridge", "medicine_cabinet", "safe", "trash_can", "dumpster", "table_lamp", "ceiling_lamp",
                "street_lamp", "barbed_wire", "traffic_cone", "concrete_barrier",
-               "generator", "solar_panel", "electric_fence", "floodlight", "cooking_pot"]
-    shovel = ["sandbags"]
+               "generator", "solar_panel", "electric_fence", "floodlight", "cooking_pot",
+               "radioactive_barrel"]
+    shovel_extra = ["radioactive_debris"]
+    shovel = ["sandbags"] + shovel_extra
     tags = RES / "data/minecraft/tags/blocks/mineable"
     for tool, names in (("axe", axe), ("pickaxe", pickaxe), ("shovel", shovel)):
         write(tags / f"{tool}.json", {"replace": False, "values": [f"{MOD}:{n}" for n in names]})
@@ -529,6 +531,57 @@ def gen_cooking_pot():
     shaped("cooking_pot", ["I I", "I I", "III"], {"I": "minecraft:iron_ingot"})
 
 
+# ---------------------------------------------------------------- the Zone
+
+def hazard_barrel():
+    img = noisy((200, 170, 30), 8, 71)
+    d = ImageDraw.Draw(img)
+    for y in (2, 13):
+        d.line((0, y, 15, y), fill=(90, 80, 30, 255))
+    d.ellipse((5, 5, 10, 10), outline=(20, 20, 20, 255))  # trefoil, roughly
+    d.point([(7, 7), (8, 8), (7, 8), (8, 7)], fill=(20, 20, 20, 255))
+    return img
+
+
+def gen_zone():
+    hazard_barrel().save(ASSETS / "textures/block/radioactive_barrel.png")
+    noisy((60, 90, 40), 18, 72).save(ASSETS / "textures/block/radioactive_debris.png")
+    noisy((200, 230, 80), 10, 73).save(ASSETS / "textures/block/barrel_top.png")
+    model("radioactive_barrel", [el((2, 0, 2), (14, 15, 14), "side", ("north", "south", "east", "west", "down")),
+                                 el((2, 0, 2), (14, 15, 14), "top", ("up",))],
+          {"side": "radioactive_barrel", "top": "barrel_top"}, "side")
+    write(ASSETS / "blockstates/radioactive_barrel.json", variants("radioactive_barrel"))
+    item_model("radioactive_barrel", "radioactive_barrel")
+    model("radioactive_debris", [el((0, 0, 0), (16, 4, 16), "d"), el((3, 4, 4), (8, 6, 9), "d"),
+                                 el((10, 4, 9), (13, 7, 13), "d")], {"d": "radioactive_debris"})
+    write(ASSETS / "blockstates/radioactive_debris.json", variants("radioactive_debris"))
+    item_model("radioactive_debris", "radioactive_debris")
+    for name in ("radioactive_barrel", "radioactive_debris"):
+        drop_self(name)
+    for kind in ("burner", "electro", "springboard"):
+        name = f"anomaly_{kind}"
+        write(ASSETS / f"models/block/{name}.json", {"textures": {"particle": "minecraft:block/glass"}})
+        write(ASSETS / f"blockstates/{name}.json", {"variants": {"": {"model": f"{MOD}:block/{name}"}}})
+        write(ASSETS / f"models/item/{name}.json",
+              {"parent": "minecraft:item/generated", "textures": {"layer0": f"{MOD}:item/{name}"}})
+    W = "minecraft:yellow_wool"
+    for name, pattern in (("hazmat_mask", ["WWW", "WGW"]), ("hazmat_suit", ["W W", "WWW", "WWW"]),
+                          ("hazmat_pants", ["WWW", "W W", "W W"]), ("hazmat_boots", ["W W", "W W"])):
+        shaped(name, pattern, {"W": W, "G": "minecraft:glass_pane"} if "G" in "".join(pattern) else {"W": W})
+    shaped("geiger_counter", ["CGC", "CRC", "CCC"], {"C": "minecraft:copper_ingot", "G": "minecraft:glass_pane",
+                                                     "R": "minecraft:redstone"})
+    shaped("detector", ["IAI", "IRI", "III"], {"I": "minecraft:iron_ingot", "A": "minecraft:amethyst_shard",
+                                               "R": "minecraft:redstone"})
+    shapeless("bolt", ["minecraft:iron_nugget", "minecraft:iron_nugget"], 8)
+    for name, drops in (("bandit", [("ruble", 1, 6), ("ammo_9mm", 0, 5), ("vodka", 0, 1), ("bandage", 0, 1)]),
+                        ("survivor", [("ruble", 0, 4), ("bolt", 1, 4), ("anti_rad", 0, 1), ("canned_beans", 0, 1)]),
+                        ("trader", [("ruble", 5, 15)])):
+        pools = [{"rolls": 1, "entries": [{"type": "minecraft:item", "name": f"{MOD}:{item}", "functions": [
+            {"function": "minecraft:set_count", "count": {"type": "minecraft:uniform", "min": lo, "max": hi}}]}]}
+                 for item, lo, hi in drops]
+        write(DATA / f"loot_tables/entities/{name}.json", {"type": "minecraft:entity", "pools": pools})
+
+
 # ---------------------------------------------------------------- container loot (used by structures)
 
 def entry(item, weight, lo=1, hi=1):
@@ -575,7 +628,8 @@ def gen_container_loot():
                             entry(d("ammo_9mm"), 3, 2, 10), entry(d("ammo_12g"), 3, 1, 6), entry(d("crowbar"), 2),
                             entry(d("baseball_bat"), 2), gun(d("pistol"), 1, 4), gun(d("shotgun"), 1, 2), gun(d("double_barrel"), 1, 1),
                             entry(d("molotov"), 2), entry(d("pipe_bomb"), 1), entry(d("ammo_357"), 2, 2, 8),
-                            entry(d("jerry_can"), 3, 1, 2)])
+                            entry(d("jerry_can"), 3, 1, 2),
+                            entry(d("bolt"), 3, 2, 8), entry(d("ruble"), 2, 1, 5)])
     chest("dumpster", (2, 6), [entry(m("rotten_flesh"), 10, 1, 4), entry(m("bone"), 8, 1, 3), entry(m("string"), 6, 1, 3),
                                entry(m("paper"), 8, 1, 4), entry(m("glass_bottle"), 6, 1, 2), entry(m("leather"), 4),
                                entry(m("iron_nugget"), 5, 1, 4), entry(d("bandage"), 1),
@@ -586,7 +640,8 @@ def gen_container_loot():
                                   entry(d("splint"), 3), entry(d("ammo_9mm"), 5, 8, 20), entry(d("ammo_556"), 4, 10, 30),
                                   entry(d("ammo_762"), 4, 8, 24), entry(d("ammo_12g"), 4, 4, 12), entry(d("frag_grenade"), 2, 1, 3),
                                   gun(d("m4"), 1, 30), gun(d("shotgun"), 1, 6), entry(d("energy_drink"), 3, 1, 2),
-                                  entry(d("jerry_can"), 4, 1, 2)])
+                                  entry(d("jerry_can"), 4, 1, 2),
+                            entry(d("anti_rad"), 3), entry(d("ruble"), 3, 5, 15)])
     chest("gas_station", (2, 5), [entry(d("jerry_can"), 8, 1, 2), entry(d("soda"), 8, 1, 3), entry(d("energy_bar"), 8, 1, 3),
                                   entry(d("energy_drink"), 5, 1, 2), entry(d("canned_beans"), 4, 1, 2), entry(m("coal"), 6, 2, 6),
                                   entry(m("torch"), 4, 2, 6), entry(d("clean_water"), 5, 1, 2), entry(d("crowbar"), 1),
@@ -596,18 +651,28 @@ def gen_container_loot():
                              entry(d("ammo_9mm"), 10, 6, 18), entry(d("ammo_12g"), 6, 3, 10), entry(d("ammo_556"), 3, 5, 15),
                              entry(d("bandage"), 5, 1, 3), entry(d("first_aid_kit"), 2), entry(d("radio"), 2),
                              entry(m("chainmail_chestplate"), 2), entry(d("extended_mag"), 1), entry(d("frag_grenade"), 1),
-                             entry(m("iron_ingot"), 3, 1, 3)])
+                             entry(m("iron_ingot"), 3, 1, 3),
+                            entry(d("ruble"), 5, 3, 12)])
     chest("market", (2, 6), [entry(d("canned_beans"), 10, 1, 3), entry(d("canned_soup"), 10, 1, 3), entry(d("soda"), 8, 1, 3),
                              entry(d("clean_water"), 8, 1, 3), entry(d("energy_bar"), 6, 1, 4), entry(d("coffee"), 4, 1, 2),
                              entry(m("bread"), 5, 1, 3), entry(m("rotten_flesh"), 6, 1, 3), entry(m("sugar"), 4, 1, 3),
                              entry(m("potato"), 5, 1, 4), entry(m("carrot"), 5, 1, 4), entry(m("bowl"), 4, 1, 3),
                              entry(m("glass_bottle"), 5, 1, 3), entry(d("jerry_can"), 1), entry(d("mre"), 1)])
+    chest("bandit_stash", (3, 6), [entry(d("ruble"), 10, 2, 10), entry(d("vodka"), 8, 1, 2), entry(d("ammo_9mm"), 8, 4, 14),
+                                   entry(d("ammo_12g"), 5, 2, 8), entry(d("ammo_762"), 3, 4, 12), gun(d("pistol"), 3, 4),
+                                   gun(d("double_barrel"), 2, 1), gun(d("ak47"), 1, 8), entry(d("canned_beans"), 5, 1, 2),
+                                   entry(d("bandage"), 4, 1, 2), entry(d("molotov"), 2, 1, 2), entry(m("gold_ingot"), 3, 1, 3)])
+    chest("stalker_stash", (2, 5), [entry(d("ruble"), 8, 3, 12), entry(d("anti_rad"), 8, 1, 2), entry(d("bolt"), 8, 4, 12),
+                                    entry(d("vodka"), 5), entry(d("geiger_counter"), 2), entry(d("detector"), 1),
+                                    entry(d("first_aid_kit"), 3), entry(d("ammo_556"), 4, 5, 15), entry(d("hazmat_mask"), 1),
+                                    entry(d("hazmat_suit"), 1), entry(d("artifact_jellyfish"), 1), entry(d("mre"), 4)])
     chest("safe", (1, 4), [entry(m("gold_ingot"), 8, 1, 4), entry(m("emerald"), 6, 1, 3), entry(m("diamond"), 2, 1, 2),
                            entry(d("antidote"), 3), entry(m("golden_apple"), 2), entry(m("name_tag"), 2),
                            gun(d("pistol"), 4, 8), entry(d("ammo_9mm"), 4, 4, 15), gun(d("hunting_rifle"), 1, 3),
                            entry(d("ammo_762"), 2, 2, 8),
                            gun(d("revolver"), 2, 3), entry(d("suppressor"), 1), entry(d("scope"), 1),
-                           entry(d("extended_mag"), 1), entry(d("frag_grenade"), 1, 1, 2)])
+                           entry(d("extended_mag"), 1), entry(d("frag_grenade"), 1, 1, 2),
+                            entry(d("ruble"), 8, 5, 25)])
 
 
 if __name__ == "__main__":
@@ -620,3 +685,4 @@ if __name__ == "__main__":
     gen_rain_collector()
     gen_power()
     gen_cooking_pot()
+    gen_zone()

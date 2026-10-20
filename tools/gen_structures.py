@@ -23,7 +23,13 @@ def _str(s):
     return struct.pack(">H", len(b)) + b
 
 
+class Dbl(float):
+    pass
+
+
 def _payload(v):
+    if isinstance(v, Dbl):
+        return 6, struct.pack(">d", v)
     if isinstance(v, str):
         return 8, _str(v)
     if isinstance(v, bool):
@@ -65,6 +71,7 @@ SOLID_HINTS = ("planks", "bricks", "log", "concrete", "stone", "quartz", "sandst
 class Building:
     def __init__(self, sx, sy, sz):
         self.size = (sx, sy, sz)
+        self.entities = []
         self.blocks = {}
         for x in range(sx):
             for y in range(sy):
@@ -106,6 +113,10 @@ class Building:
         self.mod(x, y, z, name, facing, loot, half="lower")
         self.mod(x, y + 1, z, name, facing, None, half="upper")
 
+    def npc(self, x, y, z, kind):
+        self.entities.append({"pos": [Dbl(x + 0.5), Dbl(y), Dbl(z + 0.5)], "blockPos": [x, y, z],
+                              "nbt": {"id": f"{MOD}:{kind}", "PersistenceRequired": True}})
+
     def bed(self, x, y, z, facing="south", color="red"):
         dx, dz = {"north": (0, -1), "south": (0, 1), "east": (1, 0), "west": (-1, 0)}[facing]
         self.set(x, y, z, f"{color}_bed", {"facing": facing, "part": "foot", "occupied": "false"})
@@ -137,7 +148,7 @@ class Building:
                 block["nbt"] = nbt
             blocks.append(block)
         write_nbt(DATA / f"structures/{name}.nbt", {"DataVersion": DATA_VERSION, "size": list(self.size),
-                                                    "palette": palette, "blocks": blocks, "entities": []})
+                                                    "palette": palette, "blocks": blocks, "entities": self.entities})
 
 
 def gable_roof(b, x1, x2, z1, z2, y0, stairs, fill):
@@ -317,10 +328,107 @@ def market():
     b.save("market")
 
 
+def bandit_camp():
+    b = Building(11, 5, 11)
+    b.fill(0, 0, 0, 10, 0, 10, "coarse_dirt")
+    b.set(5, 0, 5, "cobblestone")
+    b.set(5, 1, 5, "campfire", {"lit": "true", "facing": "north", "signal_fire": "false"})
+    for x, z, axis in ((3, 5, "z"), (7, 5, "z"), (5, 3, "x")):
+        b.set(x, 1, z, "spruce_log", {"axis": axis})
+    # two lean-to tents
+    for x0 in (0, 7):
+        b.fill(x0, 1, 8, x0 + 3, 2, 10, "brown_wool")
+        b.fill(x0 + 1, 1, 8, x0 + 2, 1, 9, "air")
+        b.fill(x0, 3, 8, x0 + 3, 3, 10, "brown_carpet")
+    b.mod(1, 1, 9, "crate", "south", loot="bandit_stash")
+    b.mod(9, 1, 9, "crate", "south", loot="bandit_stash")
+    b.mod(1, 1, 1, "sandbags", "north")
+    b.mod(2, 1, 1, "sandbags", "north")
+    b.mod(9, 1, 1, "sandbags", "north")
+    b.mod(10, 1, 4, "dumpster", "west", loot="dumpster")
+    b.set(0, 1, 5, "barrel", {"facing": "up"})
+    b.npc(4, 1, 4, "bandit")
+    b.npc(6, 1, 6, "bandit")
+    b.npc(5, 1, 2, "bandit")
+    b.save("bandit_camp")
+
+
+def trader_bunker():
+    b = Building(11, 6, 11)
+    b.fill(0, 0, 0, 10, 0, 10, "gray_concrete")
+    b.walls(1, 1, 1, 9, 4, 9, "gray_concrete", corner="polished_andesite")
+    b.door(5, 1, 1, "south", "iron_door")
+    b.set(6, 2, 0, "stone_button", {"face": "wall", "facing": "north", "powered": "false"})
+    b.set(6, 2, 2, "stone_button", {"face": "wall", "facing": "south", "powered": "false"})
+    flat_roof(b, 1, 9, 1, 9, 5, "gray_concrete", "smooth_stone_slab")
+    for x in (2, 3, 7, 8):
+        b.mod(x, 1, 0, "sandbags", "north")
+    b.mod(4, 1, 6, "table")
+    b.mod(5, 1, 6, "table")
+    b.mod(6, 1, 6, "table")
+    for x in (2, 3, 7, 8):
+        b.mod(x, 1, 8, "crate", "north")
+    b.tall(8, 1, 5, "fridge", "west")
+    b.mod(2, 1, 5, "generator", "east", lit="false")
+    b.mod(5, 4, 5, "ceiling_lamp", lit="true")
+    b.mod(2, 1, 3, "weapon_bench", "east")
+    b.npc(5, 1, 7, "trader")
+    b.npc(3, 1, 3, "survivor")
+    b.npc(8, 1, 0, "survivor")
+    b.save("trader_bunker")
+
+
+def radioactive_zone():
+    import random
+    rng = random.Random(7)
+    b = Building(13, 4, 13)
+    b.fill(0, 0, 0, 12, 0, 12, "coarse_dirt")
+    for _ in range(26):
+        x, z = rng.randrange(13), rng.randrange(13)
+        b.set(x, 0, z, rng.choice(["podzol", "gravel", "mycelium"]))
+    for x, z in ((2, 2), (3, 2), (2, 3), (9, 9), (10, 8)):
+        b.mod(x, 1, z, "radioactive_barrel", rng.choice(["north", "east", "south", "west"]))
+    for x, z in ((4, 3), (5, 3), (8, 8), (9, 8), (8, 10), (6, 6)):
+        b.mod(x, 1, z, "radioactive_debris")
+    # a wrecked truck
+    b.fill(4, 1, 9, 7, 1, 11, "black_concrete")
+    b.fill(4, 2, 10, 5, 3, 11, "gray_concrete")
+    b.set(5, 2, 9, "glass_pane")
+    b.fill(6, 2, 10, 7, 2, 11, "iron_block")
+    b.mod(7, 3, 11, "crate", "west", loot="stalker_stash")
+    for x, z, kind in ((6, 2, "burner"), (9, 4, "electro"), (3, 7, "springboard")):
+        b.set(x, 1, z, f"{MOD}:anomaly_{kind}")
+    b.set(10, 1, 2, "bone_block", {"axis": "x"})
+    b.save("radioactive_zone")
+
+
+def anomaly_field():
+    import random
+    rng = random.Random(11)
+    b = Building(15, 3, 15)
+    for x in range(15):
+        for z in range(15):
+            b.set(x, 0, z, rng.choice(["grass_block", "grass_block", "coarse_dirt", "podzol"]))
+            if rng.random() < 0.3:
+                b.set(x, 1, z, "grass" if rng.random() < 0.8 else "dead_bush")
+    kinds = ["burner", "electro", "springboard"]
+    for i, (x, z) in enumerate(((3, 4), (7, 7), (11, 3), (4, 11), (10, 11), (7, 2))):
+        b.set(x, 1, z, f"{MOD}:anomaly_{kinds[i % 3]}")
+    # what is left of the last stalker who tried
+    b.set(8, 1, 9, "bone_block", {"axis": "z"})
+    b.set(9, 1, 9, "skeleton_skull", {"rotation": "4"})
+    b.mod(8, 1, 10, "crate", "north", loot="stalker_stash")
+    b.save("anomaly_field")
+
+
 BUILDINGS = {"house": (house, 6), "market": (market, 2), "pharmacy": (pharmacy, 2),
              "gas_station": (gas_station, 2), "police_station": (police_station, 1)}
 
 ZOMBIES = [("walker", 10, 1, 3), ("runner", 3, 1, 2), ("crawler", 2, 1, 1), ("soldier", 1, 1, 1)]
+
+
+ZONE = {"bandit_camp": (bandit_camp, 3), "trader_bunker": (trader_bunker, 2),
+        "radioactive_zone": (radioactive_zone, 2), "anomaly_field": (anomaly_field, 3)}
 
 
 def gen_worldgen():
@@ -335,20 +443,25 @@ def gen_worldgen():
         rule("minecraft:bricks", 0.05, "minecraft:air"),
         rule("minecraft:oak_planks", 0.05, "minecraft:air"),
     ]}]})
-    for name, (_, _) in BUILDINGS.items():
+    for name in {**BUILDINGS, **ZONE}:
+        town = name in BUILDINGS
         write(DATA / f"worldgen/template_pool/{name}.json", {"fallback": "minecraft:empty", "elements": [
             {"weight": 1, "element": {"element_type": "minecraft:single_pool_element", "location": f"{MOD}:{name}",
-                                      "projection": "rigid", "processors": f"{MOD}:decay"}}]})
+                                      "projection": "rigid", "processors": f"{MOD}:decay" if town else "minecraft:empty"}}]})
+        overrides = {"monster": {"bounding_box": "piece", "spawns": [
+            {"type": f"{MOD}:{z}", "weight": w, "minCount": lo, "maxCount": hi} for z, w, lo, hi in ZOMBIES]}} if town else {}
         write(DATA / f"worldgen/structure/{name}.json", {
             "type": "minecraft:jigsaw", "biomes": f"#{MOD}:has_structure/town", "step": "surface_structures",
-            "spawn_overrides": {"monster": {"bounding_box": "piece", "spawns": [
-                {"type": f"{MOD}:{z}", "weight": w, "minCount": lo, "maxCount": hi} for z, w, lo, hi in ZOMBIES]}},
+            "spawn_overrides": overrides,
             "terrain_adaptation": "beard_thin", "start_pool": f"{MOD}:{name}", "size": 1,
             "start_height": {"absolute": 0}, "project_start_to_heightmap": "WORLD_SURFACE_WG",
             "max_distance_from_center": 80, "use_expansion_hack": False})
     write(DATA / "worldgen/structure_set/town_buildings.json", {
         "structures": [{"structure": f"{MOD}:{n}", "weight": w} for n, (_, w) in BUILDINGS.items()],
         "placement": {"type": "minecraft:random_spread", "spacing": 14, "separation": 5, "salt": 48151623}})
+    write(DATA / "worldgen/structure_set/zone.json", {
+        "structures": [{"structure": f"{MOD}:{n}", "weight": w} for n, (_, w) in ZONE.items()],
+        "placement": {"type": "minecraft:random_spread", "spacing": 24, "separation": 8, "salt": 20060322}})
 
 
 def rule(block, chance, out):
@@ -357,6 +470,6 @@ def rule(block, chance, out):
 
 
 if __name__ == "__main__":
-    for fn, _ in BUILDINGS.values():
+    for fn, _ in {**BUILDINGS, **ZONE}.values():
         fn()
     gen_worldgen()

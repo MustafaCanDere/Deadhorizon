@@ -23,6 +23,10 @@ public class SurvivalData {
     public int load;
     /** 0 = dry, 100 = soaked to the skin. */
     public float wetness;
+    /** Radiation dose, 0-100. */
+    public float radiation;
+    /** Current dose rate in rad/s. Recomputed every second, not saved. */
+    public float exposure;
 
     public void addThirst(float amount) {
         thirst = Math.max(0.0f, Math.min(MAX_THIRST, thirst + amount));
@@ -40,6 +44,7 @@ public class SurvivalData {
         temperature = other.temperature;
         rest = other.rest;
         wetness = other.wetness;
+        radiation = other.radiation;
         thirst = other.thirst;
         stamina = other.stamina;
         exhausted = other.exhausted;
@@ -54,6 +59,7 @@ public class SurvivalData {
         nbt.putFloat("Temperature", temperature);
         nbt.putFloat("Rest", rest);
         nbt.putFloat("Wetness", wetness);
+        nbt.putFloat("Radiation", radiation);
         return nbt;
     }
 
@@ -64,5 +70,6 @@ public class SurvivalData {
         if (nbt.contains("Temperature")) temperature = nbt.getFloat("Temperature");
         if (nbt.contains("Rest")) rest = nbt.getFloat("Rest");
         wetness = nbt.getFloat("Wetness");
+        radiation = nbt.getFloat("Radiation");
     }
 }

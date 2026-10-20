@@ -22,6 +22,9 @@ public final class ClientSurvival {
     public static float rest = SurvivalData.MAX_REST;
     public static int load;
     public static float wetness;
+    public static float radiation;
+    /** Current dose rate (rad/s): drives the Geiger counter clicks. */
+    public static float exposure;
     public static boolean bloodMoon;
 
     private ClientSurvival() {
@@ -56,7 +59,11 @@ public final class ClientSurvival {
             float newRest = buf.readFloat();
             int newLoad = buf.readByte();
             float newWetness = buf.readFloat();
+            float newRadiation = buf.readFloat();
+            float newExposure = buf.readFloat();
             client.execute(() -> {
+                radiation = newRadiation;
+                exposure = newExposure;
                 thirst = newThirst;
                 stamina = newStamina;
                 exhausted = newExhausted;

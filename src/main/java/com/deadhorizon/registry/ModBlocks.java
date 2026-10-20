@@ -1,6 +1,7 @@
 package com.deadhorizon.registry;
 
 import com.deadhorizon.DeadHorizon;
+import com.deadhorizon.block.AnomalyBlock;
 import com.deadhorizon.block.BarbedWireBlock;
 import com.deadhorizon.block.BarricadeBlock;
 import com.deadhorizon.block.BarrierBlock;
@@ -10,6 +11,7 @@ import com.deadhorizon.block.ElectricFenceBlock;
 import com.deadhorizon.block.FurnitureBlock;
 import com.deadhorizon.block.GeneratorBlock;
 import com.deadhorizon.block.LampBlock;
+import com.deadhorizon.block.RadioactiveBlock;
 import com.deadhorizon.block.RainCollectorBlock;
 import com.deadhorizon.block.SeatBlock;
 import com.deadhorizon.block.SolarPanelBlock;
@@ -108,6 +110,19 @@ public final class ModBlocks {
     public static final Block COOKING_POT = register("cooking_pot",
             new CookingPotBlock(metal(MapColor.IRON_GRAY).strength(2.0f, 4.0f)));
 
+    // The Zone
+    public static final Block RADIOACTIVE_BARREL = register("radioactive_barrel",
+            new RadioactiveBlock(metal(MapColor.YELLOW).luminance(s -> 4), 2.5f, box(2, 0, 2, 14, 15, 14)));
+    public static final Block RADIOACTIVE_DEBRIS = register("radioactive_debris",
+            new RadioactiveBlock(AbstractBlock.Settings.create().mapColor(MapColor.DARK_GREEN).strength(1.5f)
+                    .sounds(BlockSoundGroup.GRAVEL).nonOpaque(), 0.8f, box(0, 0, 0, 16, 4, 16)));
+    public static final Block ANOMALY_BURNER = register("anomaly_burner",
+            new AnomalyBlock(anomaly(), AnomalyBlock.Kind.BURNER));
+    public static final Block ANOMALY_ELECTRO = register("anomaly_electro",
+            new AnomalyBlock(anomaly(), AnomalyBlock.Kind.ELECTRO));
+    public static final Block ANOMALY_SPRINGBOARD = register("anomaly_springboard",
+            new AnomalyBlock(anomaly(), AnomalyBlock.Kind.SPRINGBOARD));
+
     private ModBlocks() {
     }
 
@@ -118,6 +133,11 @@ public final class ModBlocks {
 
     private static AbstractBlock.Settings metal(MapColor color) {
         return AbstractBlock.Settings.create().mapColor(color).strength(3.0f, 6.0f).sounds(BlockSoundGroup.METAL).nonOpaque();
+    }
+
+    private static AbstractBlock.Settings anomaly() {
+        return AbstractBlock.Settings.create().noCollision().nonOpaque().strength(-1.0f, 3600000.0f).dropsNothing()
+                .allowsSpawning((s, w, p, t) -> false);
     }
 
     private static AbstractBlock.Settings lamp() {

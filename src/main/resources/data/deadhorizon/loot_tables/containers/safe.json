@@ -184,6 +184,21 @@
               }
             }
           ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:ruble",
+          "weight": 8,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 5,
+                "max": 25
+              }
+            }
+          ]
         }
       ]
     }

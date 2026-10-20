@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "deadhorizon:block/radioactive_barrel"
+    },
+    "facing=east": {
+      "model": "deadhorizon:block/radioactive_barrel",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "deadhorizon:block/radioactive_barrel",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "deadhorizon:block/radioactive_barrel",
+      "y": 270
+    }
+  }
+}

@@ -21,6 +21,8 @@ public final class ModSpawns {
         add(ModEntities.BLOATER, cfg.bloaterSpawnWeight, 1, 1);
         add(ModEntities.CRAWLER, cfg.crawlerSpawnWeight, 1, 3);
         add(ModEntities.SOLDIER, cfg.soldierSpawnWeight, 1, 2);
+        add(ModEntities.BANDIT, cfg.banditSpawnWeight, 2, 4);
+        add(ModEntities.SURVIVOR, cfg.survivorSpawnWeight, 1, 3);
     }
 
     private static void add(EntityType<?> type, int weight, int min, int max) {
