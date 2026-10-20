@@ -134,6 +134,12 @@ public class GunItem extends Item {
         return 72000;
     }
 
+    /** Every shot changes the ammo NBT; without this the gun would bob down and back up on each round. */
+    @Override
+    public boolean allowNbtUpdateAnimation(PlayerEntity player, Hand hand, ItemStack oldStack, ItemStack newStack) {
+        return false;
+    }
+
     @Override
     public UseAction getUseAction(ItemStack stack) {
         return UseAction.NONE;

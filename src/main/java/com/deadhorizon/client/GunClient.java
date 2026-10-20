@@ -45,6 +45,7 @@ public final class GunClient {
                 if (player == null) return;
                 player.setPitch(Math.max(-90.0f, player.getPitch() - pitch));
                 player.setYaw(player.getYaw() + yaw);
+                GunAnimation.onShot(pitch);
             });
         });
 
