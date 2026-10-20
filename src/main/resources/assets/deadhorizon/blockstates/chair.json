@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "deadhorizon:block/chair"
+    },
+    "facing=east": {
+      "model": "deadhorizon:block/chair",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "deadhorizon:block/chair",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "deadhorizon:block/chair",
+      "y": 270
+    }
+  }
+}

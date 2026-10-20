@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "deadhorizon:block/concrete_barrier"
+    },
+    "facing=east": {
+      "model": "deadhorizon:block/concrete_barrier",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "deadhorizon:block/concrete_barrier",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "deadhorizon:block/concrete_barrier",
+      "y": 270
+    }
+  }
+}

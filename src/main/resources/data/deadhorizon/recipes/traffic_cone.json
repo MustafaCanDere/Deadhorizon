@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    " T ",
+    " W ",
+    "TTT"
+  ],
+  "key": {
+    "T": {
+      "item": "minecraft:orange_terracotta"
+    },
+    "W": {
+      "item": "minecraft:white_wool"
+    }
+  },
+  "result": {
+    "item": "deadhorizon:traffic_cone",
+    "count": 2
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "deadhorizon:block/traffic_cone"
+    },
+    "facing=east": {
+      "model": "deadhorizon:block/traffic_cone",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "deadhorizon:block/traffic_cone",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "deadhorizon:block/traffic_cone",
+      "y": 270
+    }
+  }
+}
