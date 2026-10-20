@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "deadhorizon:infection",
+    "deadhorizon:bleeding",
+    "deadhorizon:dehydration",
+    "deadhorizon:heatstroke"
+  ]
+}

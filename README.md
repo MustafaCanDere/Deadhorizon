@@ -7,13 +7,37 @@ Minecraft 1.20.1 (Fabric) için zombi kıyameti modu.
 2. [Fabric API](https://modrinth.com/mod/fabric-api) (1.20.1 sürümü) dosyasını `mods` klasörüne koy.
 3. Bu modun `.jar` dosyasını da `mods` klasörüne koy. En son derlenen `.jar`, GitHub'daki **Actions** sekmesinde en son çalışmanın altındaki `deadhorizon-jar` dosyasıdır.
 
-## Şu an neler var (Faz 1)
+## Şu an neler var
 - **Yürüyen**: yavaş, dayanıklı, kalabalık gelir.
 - **Koşucu**: hızlı ama zayıf, gece daha da hızlanır.
 - **Tank**: dev, zırhlı, sert vurur, kapıları hızla kırar.
+- **Özel zombiler** (Faz 4): **Çığlıkçı** seni görünce çığlık atar ve çevredeki tüm zombileri üstüne çeker; **Kusan** uzaktan zehirli asit tükürür; **Patlayan** ölünce zehirli bulut saçar; **Sürünen** yerde sürünür, 1 bloklu boşluklardan geçer ve ayağını yavaşlatır; **Asker Zombi** zırhlıdır ve ok/mermi hasarının yarısını yer.
 - Hiçbiri güneşte yanmaz, gündüz de doğarlar.
 - Her zorlukta kapı kırarlar.
 - Ses sistemi: koşmak, blok kırmak ve saldırmak yakındaki zombileri çeker. Eğilerek hareket etmek sessizdir.
+
+- **Enfeksiyon ve kanama** (Faz 2): zombi vuruşu enfeksiyon bulaştırabilir ve kanatabilir; tedavi edilmeyen enfeksiyon öldürür ve seni zombiye çevirir. Bandaj, ilk yardım çantası, ağrı kesici, antibiyotik, panzehir.
+- **İşlevsel dekorasyon** (Faz 3): mutfak dolabı, buzdolabı, gardırop, ecza dolabı, kilitli kasa, çöp kutusu (içine atılanı yok eder), tahta sandık, çöp konteyneri; oturulabilen sandalye, tabure, koltuk; masa; açılıp kapanan masa/tavan/sokak lambası; kum torbası, dikenli tel (yavaşlatır ve keser), zombilerin kırmaya çalıştığı tahta barikat (tahtayla tamir edilir), trafik konisi, üstünden atlanamayan beton bariyer.
+- **Gerçekçilik**:
+  - **Susuzluk**: açlık barının üstünde su damlaları. Koşarken, çölde ve Nether'de daha hızlı azalır. Azalınca güçsüzleşir, yavaşlarsın; sıfırda can kaybedersin. Şişeyle doldurulan su kirlidir ve hasta edebilir; fırında, tütsüleyicide ya da kamp ateşinde kaynatınca **Temiz Su** olur. Süt, karpuz, çorbalar da susuzluğu giderir; ekmek ve kurutulmuş yosun susatır.
+  - **Dayanıklılık**: koşmak ve vurmak yorar (nişangahın altındaki çubuk). Ağır zırh daha çok yorar. Tükenince bir süre koşamazsın ve vuruşların zayıflar.
+  - **Kırık bacak**: yüksekten düşünce bacağın kırılabilir; topallarsın ve koşamazsın. **Atel** (çubuk + bandaj) ile düzelir.
+  - **Zombi duyuları**: karanlıkta elinde ışık yokken seni daha zor fark ederler; kanaman varsa daha uzaktan bulurlar. Enfekte olanları biraz geç fark ederler.
+  - **Kafadan vuruş**: ok ve mermiler kafaya gelirse iki kat hasar verir.
+  - **Vücut ısısı**: biyom, yükseklik, gece, yağmur, suya girmek ve yakındaki ateş/fırın/lav vücut ısını değiştirir (hotbarın solundaki termometre). Deri kıyafet soğuğu keser ama sıcakta bunaltır. Çok üşürsen yavaşlarsın, donarsın; çok ısınırsan susuzluk hızlanır, sıcak çarpması can götürür.
+  - **Uyku yorgunluğu**: uyumadan geçen her gün yorar. Uykusuzken gözlerin kapanır, kazman yavaşlar, dayanıklılığın geç dolar. Gece boyu yatakta uyumak tamamen dinlendirir; oturmak biraz dinlendirir. Kahve ve enerji içeceği uykunu açar.
+  - **Yük ağırlığı**: çanta doldukça (özellikle bloklarla) yavaşlarsın ve koşmak daha çok yorar.
+  - **Zombi yakalaması**: zombiler vurduğunda seni bir an yakalayıp durdurabilir. **Şok**: canın çok azalınca yavaşlar, güçsüzleşirsin.
+  - **Yemek bozulması**: çiğ et 2, pişmiş et 4, ekmek 5 oyun günü sonra çürür (bilgi kutusunda tazelik yazar). Buzdolabı bozulmayı 4 kat yavaşlatır; konserve ve MRE hiç bozulmaz.
+  - **Çiğ yemek**: çiğ et ve balık zehirleyebilir, özellikle tavuk.
+  - **Islaklık**: yağmur ve su seni ıslatır, ıslakken daha çok üşürsün. Ateşin yanında ya da sıcakta kurursun.
+  - **Yağmur Suyu Toplayıcı**: yağmurda dolan fıçı (tahtalar + kova). Şişeyle temiz su alınır.
+  - **Soğuk algınlığı**: üşüyünce ya da sırılsıklamken hastalanabilirsin. Öksürük sesi zombileri çeker ve nefesini keser; ağrı kesici öksürüğü bastırır, gece boyu uyumak iyileştirir.
+  - **Kırık kol**: Tank zombinin vuruşu kolunu kırabilir; vuruşların zayıflar. Atel ile düzelir.
+  - **Sesler**: kapı, kapak ve çit kapısı açmak (eğilerek yarı ses), cam kırmak (eğilsen de) ve sert düşüş zombileri çeker.
+  - **Kan**: vuruşlarda kan sıçrar (zombilerde koyu); canın azalınca ekran kenarları kızarır ve kalp atışını duyarsın.
+  - Yeni eşyalar: Kahve, Temiz Su, Gazoz, Enerji İçeceği, Fasulye ve Çorba Konservesi, Enerji Barı, Askeri Tayın (MRE), Atel.
+- **Yağmalama**: içinde loot olan dolaplar önce kısa bir süre "aranır" ve bu ses yakındaki zombileri çeker.
 
 Ayarlar: `config/deadhorizon.json` (oyun ilk açıldığında oluşur).
 
@@ -24,4 +48,4 @@ Plan ve yol haritası: [docs/PLAN.md](docs/PLAN.md)
 ./gradlew build      # build/libs/ altında .jar üretir
 ./gradlew runClient  # geliştirme istemcisini açar
 ```
-Dokular `tools/gen_textures.py` ile üretilir (yer tutucu, ileride elle çizilecek).
+Dokular ve blok verileri `tools/gen_textures.py`, `tools/gen_icons.py` ve `tools/gen_blocks.py` ile üretilir (yer tutucu, ileride elle çizilecek).

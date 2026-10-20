@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "deadhorizon:kitchen_cabinet",
+    "deadhorizon:wardrobe",
+    "deadhorizon:crate",
+    "deadhorizon:chair",
+    "deadhorizon:stool",
+    "deadhorizon:sofa",
+    "deadhorizon:table",
+    "deadhorizon:barricade",
+    "deadhorizon:rain_collector"
+  ]
+}
