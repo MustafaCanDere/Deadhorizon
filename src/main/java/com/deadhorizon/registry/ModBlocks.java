@@ -4,13 +4,18 @@ import com.deadhorizon.DeadHorizon;
 import com.deadhorizon.block.BarbedWireBlock;
 import com.deadhorizon.block.BarricadeBlock;
 import com.deadhorizon.block.BarrierBlock;
+import com.deadhorizon.block.ElectricDeviceBlock;
+import com.deadhorizon.block.ElectricFenceBlock;
 import com.deadhorizon.block.FurnitureBlock;
+import com.deadhorizon.block.GeneratorBlock;
 import com.deadhorizon.block.LampBlock;
 import com.deadhorizon.block.RainCollectorBlock;
 import com.deadhorizon.block.SeatBlock;
+import com.deadhorizon.block.SolarPanelBlock;
 import com.deadhorizon.block.StorageBlock;
 import com.deadhorizon.block.StorageBlock.Kind;
 import com.deadhorizon.block.TallStorageBlock;
+import com.deadhorizon.block.WeaponBenchBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.MapColor;
@@ -19,6 +24,7 @@ import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.state.property.Properties;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,6 +89,19 @@ public final class ModBlocks {
     public static final Block CONCRETE_BARRIER = register("concrete_barrier",
             new BarrierBlock(AbstractBlock.Settings.create().mapColor(MapColor.STONE_GRAY).strength(3.0f, 9.0f)
                     .sounds(BlockSoundGroup.STONE).nonOpaque()));
+
+    // Electricity and base workshop
+    public static final Block GENERATOR = register("generator",
+            new GeneratorBlock(metal(MapColor.RED).strength(3.5f, 6.0f)));
+    public static final Block SOLAR_PANEL = register("solar_panel",
+            new SolarPanelBlock(metal(MapColor.BLUE), box(0, 0, 0, 16, 5, 16)));
+    public static final Block ELECTRIC_FENCE = register("electric_fence",
+            new ElectricFenceBlock(metal(MapColor.IRON_GRAY).strength(4.0f, 8.0f)));
+    public static final Block FLOODLIGHT = register("floodlight",
+            new ElectricDeviceBlock(lamp().strength(1.5f).luminance(s -> s.get(Properties.POWERED) ? 15 : 0),
+                    box(3, 0, 3, 13, 4, 13), box(7, 4, 7, 9, 10, 9), box(2, 10, 0, 14, 16, 6)));
+    public static final Block WEAPON_BENCH = register("weapon_bench",
+            new WeaponBenchBlock(wood().strength(2.5f), box(0, 0, 0, 16, 15, 16)));
 
     private ModBlocks() {
     }

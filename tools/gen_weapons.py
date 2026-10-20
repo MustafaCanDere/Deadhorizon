@@ -213,6 +213,16 @@ def radio():
     save(img, "radio")
 
 
+def jerry_can():
+    img, d = canvas()
+    d.rectangle((3, 4, 12, 15), fill=(170, 40, 30, 255), outline=POLYMER)
+    d.line((4, 6, 11, 13), fill=(120, 25, 20, 255))
+    d.line((11, 6, 4, 13), fill=(120, 25, 20, 255))
+    d.rectangle((5, 1, 9, 3), outline=POLYMER)                    # handle
+    d.rectangle((10, 2, 12, 4), fill=STEEL_LIGHT)                 # spout
+    save(img, "jerry_can")
+
+
 pistol()
 long_gun("shotgun", WOOD, STEEL, 15, pump=(10, 9, 13, 9))
 long_gun("hunting_rifle", WOOD, STEEL, 15, scope=True)
@@ -238,3 +248,4 @@ frag_grenade()
 molotov()
 pipe_bomb()
 radio()
+jerry_can()

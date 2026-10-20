@@ -156,7 +156,7 @@ Her dekor bloğu bir işe yarar; yapıların içinde de doğal olarak bulunur.
 | **6 – Yapılar (1. dalga)** | Evler, market, eczane, benzin istasyonu, polis karakolu, araç enkazları. | Keşfetmeye değer dünya. |
 | **7 – Hayatta kalma** (ilk kısmı öne çekildi ✓) | ✓ Susuzluk, ✓ dayanıklılık, ✓ kırık bacak, ✓ zombi duyuları ve kafadan vuruş, ✓ konserve/içecekler, ✓ vücut ısısı, ✓ uyku yorgunluğu, ✓ yük ağırlığı, ✓ zombi yakalaması ve şok, ✓ yemek bozulması ve buzdolabı, ✓ çiğ yemek zehirlenmesi, ✓ ıslaklık, ✓ yağmur suyu toplama; ✓ soğuk algınlığı ve öksürük, ✓ kırık kol, ✓ kapı/cam/düşüş sesleri, ✓ kan efektleri ve kalp atışı; kalan: yemek pişirme tarifleri. | Tam hayatta kalma. |
 | **8 – Sürüler + olaylar** ✓ (gün sayacı ve güçlenen zombiler, Kan Ayı, gezgin sürüler, erzak düşürme, telsiz) | Kıyamet gün sayacı, Kan Ayı, gezgin sürüler, erzak düşürme, radyo. | Sürekli artan baskı. |
-| **9 – Elektrik ve üretim** | Jeneratör, güneş paneli, kablolar, elektrikli çit, projektör; çalışma tezgahları, tamir. | Gelişmiş üs. |
+| **9 – Elektrik ve üretim** (✓ jeneratör, güneş paneli, elektrikli çit, projektör, elektrikli buzdolabı, silah tezgahı; kablosuz 12 blok menzil; kalan: üretim tezgahları) | Jeneratör, güneş paneli, kablolar, elektrikli çit, projektör; çalışma tezgahları, tamir. | Gelişmiş üs. |
 | **10 – Yapılar (2. dalga)** | Hastane, okul, hapishane, askeri üs, apartman, küçük kasaba. | Büyük keşif hedefleri. |
 | **11 – İnsanlar** | Tüccarlar, haydutlar, hayatta kalan kampları; beceri sistemi. | Canlı dünya. |
 | **12 – Boss + cila** | Alfa boss, ses efektleri, el çizimi dokular, denge, performans. | Yayına hazır sürüm. |

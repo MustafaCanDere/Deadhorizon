@@ -109,6 +109,16 @@ public class DHConfig {
     /** A supply drop every this many days; 0 turns it off. */
     public int supplyDropEveryDays = 2;
 
+    // Electricity
+    /** Devices (fences, floodlights, fridges) run when a working generator or lit solar panel is this close. */
+    public int powerRange = 12;
+    public double generatorNoiseRadius = 24.0;
+    public float electricFenceDamage = 4.0f;
+    /** Without power a fridge is just a cupboard: food inside spoils at the normal rate. */
+    public boolean fridgeNeedsPower = true;
+    /** A running generator with no open sky above it poisons the air around it (nausea, weakness). */
+    public boolean generatorFumes = true;
+
     // Firearms
     /** Chance per shot of a jam once a gun is below 30% condition. */
     public double gunJamChance = 0.05;

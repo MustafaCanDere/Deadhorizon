@@ -186,5 +186,21 @@
   "radio.deadhorizon.blood_moon_today": "Blood Moon tonight!",
   "radio.deadhorizon.blood_moon_in": "Blood Moon in %s days.",
   "radio.deadhorizon.drop": "Last drop: X %s, Z %s.",
-  "radio.deadhorizon.no_drop": "No drops yet."
+  "radio.deadhorizon.no_drop": "No drops yet.",
+  "block.deadhorizon.generator": "Generator",
+  "block.deadhorizon.solar_panel": "Solar Panel",
+  "block.deadhorizon.electric_fence": "Electric Fence",
+  "block.deadhorizon.floodlight": "Floodlight",
+  "block.deadhorizon.weapon_bench": "Weapon Bench",
+  "item.deadhorizon.jerry_can": "Jerry Can",
+  "item.deadhorizon.jerry_can.tooltip": "Petrol: 5 minutes of generator time",
+  "message.deadhorizon.generator_fuel": "Generator fuel: %s min",
+  "message.deadhorizon.generator_empty": "The generator is out of fuel (coal or a jerry can)",
+  "message.deadhorizon.generator_fumes": "Exhaust fumes! Generators need open air",
+  "message.deadhorizon.fridge_no_power": "The fridge is off: no power nearby",
+  "message.deadhorizon.bench_fine": "Nothing to fix",
+  "message.deadhorizon.bench_no_iron": "You need an iron ingot to repair this",
+  "message.deadhorizon.bench_repaired": "Repaired: %s%%",
+  "death.attack.deadhorizon.electrocution": "%1$s was electrocuted",
+  "death.attack.deadhorizon.electrocution.player": "%1$s was electrocuted while fleeing %2$s"
 }

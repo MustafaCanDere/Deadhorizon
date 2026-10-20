@@ -186,5 +186,21 @@
   "radio.deadhorizon.blood_moon_today": "Kan Ayı bu gece!",
   "radio.deadhorizon.blood_moon_in": "Kan Ayına %s gün var.",
   "radio.deadhorizon.drop": "Son erzak: X %s, Z %s.",
-  "radio.deadhorizon.no_drop": "Henüz erzak bırakılmadı."
+  "radio.deadhorizon.no_drop": "Henüz erzak bırakılmadı.",
+  "block.deadhorizon.generator": "Jeneratör",
+  "block.deadhorizon.solar_panel": "Güneş Paneli",
+  "block.deadhorizon.electric_fence": "Elektrikli Çit",
+  "block.deadhorizon.floodlight": "Projektör",
+  "block.deadhorizon.weapon_bench": "Silah Tezgahı",
+  "item.deadhorizon.jerry_can": "Benzin Bidonu",
+  "item.deadhorizon.jerry_can.tooltip": "Benzin: jeneratöre 5 dakika",
+  "message.deadhorizon.generator_fuel": "Jeneratör yakıtı: %s dk",
+  "message.deadhorizon.generator_empty": "Jeneratörün yakıtı bitti (kömür ya da benzin bidonu)",
+  "message.deadhorizon.generator_fumes": "Egzoz gazı! Jeneratör açık havada çalışmalı",
+  "message.deadhorizon.fridge_no_power": "Buzdolabı çalışmıyor: yakında elektrik yok",
+  "message.deadhorizon.bench_fine": "Tamir edilecek bir şey yok",
+  "message.deadhorizon.bench_no_iron": "Tamir için demir külçe lazım",
+  "message.deadhorizon.bench_repaired": "Tamir edildi: %%%s",
+  "death.attack.deadhorizon.electrocution": "%1$s elektrik çarpmasıyla öldü",
+  "death.attack.deadhorizon.electrocution.player": "%1$s, %2$s elinden kaçarken elektrik çarptı"
 }

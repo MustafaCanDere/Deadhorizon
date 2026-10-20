@@ -117,6 +117,7 @@ public final class ModItems {
     public static final Item PIPE_BOMB = register("pipe_bomb",
             new GrenadeItem(new Item.Settings().maxCount(8), GrenadeItem.Kind.PIPE_BOMB));
 
+    public static final Item JERRY_CAN = register("jerry_can", new TooltipItem(new Item.Settings().maxCount(4)));
     public static final Item RADIO = register("radio", new RadioItem(new Item.Settings().maxCount(1)));
 
     // Melee
@@ -174,6 +175,7 @@ public final class ModItems {
                         entries.add(MOLOTOV);
                         entries.add(PIPE_BOMB);
                         entries.add(RADIO);
+                        entries.add(JERRY_CAN);
                         entries.add(AMMO_9MM);
                         entries.add(AMMO_556);
                         entries.add(AMMO_762);

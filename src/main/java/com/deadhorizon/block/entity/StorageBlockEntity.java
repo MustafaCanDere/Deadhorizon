@@ -1,7 +1,9 @@
 package com.deadhorizon.block.entity;
 
 import com.deadhorizon.block.StorageBlock;
+import com.deadhorizon.config.DHConfig;
 import com.deadhorizon.food.Spoilage;
+import com.deadhorizon.power.PowerGrid;
 import com.deadhorizon.registry.ModBlocks;
 import com.deadhorizon.registry.ModBlockEntities;
 import net.minecraft.block.BlockState;
@@ -31,7 +33,7 @@ public class StorageBlockEntity extends LootableContainerBlockEntity {
     private DefaultedList<ItemStack> items;
     @Nullable
     private UUID owner;
-    /** Fridge only: world time it was last closed, or -1. Food inside ages at a quarter speed meanwhile. */
+    /** Fridge only: world time it was last closed, or -1. Food inside ages at a quarter speed meanwhile, if powered. */
     private long closedAt = -1L;
 
     public StorageBlockEntity(BlockPos pos, BlockState state) {
@@ -109,11 +111,17 @@ public class StorageBlockEntity extends LootableContainerBlockEntity {
     public void onOpen(PlayerEntity player) {
         if (player.isSpectator()) return;
         playSound(true);
-        if (isFridge() && world != null && closedAt >= 0) {
-            long credit = (world.getTime() - closedAt) * 3 / 4;
-            for (ItemStack stack : items) Spoilage.preserve(stack, credit);
-            closedAt = -1L;
-            markDirty();
+        if (isFridge() && world != null) {
+            boolean running = !DHConfig.INSTANCE.fridgeNeedsPower || PowerGrid.isPowered(world, pos);
+            if (!running) player.sendMessage(Text.translatable("message.deadhorizon.fridge_no_power"), true);
+            if (closedAt >= 0) {
+                if (running) {
+                    long credit = (world.getTime() - closedAt) * 3 / 4;
+                    for (ItemStack stack : items) Spoilage.preserve(stack, credit);
+                }
+                closedAt = -1L;
+                markDirty();
+            }
         }
     }
 

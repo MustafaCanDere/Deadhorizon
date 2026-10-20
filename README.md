@@ -53,6 +53,13 @@ Minecraft 1.20.1 (Fabric) için zombi kıyameti modu.
   - **Gezgin sürüler**: 20-40 dakikada bir, birinin yakınında bir sürü belirip ona doğru yürür.
   - **Erzak düşürme**: iki günde bir öğlen telsizden koordinat gelir. Erzak sandığının yanında dumanlı işaret ateşi yanar ama zombiler de sesi duyar.
   - **Telsiz**: günü, Kan Ayına kaç gün kaldığını ve son erzağın yerini söyler.
+- **Elektrik ve üs**:
+  - **Jeneratör**: kömür (1 dk) ya da benzin bidonu (5 dk) yakar, 12 blok içindeki cihazlara elektrik verir. Gürültülüdür, 24 bloktan zombi çeker. Kapalı alanda çalışırsa egzoz gazı mide bulantısı ve halsizlik yapar.
+  - **Güneş paneli**: sessiz ve bedava, ama sadece gündüz, açık gökyüzü altında ve yağmursuz havada.
+  - **Elektrikli çit**: elektrik varken dokunan zombiyi çarpar ve geri fırlatır (oyuncuya yarım hasar). Üstünden atlanamaz.
+  - **Projektör**: elektrik varken en güçlü ışığı verir.
+  - **Buzdolabı** artık elektrik ister; elektriksiz buzdolabında yemek normal hızda bozulur.
+  - **Silah tezgahı**: elinde aşınmış silah ya da yakın dövüş silahıyla kullan, bir demir külçe dayanıklılığın dörtte birini geri verir ve tutukluğu açar.
 - **Yağmalama**: içinde loot olan dolaplar önce kısa bir süre "aranır" ve bu ses yakındaki zombileri çeker.
 
 Ayarlar: `config/deadhorizon.json` (oyun ilk açıldığında oluşur).

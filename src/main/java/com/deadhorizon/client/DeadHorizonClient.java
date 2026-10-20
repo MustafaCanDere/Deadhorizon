@@ -38,6 +38,7 @@ public class DeadHorizonClient implements ClientModInitializer {
         FreshnessTooltip.register();
         GunClient.register();
 
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ModBlocks.BARBED_WIRE, ModBlocks.MEDICINE_CABINET);
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ModBlocks.BARBED_WIRE, ModBlocks.MEDICINE_CABINET,
+                ModBlocks.ELECTRIC_FENCE);
     }
 }

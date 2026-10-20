@@ -250,6 +250,21 @@
               }
             }
           ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:jerry_can",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
         }
       ]
     }

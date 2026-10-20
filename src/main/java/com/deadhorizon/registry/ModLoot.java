@@ -57,6 +57,7 @@ public final class ModLoot {
                         .with(ammo(ModItems.AMMO_12G, 3, 1, 5))
                         .with(entry(ModItems.BASEBALL_BAT, 2))
                         .with(entry(ModItems.MACHETE, 1))
+                        .with(entry(ModItems.JERRY_CAN, 2))
                         .with(EmptyEntry.builder().weight(14)));
             } else if (RARE.contains(id)) {
                 tableBuilder.pool(LootPool.builder()

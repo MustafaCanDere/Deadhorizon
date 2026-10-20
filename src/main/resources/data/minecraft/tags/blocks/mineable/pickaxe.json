@@ -11,6 +11,10 @@
     "deadhorizon:street_lamp",
     "deadhorizon:barbed_wire",
     "deadhorizon:traffic_cone",
-    "deadhorizon:concrete_barrier"
+    "deadhorizon:concrete_barrier",
+    "deadhorizon:generator",
+    "deadhorizon:solar_panel",
+    "deadhorizon:electric_fence",
+    "deadhorizon:floodlight"
   ]
 }

@@ -319,9 +319,11 @@ def gen_states():
 
 
 def gen_tags():
-    axe = ["kitchen_cabinet", "wardrobe", "crate", "chair", "stool", "sofa", "table", "barricade", "rain_collector"]
+    axe = ["kitchen_cabinet", "wardrobe", "crate", "chair", "stool", "sofa", "table", "barricade", "rain_collector",
+           "weapon_bench"]
     pickaxe = ["fridge", "medicine_cabinet", "safe", "trash_can", "dumpster", "table_lamp", "ceiling_lamp",
-               "street_lamp", "barbed_wire", "traffic_cone", "concrete_barrier"]
+               "street_lamp", "barbed_wire", "traffic_cone", "concrete_barrier",
+               "generator", "solar_panel", "electric_fence", "floodlight"]
     shovel = ["sandbags"]
     tags = RES / "data/minecraft/tags/blocks/mineable"
     for tool, names in (("axe", axe), ("pickaxe", pickaxe), ("shovel", shovel)):
@@ -387,6 +389,124 @@ def gen_rain_collector():
     shaped("rain_collector", ["P P", "PBP", "PPP"], {"P": "#minecraft:planks", "B": "minecraft:bucket"})
 
 
+# ---------------------------------------------------------------- electricity and workshop
+
+def solar_cells():
+    img = noisy((30, 50, 110), 6, 51)
+    d = ImageDraw.Draw(img)
+    for i in (0, 5, 10, 15):
+        d.line((i, 0, i, 15), fill=(170, 175, 185, 255))
+        d.line((0, i, 15, i), fill=(170, 175, 185, 255))
+    return img
+
+
+def fence_wire():
+    img = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+    for y in (2, 6, 10, 14):
+        d.line((0, y, 15, y), fill=(150, 120, 70, 255))
+    for x in range(0, 16, 4):
+        d.point((x, 2), fill=(230, 230, 230, 255))
+        d.point((x + 2, 10), fill=(230, 230, 230, 255))
+    return img
+
+
+def warning_sign():
+    img = noisy((235, 200, 30), 6, 52)
+    d = ImageDraw.Draw(img)
+    d.rectangle((0, 0, 15, 15), outline=(30, 30, 30, 255))
+    d.line((9, 2, 6, 8, 10, 8, 7, 14), fill=(30, 30, 30, 255))
+    return img
+
+
+def generator_side(running):
+    img = noisy((170, 40, 35), 8, 53)
+    d = ImageDraw.Draw(img)
+    d.rectangle((0, 0, 15, 15), outline=(40, 40, 40, 255))
+    for y in (4, 7, 10):
+        d.line((3, y, 12, y), fill=(60, 20, 20, 255))
+    d.rectangle((11, 12, 13, 13), fill=(90, 230, 90, 255) if running else (40, 60, 40, 255))
+    return img
+
+
+def workbench_top():
+    img = wood((110, 80, 50), 54)
+    d = ImageDraw.Draw(img)
+    d.rectangle((2, 2, 6, 5), fill=(70, 72, 78, 255))  # vice
+    d.line((9, 10, 14, 10), fill=(140, 142, 148, 255))  # file
+    d.line((9, 12, 13, 13), fill=(140, 142, 148, 255))
+    return img
+
+
+POWER_TEXTURES = {
+    "generator_side": lambda: generator_side(False),
+    "generator_side_on": lambda: generator_side(True),
+    "solar_cells": solar_cells,
+    "fence_wire": fence_wire,
+    "warning_sign": warning_sign,
+    "workbench_top": workbench_top,
+    "floodlight_lens": lambda: noisy((200, 205, 200), 6, 55),
+    "floodlight_lens_on": lambda: glow((255, 250, 225)),
+}
+
+
+def gen_power():
+    for name, fn in POWER_TEXTURES.items():
+        fn().save(ASSETS / f"textures/block/{name}.png")
+
+    frame = [el((1, 0, 3), (15, 2, 13), "frame"), el((1, 10, 3), (15, 12, 13), "frame"),
+             el((1, 2, 3), (2, 10, 4), "frame"), el((14, 2, 3), (15, 10, 4), "frame"),
+             el((1, 2, 12), (2, 10, 13), "frame"), el((14, 2, 12), (15, 10, 13), "frame")]
+    for suffix, side in (("", "generator_side"), ("_on", "generator_side_on")):
+        model(f"generator{suffix}", frame + [el((3, 2, 4), (13, 10, 12), "body"),
+                                             el((10, 12, 6), (13, 14, 9), "frame"),   # fuel cap
+                                             el((2, 6, 13), (4, 8, 16), "frame")],    # exhaust, at the back
+              {"body": side, "frame": "metal_dark"}, "body")
+    write(ASSETS / "blockstates/generator.json", variants("generator", ("lit", {"false": "generator", "true": "generator_on"})))
+    item_model("generator", "generator")
+
+    model("solar_panel", [el((0, 3, 0), (16, 5, 16), "cells", ("up",)),
+                          el((0, 3, 0), (16, 5, 16), "frame", ("north", "south", "east", "west", "down")),
+                          el((7, 0, 7), (9, 3, 9), "frame")], {"cells": "solar_cells", "frame": "metal_grey"}, "cells")
+    write(ASSETS / "blockstates/solar_panel.json",
+          variants("solar_panel", ("powered", {"false": "solar_panel", "true": "solar_panel"})))
+    item_model("solar_panel", "solar_panel")
+
+    model("electric_fence", [el((0, 0, 7), (2, 16, 9), "post"), el((14, 0, 7), (16, 16, 9), "post"),
+                             el((2, 0, 8), (14, 16, 8), "wire", ("north", "south")),
+                             el((5, 5, 7.5), (11, 9, 8.5), "sign", ("north", "south"))],
+          {"post": "metal_dark", "wire": "fence_wire", "sign": "warning_sign"}, "post")
+    write(ASSETS / "blockstates/electric_fence.json",
+          variants("electric_fence", ("powered", {"false": "electric_fence", "true": "electric_fence"})))
+    item_model("electric_fence", "electric_fence")
+
+    for suffix, lens in (("", "floodlight_lens"), ("_on", "floodlight_lens_on")):
+        model(f"floodlight{suffix}", [el((3, 0, 3), (13, 4, 13), "metal"), el((7, 4, 7), (9, 10, 9), "metal"),
+                                      el((2, 10, 1), (14, 16, 6), "metal", ("south", "east", "west", "up", "down")),
+                                      el((2, 10, 0), (14, 16, 1), "lens", ("north",)),
+                                      el((2, 10, 0), (14, 16, 1), "metal", ("east", "west", "up", "down"))],
+              {"metal": "metal_dark", "lens": lens}, "metal")
+    write(ASSETS / "blockstates/floodlight.json",
+          variants("floodlight", ("powered", {"false": "floodlight", "true": "floodlight_on"})))
+    item_model("floodlight", "floodlight")
+
+    model("weapon_bench", [el((0, 13, 0), (16, 15, 16), "top", ("up",)),
+                           el((0, 13, 0), (16, 15, 16), "wood", ("north", "south", "east", "west", "down"))]
+          + legs(1, 1, 13, 13, 13, 2, "wood"),
+          {"top": "workbench_top", "wood": "wood_dark"}, "wood")
+    write(ASSETS / "blockstates/weapon_bench.json", variants("weapon_bench"))
+    item_model("weapon_bench", "weapon_bench")
+
+    for name in ("generator", "solar_panel", "electric_fence", "floodlight", "weapon_bench"):
+        drop_self(name)
+    I = "minecraft:iron_ingot"
+    shaped("generator", ["III", "IFI", "IRI"], {"I": I, "F": "minecraft:furnace", "R": "minecraft:redstone"})
+    shaped("solar_panel", ["GGG", "IDI"], {"G": "minecraft:glass", "I": I, "D": "minecraft:daylight_detector"})
+    shaped("electric_fence", ["BCB", "BCB"], {"B": "minecraft:iron_bars", "C": "minecraft:copper_ingot"}, 4)
+    shaped("floodlight", ["ILI", " I ", "III"], {"I": I, "L": "minecraft:redstone_lamp"})
+    shaped("weapon_bench", ["ISI", "PPP", "P P"], {"I": I, "S": "minecraft:smithing_table", "P": "#minecraft:planks"})
+
+
 # ---------------------------------------------------------------- container loot (used by structures)
 
 def entry(item, weight, lo=1, hi=1):
@@ -432,16 +552,19 @@ def gen_container_loot():
                             entry(d("mre"), 3), entry(d("canned_beans"), 4, 1, 3), entry(d("clean_water"), 3, 1, 2),
                             entry(d("ammo_9mm"), 3, 2, 10), entry(d("ammo_12g"), 3, 1, 6), entry(d("crowbar"), 2),
                             entry(d("baseball_bat"), 2), gun(d("pistol"), 1, 4), gun(d("shotgun"), 1, 2),
-                            entry(d("molotov"), 2), entry(d("pipe_bomb"), 1), entry(d("ammo_357"), 2, 2, 8)])
+                            entry(d("molotov"), 2), entry(d("pipe_bomb"), 1), entry(d("ammo_357"), 2, 2, 8),
+                            entry(d("jerry_can"), 3, 1, 2)])
     chest("dumpster", (2, 6), [entry(m("rotten_flesh"), 10, 1, 4), entry(m("bone"), 8, 1, 3), entry(m("string"), 6, 1, 3),
                                entry(m("paper"), 8, 1, 4), entry(m("glass_bottle"), 6, 1, 2), entry(m("leather"), 4),
                                entry(m("iron_nugget"), 5, 1, 4), entry(d("bandage"), 1),
-                               entry(d("canned_beans"), 2), entry(d("soda"), 2)])
+                               entry(d("canned_beans"), 2), entry(d("soda"), 2),
+                               entry(d("jerry_can"), 1)])
     chest("supply_drop", (5, 9), [entry(d("clean_water"), 8, 2, 4), entry(d("mre"), 8, 1, 3), entry(d("canned_beans"), 6, 2, 4),
                                   entry(d("first_aid_kit"), 4), entry(d("antibiotics"), 4, 1, 2), entry(d("bandage"), 6, 2, 5),
                                   entry(d("splint"), 3), entry(d("ammo_9mm"), 5, 8, 20), entry(d("ammo_556"), 4, 10, 30),
                                   entry(d("ammo_762"), 4, 8, 24), entry(d("ammo_12g"), 4, 4, 12), entry(d("frag_grenade"), 2, 1, 3),
-                                  gun(d("m4"), 1, 30), gun(d("shotgun"), 1, 6), entry(d("energy_drink"), 3, 1, 2)])
+                                  gun(d("m4"), 1, 30), gun(d("shotgun"), 1, 6), entry(d("energy_drink"), 3, 1, 2),
+                                  entry(d("jerry_can"), 4, 1, 2)])
     chest("safe", (1, 4), [entry(m("gold_ingot"), 8, 1, 4), entry(m("emerald"), 6, 1, 3), entry(m("diamond"), 2, 1, 2),
                            entry(d("antidote"), 3), entry(m("golden_apple"), 2), entry(m("name_tag"), 2),
                            gun(d("pistol"), 4, 8), entry(d("ammo_9mm"), 4, 4, 15), gun(d("hunting_rifle"), 1, 3),
@@ -458,3 +581,4 @@ if __name__ == "__main__":
     gen_recipes()
     gen_container_loot()
     gen_rain_collector()
+    gen_power()
