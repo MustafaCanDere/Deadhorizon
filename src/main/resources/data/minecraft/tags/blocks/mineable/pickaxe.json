@@ -15,6 +15,7 @@
     "deadhorizon:generator",
     "deadhorizon:solar_panel",
     "deadhorizon:electric_fence",
-    "deadhorizon:floodlight"
+    "deadhorizon:floodlight",
+    "deadhorizon:cooking_pot"
   ]
 }

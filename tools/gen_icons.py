@@ -191,6 +191,18 @@ def gui_thirst():
     img.save(ROOT / "gui" / "thirst.png")
 
 
+def bowl(name, soup, bits):
+    img, d = canvas(16)
+    d.ellipse((2, 6, 13, 9), fill=soup)
+    d.pieslice((2, 2, 13, 14), 0, 180, fill=(140, 95, 55, 255), outline=OUTLINE)
+    d.line((3, 8, 12, 8), fill=OUTLINE)
+    for x, y in ((5, 7), (8, 6), (10, 7)):
+        d.point((x, y), fill=bits)
+    d.line((6, 3, 6, 5), fill=(230, 230, 230, 160))  # steam
+    d.line((9, 2, 9, 4), fill=(230, 230, 230, 160))
+    save(img, "item", name)
+
+
 acid_glob()
 bandage()
 first_aid_kit()
@@ -213,3 +225,6 @@ gui_thirst()
 mug("coffee", (90, 55, 30, 255))
 effect_broken_arm()
 effect_cold()
+bowl("meat_stew", (140, 70, 35, 255), (200, 120, 90, 255))
+bowl("vegetable_stew", (190, 120, 40, 255), (240, 140, 30, 255))
+bowl("gruel", (200, 190, 150, 255), (170, 160, 120, 255))

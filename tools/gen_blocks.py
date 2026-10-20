@@ -323,7 +323,7 @@ def gen_tags():
            "weapon_bench"]
     pickaxe = ["fridge", "medicine_cabinet", "safe", "trash_can", "dumpster", "table_lamp", "ceiling_lamp",
                "street_lamp", "barbed_wire", "traffic_cone", "concrete_barrier",
-               "generator", "solar_panel", "electric_fence", "floodlight"]
+               "generator", "solar_panel", "electric_fence", "floodlight", "cooking_pot"]
     shovel = ["sandbags"]
     tags = RES / "data/minecraft/tags/blocks/mineable"
     for tool, names in (("axe", axe), ("pickaxe", pickaxe), ("shovel", shovel)):
@@ -507,6 +507,28 @@ def gen_power():
     shaped("weapon_bench", ["ISI", "PPP", "P P"], {"I": I, "S": "minecraft:smithing_table", "P": "#minecraft:planks"})
 
 
+# ---------------------------------------------------------------- cooking pot
+
+def gen_cooking_pot():
+    noisy((70, 120, 190), 10, 61).save(ASSETS / "textures/block/pot_water.png")
+    noisy((140, 85, 40), 14, 62).save(ASSETS / "textures/block/pot_stew.png")
+    walls = [el((3, 0, 3), (13, 1, 13), "pot"),
+             el((3, 1, 3), (13, 8, 4), "pot"), el((3, 1, 12), (13, 8, 13), "pot"),
+             el((3, 1, 4), (4, 8, 12), "pot"), el((12, 1, 4), (13, 8, 12), "pot"),
+             el((1, 6, 7), (3, 7, 9), "pot"), el((13, 6, 7), (15, 7, 9), "pot")]  # handles
+    for i, (fill, tex) in enumerate(((None, None), (6, "pot_water"), (7, "pot_stew"))):
+        extra = [el((4, 1, 4), (12, fill, 12), "fill", ("up",))] if fill else []
+        textures = {"pot": "metal_dark"}
+        if tex:
+            textures["fill"] = tex
+        model(f"cooking_pot_{i}", walls + extra, textures, "pot")
+    write(ASSETS / "blockstates/cooking_pot.json",
+          {"variants": {f"contents={i}": {"model": f"{MOD}:block/cooking_pot_{i}"} for i in range(3)}})
+    item_model("cooking_pot", "cooking_pot_0")
+    drop_self("cooking_pot")
+    shaped("cooking_pot", ["I I", "I I", "III"], {"I": "minecraft:iron_ingot"})
+
+
 # ---------------------------------------------------------------- container loot (used by structures)
 
 def entry(item, weight, lo=1, hi=1):
@@ -582,3 +604,4 @@ if __name__ == "__main__":
     gen_container_loot()
     gen_rain_collector()
     gen_power()
+    gen_cooking_pot()

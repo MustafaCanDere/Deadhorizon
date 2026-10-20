@@ -4,6 +4,7 @@ import com.deadhorizon.DeadHorizon;
 import com.deadhorizon.block.BarbedWireBlock;
 import com.deadhorizon.block.BarricadeBlock;
 import com.deadhorizon.block.BarrierBlock;
+import com.deadhorizon.block.CookingPotBlock;
 import com.deadhorizon.block.ElectricDeviceBlock;
 import com.deadhorizon.block.ElectricFenceBlock;
 import com.deadhorizon.block.FurnitureBlock;
@@ -102,6 +103,10 @@ public final class ModBlocks {
                     box(3, 0, 3, 13, 4, 13), box(7, 4, 7, 9, 10, 9), box(2, 10, 0, 14, 16, 6)));
     public static final Block WEAPON_BENCH = register("weapon_bench",
             new WeaponBenchBlock(wood().strength(2.5f), box(0, 0, 0, 16, 15, 16)));
+
+    // Cooking
+    public static final Block COOKING_POT = register("cooking_pot",
+            new CookingPotBlock(metal(MapColor.IRON_GRAY).strength(2.0f, 4.0f)));
 
     private ModBlocks() {
     }

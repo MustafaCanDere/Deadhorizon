@@ -5,6 +5,7 @@ import com.deadhorizon.item.DrinkItem;
 import com.deadhorizon.item.MedicalItem;
 import com.deadhorizon.item.MedicalItem.Treatment;
 import com.deadhorizon.item.RadioItem;
+import com.deadhorizon.item.SoupItem;
 import com.deadhorizon.item.TooltipItem;
 import com.deadhorizon.weapon.AttachmentItem;
 import com.deadhorizon.weapon.FireAxeItem;
@@ -117,6 +118,14 @@ public final class ModItems {
     public static final Item PIPE_BOMB = register("pipe_bomb",
             new GrenadeItem(new Item.Settings().maxCount(8), GrenadeItem.Kind.PIPE_BOMB));
 
+    // Cooking pot meals (thirst, stamina, warmth)
+    public static final Item MEAT_STEW = register("meat_stew", new SoupItem(new Item.Settings().maxCount(1)
+            .food(new FoodComponent.Builder().hunger(10).saturationModifier(0.8f).build()), 4.0f, 15.0f, 8.0f));
+    public static final Item VEGETABLE_STEW = register("vegetable_stew", new SoupItem(new Item.Settings().maxCount(1)
+            .food(new FoodComponent.Builder().hunger(7).saturationModifier(0.6f).build()), 5.0f, 5.0f, 6.0f));
+    public static final Item GRUEL = register("gruel", new SoupItem(new Item.Settings().maxCount(1)
+            .food(new FoodComponent.Builder().hunger(4).saturationModifier(0.3f).build()), 3.0f, 0.0f, 4.0f));
+
     public static final Item JERRY_CAN = register("jerry_can", new TooltipItem(new Item.Settings().maxCount(4)));
     public static final Item RADIO = register("radio", new RadioItem(new Item.Settings().maxCount(1)));
 
@@ -161,6 +170,9 @@ public final class ModItems {
                         entries.add(CANNED_SOUP);
                         entries.add(ENERGY_BAR);
                         entries.add(MRE);
+                        entries.add(MEAT_STEW);
+                        entries.add(VEGETABLE_STEW);
+                        entries.add(GRUEL);
                         entries.add(PISTOL);
                         entries.add(SHOTGUN);
                         entries.add(HUNTING_RIFLE);

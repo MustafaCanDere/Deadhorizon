@@ -2,6 +2,7 @@ package com.deadhorizon.registry;
 
 import com.deadhorizon.DeadHorizon;
 import com.deadhorizon.block.StorageBlock;
+import com.deadhorizon.block.entity.CookingPotBlockEntity;
 import com.deadhorizon.block.entity.GeneratorBlockEntity;
 import com.deadhorizon.block.entity.StorageBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
@@ -19,6 +20,10 @@ public final class ModBlockEntities {
     public static final BlockEntityType<GeneratorBlockEntity> GENERATOR = Registry.register(Registries.BLOCK_ENTITY_TYPE,
             DeadHorizon.id("generator"),
             FabricBlockEntityTypeBuilder.create(GeneratorBlockEntity::new, ModBlocks.GENERATOR).build());
+
+    public static final BlockEntityType<CookingPotBlockEntity> COOKING_POT = Registry.register(Registries.BLOCK_ENTITY_TYPE,
+            DeadHorizon.id("cooking_pot"),
+            FabricBlockEntityTypeBuilder.create(CookingPotBlockEntity::new, ModBlocks.COOKING_POT).build());
 
     private ModBlockEntities() {
     }

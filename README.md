@@ -60,6 +60,10 @@ Minecraft 1.20.1 (Fabric) için zombi kıyameti modu.
   - **Projektör**: elektrik varken en güçlü ışığı verir.
   - **Buzdolabı** artık elektrik ister; elektriksiz buzdolabında yemek normal hızda bozulur.
   - **Silah tezgahı**: elinde aşınmış silah ya da yakın dövüş silahıyla kullan, bir demir külçe dayanıklılığın dörtte birini geri verir ve tutukluğu açar.
+- **Yemek pişirme**: tencereyi yanan kamp ateşi, ateş, lav, magma ya da yanan fırın üstüne koy, kova ya da şişeyle su doldur.
+  - Boş kaynatılan su temiz suya döner (3 şişe). Kirli suyu içmeden önce kaynat.
+  - En fazla 4 malzeme: et ve sebze **Etli Güveç** (en doyurucu, su, dayanıklılık ve sıcaklık verir), iki sebze **Sebze Çorbası**, diğer her şey **Lapa** olur. Çürük et her şeyi lapaya çevirir.
+  - Çorbalar kaseyle alınır, sıcak oldukları için vücudu ısıtır ve birkaç günde bozulur. Pişen yemeğin kokusu yakındaki zombileri çeker.
 - **Yağmalama**: içinde loot olan dolaplar önce kısa bir süre "aranır" ve bu ses yakındaki zombileri çeker.
 
 Ayarlar: `config/deadhorizon.json` (oyun ilk açıldığında oluşur).

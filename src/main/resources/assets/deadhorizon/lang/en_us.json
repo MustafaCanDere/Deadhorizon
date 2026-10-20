@@ -202,5 +202,17 @@
   "message.deadhorizon.bench_no_iron": "You need an iron ingot to repair this",
   "message.deadhorizon.bench_repaired": "Repaired: %s%%",
   "death.attack.deadhorizon.electrocution": "%1$s was electrocuted",
-  "death.attack.deadhorizon.electrocution.player": "%1$s was electrocuted while fleeing %2$s"
+  "death.attack.deadhorizon.electrocution.player": "%1$s was electrocuted while fleeing %2$s",
+  "block.deadhorizon.cooking_pot": "Cooking Pot",
+  "item.deadhorizon.meat_stew": "Meat Stew",
+  "item.deadhorizon.meat_stew.tooltip": "Hot and filling: water, stamina and warmth",
+  "item.deadhorizon.vegetable_stew": "Vegetable Stew",
+  "item.deadhorizon.vegetable_stew.tooltip": "Hot soup: water and warmth",
+  "item.deadhorizon.gruel": "Gruel",
+  "item.deadhorizon.gruel.tooltip": "Boiled scraps. Better than nothing",
+  "message.deadhorizon.pot_empty": "Fill the pot with water first (bucket or bottle)",
+  "message.deadhorizon.pot_no_heat": "Put the pot over a fire or a lit campfire (%s/%s ingredients)",
+  "message.deadhorizon.pot_cooking": "Cooking: %s/%s ingredients, %s%%",
+  "message.deadhorizon.pot_need_bowl": "You need a bowl",
+  "message.deadhorizon.pot_need_bottle": "Boiled water: fill glass bottles"
 }

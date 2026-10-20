@@ -1,6 +1,7 @@
 package com.deadhorizon.food;
 
 import com.deadhorizon.config.DHConfig;
+import com.deadhorizon.registry.ModItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -50,6 +51,9 @@ public final class Spoilage {
         SHELF_DAYS.put(Items.CARROT, 8.0f);
         SHELF_DAYS.put(Items.BEETROOT, 8.0f);
         SHELF_DAYS.put(Items.POTATO, 10.0f);
+        SHELF_DAYS.put(ModItems.MEAT_STEW, 2.0f);
+        SHELF_DAYS.put(ModItems.VEGETABLE_STEW, 3.0f);
+        SHELF_DAYS.put(ModItems.GRUEL, 3.0f);
     }
 
     private Spoilage() {

@@ -202,5 +202,17 @@
   "message.deadhorizon.bench_no_iron": "Tamir için demir külçe lazım",
   "message.deadhorizon.bench_repaired": "Tamir edildi: %%%s",
   "death.attack.deadhorizon.electrocution": "%1$s elektrik çarpmasıyla öldü",
-  "death.attack.deadhorizon.electrocution.player": "%1$s, %2$s elinden kaçarken elektrik çarptı"
+  "death.attack.deadhorizon.electrocution.player": "%1$s, %2$s elinden kaçarken elektrik çarptı",
+  "block.deadhorizon.cooking_pot": "Tencere",
+  "item.deadhorizon.meat_stew": "Etli Güveç",
+  "item.deadhorizon.meat_stew.tooltip": "Sıcak ve doyurucu: su, dayanıklılık ve sıcaklık verir",
+  "item.deadhorizon.vegetable_stew": "Sebze Çorbası",
+  "item.deadhorizon.vegetable_stew.tooltip": "Sıcak çorba: su ve sıcaklık verir",
+  "item.deadhorizon.gruel": "Lapa",
+  "item.deadhorizon.gruel.tooltip": "Haşlanmış artıklar. Hiç yoktan iyidir",
+  "message.deadhorizon.pot_empty": "Önce tencereye su koy (kova ya da şişe)",
+  "message.deadhorizon.pot_no_heat": "Tencereyi ateşin ya da yanan kamp ateşinin üstüne koy (%s/%s malzeme)",
+  "message.deadhorizon.pot_cooking": "Pişiyor: %s/%s malzeme, %%%s",
+  "message.deadhorizon.pot_need_bowl": "Kase lazım",
+  "message.deadhorizon.pot_need_bottle": "Kaynamış su: cam şişe doldur"
 }
