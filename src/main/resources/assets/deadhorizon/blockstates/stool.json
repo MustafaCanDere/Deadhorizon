@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "deadhorizon:block/stool"
+    },
+    "facing=east": {
+      "model": "deadhorizon:block/stool",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "deadhorizon:block/stool",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "deadhorizon:block/stool",
+      "y": 270
+    }
+  }
+}

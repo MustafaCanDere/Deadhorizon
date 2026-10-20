@@ -1,0 +1,114 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "type": "minecraft:uniform",
+        "min": 2,
+        "max": 5
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:ruble",
+          "weight": 8,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 3,
+                "max": 12
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:anti_rad",
+          "weight": 8,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:bolt",
+          "weight": 8,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 4,
+                "max": 12
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:vodka",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:geiger_counter",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:detector",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:first_aid_kit",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:ammo_556",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 5,
+                "max": 15
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:hazmat_mask",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:hazmat_suit",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:artifact_jellyfish",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:mre",
+          "weight": 4
+        }
+      ]
+    }
+  ]
+}

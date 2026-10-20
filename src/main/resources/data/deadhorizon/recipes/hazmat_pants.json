@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "WWW",
+    "W W",
+    "W W"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:yellow_wool"
+    }
+  },
+  "result": {
+    "item": "deadhorizon:hazmat_pants",
+    "count": 1
+  }
+}

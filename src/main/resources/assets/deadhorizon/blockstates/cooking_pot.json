@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "contents=0": {
+      "model": "deadhorizon:block/cooking_pot_0"
+    },
+    "contents=1": {
+      "model": "deadhorizon:block/cooking_pot_1"
+    },
+    "contents=2": {
+      "model": "deadhorizon:block/cooking_pot_2"
+    }
+  }
+}

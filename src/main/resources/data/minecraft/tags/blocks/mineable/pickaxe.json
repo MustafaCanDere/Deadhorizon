@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "deadhorizon:fridge",
+    "deadhorizon:medicine_cabinet",
+    "deadhorizon:safe",
+    "deadhorizon:trash_can",
+    "deadhorizon:dumpster",
+    "deadhorizon:table_lamp",
+    "deadhorizon:ceiling_lamp",
+    "deadhorizon:street_lamp",
+    "deadhorizon:barbed_wire",
+    "deadhorizon:traffic_cone",
+    "deadhorizon:concrete_barrier",
+    "deadhorizon:generator",
+    "deadhorizon:solar_panel",
+    "deadhorizon:electric_fence",
+    "deadhorizon:floodlight",
+    "deadhorizon:cooking_pot",
+    "deadhorizon:radioactive_barrel"
+  ]
+}

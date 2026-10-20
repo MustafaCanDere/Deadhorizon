@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "TTT",
+    "ICI",
+    "III"
+  ],
+  "key": {
+    "T": {
+      "item": "minecraft:iron_trapdoor"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "C": {
+      "item": "minecraft:chest"
+    }
+  },
+  "result": {
+    "item": "deadhorizon:dumpster",
+    "count": 1
+  }
+}

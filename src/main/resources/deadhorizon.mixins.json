@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.deadhorizon.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "ItemStackMixin",
+    "LivingEntityMixin",
+    "MilkBucketItemMixin",
+    "PlayerEntityMixin",
+    "PotionItemMixin",
+    "ZombieEntityMixin"
+  ],
+  "client": [
+    "client.AbstractClientPlayerEntityMixin",
+    "client.ClientPlayerEntityMixin",
+    "client.HeldItemRendererMixin",
+    "client.PlayerEntityRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

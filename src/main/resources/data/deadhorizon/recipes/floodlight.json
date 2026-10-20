@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "ILI",
+    " I ",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "L": {
+      "item": "minecraft:redstone_lamp"
+    }
+  },
+  "result": {
+    "item": "deadhorizon:floodlight",
+    "count": 1
+  }
+}

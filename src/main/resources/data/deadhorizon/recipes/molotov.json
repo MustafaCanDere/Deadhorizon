@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "S",
+    "B",
+    "A"
+  ],
+  "key": {
+    "S": {
+      "tag": "minecraft:wool"
+    },
+    "B": {
+      "item": "minecraft:glass_bottle"
+    },
+    "A": {
+      "item": "minecraft:coal"
+    }
+  },
+  "result": {
+    "item": "deadhorizon:molotov",
+    "count": 1
+  }
+}

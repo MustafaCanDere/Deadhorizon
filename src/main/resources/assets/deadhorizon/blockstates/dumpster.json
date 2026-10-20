@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "deadhorizon:block/dumpster"
+    },
+    "facing=east": {
+      "model": "deadhorizon:block/dumpster",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "deadhorizon:block/dumpster",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "deadhorizon:block/dumpster",
+      "y": 270
+    }
+  }
+}

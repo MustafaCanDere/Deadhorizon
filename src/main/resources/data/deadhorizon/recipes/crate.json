@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "SPS",
+    "P P",
+    "SPS"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "deadhorizon:crate",
+    "count": 1
+  }
+}

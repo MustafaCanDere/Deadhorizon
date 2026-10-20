@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "facing=north,damage=0": {
+      "model": "deadhorizon:block/barricade_0"
+    },
+    "facing=north,damage=1": {
+      "model": "deadhorizon:block/barricade_1"
+    },
+    "facing=north,damage=2": {
+      "model": "deadhorizon:block/barricade_2"
+    },
+    "facing=north,damage=3": {
+      "model": "deadhorizon:block/barricade_3"
+    },
+    "facing=east,damage=0": {
+      "model": "deadhorizon:block/barricade_0",
+      "y": 90
+    },
+    "facing=east,damage=1": {
+      "model": "deadhorizon:block/barricade_1",
+      "y": 90
+    },
+    "facing=east,damage=2": {
+      "model": "deadhorizon:block/barricade_2",
+      "y": 90
+    },
+    "facing=east,damage=3": {
+      "model": "deadhorizon:block/barricade_3",
+      "y": 90
+    },
+    "facing=south,damage=0": {
+      "model": "deadhorizon:block/barricade_0",
+      "y": 180
+    },
+    "facing=south,damage=1": {
+      "model": "deadhorizon:block/barricade_1",
+      "y": 180
+    },
+    "facing=south,damage=2": {
+      "model": "deadhorizon:block/barricade_2",
+      "y": 180
+    },
+    "facing=south,damage=3": {
+      "model": "deadhorizon:block/barricade_3",
+      "y": 180
+    },
+    "facing=west,damage=0": {
+      "model": "deadhorizon:block/barricade_0",
+      "y": 270
+    },
+    "facing=west,damage=1": {
+      "model": "deadhorizon:block/barricade_1",
+      "y": 270
+    },
+    "facing=west,damage=2": {
+      "model": "deadhorizon:block/barricade_2",
+      "y": 270
+    },
+    "facing=west,damage=3": {
+      "model": "deadhorizon:block/barricade_3",
+      "y": 270
+    }
+  }
+}
