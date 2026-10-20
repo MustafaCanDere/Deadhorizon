@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "deadhorizon:antibiotics"
+    },
+    {
+      "item": "minecraft:golden_carrot"
+    },
+    {
+      "item": "minecraft:fermented_spider_eye"
+    },
+    {
+      "item": "minecraft:glistering_melon_slice"
+    }
+  ],
+  "result": {
+    "item": "deadhorizon:antidote"
+  }
+}

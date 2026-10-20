@@ -34,6 +34,20 @@ public class DHConfig {
     public double blockBreakNoiseRadius = 10.0;
     public double attackNoiseRadius = 8.0;
 
+    // Infection
+    public boolean infectionEnabled = true;
+    public boolean vanillaZombiesInfect = true;
+    public double infectionChance = 0.15;
+    public int infectionMinutes = 30;
+    public int antibioticsDelayMinutes = 10;
+    public int antidoteImmunityMinutes = 5;
+    public boolean infectedPlayersTurn = true;
+
+    // Bleeding
+    public boolean bleedingEnabled = true;
+    public double bleedChance = 0.2;
+    public int bleedSeconds = 60;
+
     public static void load() {
         try {
             if (Files.exists(PATH)) {

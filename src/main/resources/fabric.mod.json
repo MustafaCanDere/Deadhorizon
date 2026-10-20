@@ -4,20 +4,29 @@
   "version": "${version}",
   "name": "Dead Horizon",
   "description": "Zombie apocalypse overhaul for Minecraft 1.20.1.",
-  "authors": ["Fakewol"],
+  "authors": [
+    "Fakewol"
+  ],
   "contact": {
     "sources": "https://github.com/MustafaCanDere/deadhorizon"
   },
   "license": "All-Rights-Reserved",
   "environment": "*",
   "entrypoints": {
-    "main": ["com.deadhorizon.DeadHorizon"],
-    "client": ["com.deadhorizon.client.DeadHorizonClient"]
+    "main": [
+      "com.deadhorizon.DeadHorizon"
+    ],
+    "client": [
+      "com.deadhorizon.client.DeadHorizonClient"
+    ]
   },
   "depends": {
     "fabricloader": ">=0.14.21",
     "minecraft": "~1.20.1",
     "java": ">=17",
     "fabric-api": "*"
-  }
+  },
+  "mixins": [
+    "deadhorizon.mixins.json"
+  ]
 }
