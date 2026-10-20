@@ -33,7 +33,7 @@ public class SpitterEntity extends DHZombieEntity implements RangedAttackMob {
     }
 
     @Override
-    public void shootAt(LivingEntity target, float pullProgress) {
+    public void attack(LivingEntity target, float pullProgress) {
         AcidSpitEntity spit = new AcidSpitEntity(getWorld(), this);
         double dx = target.getX() - getX();
         double dy = target.getBodyY(0.3333) - spit.getY();
