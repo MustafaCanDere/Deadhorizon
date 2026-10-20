@@ -53,6 +53,28 @@ public class DHConfig {
     public double bleedChance = 0.2;
     public int bleedSeconds = 60;
 
+    // Thirst (0-20, like hunger). Default drain empties a full bar in about half an hour of play.
+    public boolean thirstEnabled = true;
+    public double thirstDrainPerTick = 0.0006;
+    public double dirtyWaterSicknessChance = 0.35;
+
+    // Stamina (0-100)
+    public boolean staminaEnabled = true;
+    public double sprintStaminaCost = 0.5;
+    public double attackStaminaCost = 4.0;
+    public double staminaRegenPerTick = 0.6;
+
+    // Injuries
+    public boolean fracturesEnabled = true;
+    public int fractureMinutes = 10;
+
+    // Zombie senses and headshots
+    public boolean zombieSensesEnabled = true;
+    public double darknessVisibility = 0.55;
+    public double bleedingScentMultiplier = 1.5;
+    public boolean headshots = true;
+    public double headshotMultiplier = 2.0;
+
     public static void load() {
         try {
             if (Files.exists(PATH)) {

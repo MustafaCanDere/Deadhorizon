@@ -107,6 +107,16 @@
           "type": "minecraft:item",
           "name": "deadhorizon:bandage",
           "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:canned_beans",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "deadhorizon:soda",
+          "weight": 2
         }
       ]
     }

@@ -89,6 +89,82 @@ def acid_glob():
     save(img, "item", "acid_glob")
 
 
+def splint():
+    img, d = canvas(16)
+    for x in (4, 10):
+        d.rectangle((x, 1, x + 2, 14), fill=(170, 125, 70, 255), outline=(90, 60, 30, 255))
+    for y in (4, 9, 13):
+        d.rectangle((3, y, 13, y + 1), fill=(235, 228, 210, 255))
+    save(img, "item", "splint")
+
+
+def bottle(name, liquid, cork=(150, 110, 60, 255)):
+    img, d = canvas(16)
+    d.rectangle((6, 1, 9, 3), fill=cork)
+    d.rectangle((6, 4, 9, 5), fill=(200, 225, 235, 160), outline=OUTLINE)
+    d.ellipse((2, 5, 13, 15), fill=(200, 225, 235, 120), outline=OUTLINE)
+    d.ellipse((3, 8, 12, 14), fill=liquid)
+    d.point((5, 9), fill=(255, 255, 255, 230))
+    save(img, "item", name)
+
+
+def can(name, body, band, top=(190, 190, 195, 255), tall=False):
+    img, d = canvas(16)
+    y0 = 1 if tall else 4
+    d.rectangle((4, y0, 11, 15), fill=body, outline=OUTLINE)
+    d.rectangle((4, y0, 11, y0 + 1), fill=top)
+    d.rectangle((5, y0 + 4, 10, y0 + 7), fill=band)
+    d.line((5, 14, 10, 14), fill=top)
+    save(img, "item", name)
+
+
+def energy_bar():
+    img, d = canvas(16)
+    d.polygon([(1, 10), (10, 2), (15, 6), (6, 14)], fill=(220, 160, 40, 255), outline=OUTLINE)
+    d.line((4, 10, 10, 5), fill=(160, 40, 30, 255), width=2)
+    save(img, "item", "energy_bar")
+
+
+def mre():
+    img, d = canvas(16)
+    d.rectangle((2, 3, 13, 14), fill=(120, 100, 60, 255), outline=OUTLINE)
+    d.rectangle((2, 3, 13, 5), fill=(95, 80, 45, 255))
+    d.rectangle((5, 8, 10, 11), fill=(60, 50, 30, 255))
+    save(img, "item", "mre")
+
+
+def effect_fracture():
+    img, d = canvas(18)
+    d.rectangle((7, 1, 10, 7), fill=(235, 230, 210, 255), outline=(120, 110, 90, 255))
+    d.polygon([(7, 7), (10, 7), (12, 9), (9, 9)], fill=(200, 40, 40, 255))
+    d.rectangle((8, 10, 11, 16), fill=(235, 230, 210, 255), outline=(120, 110, 90, 255))
+    d.ellipse((5, 0, 12, 3), fill=(235, 230, 210, 255))
+    d.ellipse((6, 14, 13, 17), fill=(235, 230, 210, 255))
+    save(img, "mob_effect", "fracture")
+
+
+def gui_thirst():
+    """27x9 strip: empty drop, full drop, half drop."""
+    img = Image.new("RGBA", (27, 9), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+    for i, (fill, half) in enumerate([(None, False), ((60, 140, 230, 255), False), ((60, 140, 230, 255), True)]):
+        ox = i * 9
+        shape = [(ox + 4, 0), (ox + 7, 4), (ox + 7, 6), (ox + 5, 8), (ox + 3, 8), (ox + 1, 6), (ox + 1, 4)]
+        d.polygon(shape, fill=(30, 30, 40, 255))
+        if fill:
+            inner = [(ox + 4, 1), (ox + 6, 4), (ox + 6, 6), (ox + 5, 7), (ox + 3, 7), (ox + 2, 6), (ox + 2, 4)]
+            d.polygon(inner, fill=fill)
+            d.point((ox + 3, 4), fill=(200, 230, 255, 255))
+            if half:
+                # Right half full: darken the left half of the water.
+                for y in range(9):
+                    for x in range(ox, ox + 4):
+                        if img.getpixel((x, y))[2] > 100:
+                            img.putpixel((x, y), (30, 30, 40, 255))
+    (ROOT / "gui").mkdir(parents=True, exist_ok=True)
+    img.save(ROOT / "gui" / "thirst.png")
+
+
 acid_glob()
 bandage()
 first_aid_kit()
@@ -98,3 +174,13 @@ antidote()
 effect_infection()
 effect_bleeding()
 effect_immunity()
+splint()
+bottle("clean_water", (90, 170, 240, 220))
+can("soda", (200, 40, 40, 255), (250, 250, 250, 255), tall=True)
+can("energy_drink", (30, 30, 35, 255), (120, 230, 40, 255), tall=True)
+can("canned_beans", (190, 190, 195, 255), (200, 90, 40, 255))
+can("canned_soup", (190, 190, 195, 255), (200, 30, 30, 255))
+energy_bar()
+mre()
+effect_fracture()
+gui_thirst()

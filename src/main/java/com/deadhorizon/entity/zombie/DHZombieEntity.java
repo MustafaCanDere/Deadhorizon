@@ -3,21 +3,29 @@ package com.deadhorizon.entity.zombie;
 import com.deadhorizon.config.DHConfig;
 import com.deadhorizon.entity.ai.BreakBarricadeGoal;
 import com.deadhorizon.entity.ai.InvestigateNoiseGoal;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.NavigationConditions;
 import net.minecraft.entity.ai.goal.BreakDoorGoal;
 import net.minecraft.entity.ai.pathing.MobNavigation;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.tag.DamageTypeTags;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 /**
  * Shared base for all Dead Horizon zombies: no daylight burning, no drowning conversion,
@@ -62,6 +70,28 @@ public abstract class DHZombieEntity extends ZombieEntity {
             entityData = new ZombieEntity.ZombieData(false, false);
         }
         return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+    }
+
+    /** Projectiles that hit the head do extra damage. */
+    @Override
+    public boolean damage(DamageSource source, float amount) {
+        if (DHConfig.INSTANCE.headshots && source.isIn(DamageTypeTags.IS_PROJECTILE) && isHeadshot(source.getSource())) {
+            amount *= (float) DHConfig.INSTANCE.headshotMultiplier;
+            this.getWorld().playSound(null, this.getBlockPos(), SoundEvents.ENTITY_ARROW_HIT_PLAYER,
+                    SoundCategory.PLAYERS, 0.6f, 0.5f);
+        }
+        return super.damage(source, amount);
+    }
+
+    private boolean isHeadshot(@Nullable Entity projectile) {
+        if (projectile == null) return false;
+        // The projectile is still where it was at the start of the tick, so trace its path into our box.
+        Vec3d start = projectile.getPos();
+        Vec3d end = start.add(projectile.getVelocity());
+        Optional<Vec3d> hit = this.getBoundingBox().expand(0.3).raycast(start, end);
+        double y = hit.map(v -> v.y).orElse(projectile.getY());
+        double headBottom = this.getY() + this.getHeight() * 0.75;
+        return y >= headBottom;
     }
 
     @Override

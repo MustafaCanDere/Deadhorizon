@@ -386,21 +386,27 @@ def gen_container_loot():
     d = lambda n: f"{MOD}:{n}"
     chest("kitchen", (2, 5), [entry(m("bread"), 10, 1, 3), entry(m("baked_potato"), 8, 1, 3), entry(m("cookie"), 6, 2, 6),
                               entry(m("sugar"), 6, 1, 4), entry(m("bowl"), 5), entry(m("glass_bottle"), 6, 1, 3),
-                              entry(m("honey_bottle"), 2), entry(d("painkillers"), 2), entry(m("iron_sword"), 1)])
+                              entry(m("honey_bottle"), 2), entry(d("painkillers"), 2), entry(m("iron_sword"), 1),
+                              entry(d("canned_beans"), 6, 1, 2), entry(d("canned_soup"), 6, 1, 2), entry(d("energy_bar"), 4, 1, 3),
+                              entry(d("clean_water"), 4, 1, 2)])
     chest("fridge", (1, 4), [entry(m("cooked_beef"), 6, 1, 2), entry(m("cooked_chicken"), 6, 1, 2), entry(m("apple"), 8, 1, 3),
                              entry(m("carrot"), 6, 1, 4), entry(m("milk_bucket"), 3), entry(m("rotten_flesh"), 8, 1, 3),
-                             entry(m("melon_slice"), 5, 1, 4)])
+                             entry(m("melon_slice"), 5, 1, 4), entry(d("soda"), 6, 1, 3), entry(d("energy_drink"), 3),
+                             entry(d("clean_water"), 5, 1, 3)])
     chest("medicine", (1, 3), [entry(d("bandage"), 10, 1, 3), entry(d("painkillers"), 8, 1, 2), entry(d("antibiotics"), 4),
-                               entry(d("first_aid_kit"), 2), entry(d("antidote"), 1), entry(m("glass_bottle"), 4)])
+                               entry(d("first_aid_kit"), 2), entry(d("antidote"), 1), entry(m("glass_bottle"), 4),
+                               entry(d("splint"), 4)])
     chest("wardrobe", (2, 5), [entry(m("leather_chestplate"), 4), entry(m("leather_leggings"), 4), entry(m("leather_boots"), 4),
                                entry(m("leather_helmet"), 3), entry(m("white_wool"), 6, 1, 3), entry(m("string"), 8, 2, 6),
                                entry(m("paper"), 5, 1, 4), entry(d("bandage"), 2)])
     chest("crate", (2, 6), [entry(m("iron_ingot"), 6, 1, 3), entry(m("coal"), 8, 2, 8), entry(m("torch"), 8, 4, 12),
                             entry(m("arrow"), 6, 4, 16), entry(m("iron_nugget"), 8, 3, 9), entry(m("oak_planks"), 6, 4, 16),
-                            entry(m("iron_axe"), 2), entry(m("bow"), 2), entry(m("shield"), 1)])
+                            entry(m("iron_axe"), 2), entry(m("bow"), 2), entry(m("shield"), 1),
+                            entry(d("mre"), 3), entry(d("canned_beans"), 4, 1, 3), entry(d("clean_water"), 3, 1, 2)])
     chest("dumpster", (2, 6), [entry(m("rotten_flesh"), 10, 1, 4), entry(m("bone"), 8, 1, 3), entry(m("string"), 6, 1, 3),
                                entry(m("paper"), 8, 1, 4), entry(m("glass_bottle"), 6, 1, 2), entry(m("leather"), 4),
-                               entry(m("iron_nugget"), 5, 1, 4), entry(d("bandage"), 1)])
+                               entry(m("iron_nugget"), 5, 1, 4), entry(d("bandage"), 1),
+                               entry(d("canned_beans"), 2), entry(d("soda"), 2)])
     chest("safe", (1, 4), [entry(m("gold_ingot"), 8, 1, 4), entry(m("emerald"), 6, 1, 3), entry(m("diamond"), 2, 1, 2),
                            entry(d("antidote"), 3), entry(m("golden_apple"), 2), entry(m("name_tag"), 2)])
 

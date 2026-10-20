@@ -18,6 +18,13 @@ Minecraft 1.20.1 (Fabric) için zombi kıyameti modu.
 
 - **Enfeksiyon ve kanama** (Faz 2): zombi vuruşu enfeksiyon bulaştırabilir ve kanatabilir; tedavi edilmeyen enfeksiyon öldürür ve seni zombiye çevirir. Bandaj, ilk yardım çantası, ağrı kesici, antibiyotik, panzehir.
 - **İşlevsel dekorasyon** (Faz 3): mutfak dolabı, buzdolabı, gardırop, ecza dolabı, kilitli kasa, çöp kutusu (içine atılanı yok eder), tahta sandık, çöp konteyneri; oturulabilen sandalye, tabure, koltuk; masa; açılıp kapanan masa/tavan/sokak lambası; kum torbası, dikenli tel (yavaşlatır ve keser), zombilerin kırmaya çalıştığı tahta barikat (tahtayla tamir edilir), trafik konisi, üstünden atlanamayan beton bariyer.
+- **Gerçekçilik**:
+  - **Susuzluk**: açlık barının üstünde su damlaları. Koşarken, çölde ve Nether'de daha hızlı azalır. Azalınca güçsüzleşir, yavaşlarsın; sıfırda can kaybedersin. Şişeyle doldurulan su kirlidir ve hasta edebilir; fırında, tütsüleyicide ya da kamp ateşinde kaynatınca **Temiz Su** olur. Süt, karpuz, çorbalar da susuzluğu giderir; ekmek ve kurutulmuş yosun susatır.
+  - **Dayanıklılık**: koşmak ve vurmak yorar (nişangahın altındaki çubuk). Ağır zırh daha çok yorar. Tükenince bir süre koşamazsın ve vuruşların zayıflar.
+  - **Kırık bacak**: yüksekten düşünce bacağın kırılabilir; topallarsın ve koşamazsın. **Atel** (çubuk + bandaj) ile düzelir.
+  - **Zombi duyuları**: karanlıkta elinde ışık yokken seni daha zor fark ederler; kanaman varsa daha uzaktan bulurlar. Enfekte olanları biraz geç fark ederler.
+  - **Kafadan vuruş**: ok ve mermiler kafaya gelirse iki kat hasar verir.
+  - Yeni eşyalar: Temiz Su, Gazoz, Enerji İçeceği, Fasulye ve Çorba Konservesi, Enerji Barı, Askeri Tayın (MRE), Atel.
 - **Yağmalama**: içinde loot olan dolaplar önce kısa bir süre "aranır" ve bu ses yakındaki zombileri çeker.
 
 Ayarlar: `config/deadhorizon.json` (oyun ilk açıldığında oluşur).

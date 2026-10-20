@@ -23,7 +23,7 @@ import java.util.List;
 /** Hold right-click to apply. What it does is set by its {@link Treatment}. */
 public class MedicalItem extends Item {
     public record Treatment(int useTicks, float heal, boolean stopsBleeding, boolean slowsInfection,
-                            boolean curesInfection, boolean curesPoison, int regenSeconds) {
+                            boolean curesInfection, boolean curesPoison, int regenSeconds, boolean curesFracture) {
     }
 
     private final Treatment treatment;
@@ -55,6 +55,9 @@ public class MedicalItem extends Item {
             if (treatment.heal() > 0) user.heal(treatment.heal());
             if (treatment.stopsBleeding()) user.removeStatusEffect(ModEffects.BLEEDING);
             if (treatment.curesPoison()) user.removeStatusEffect(StatusEffects.POISON);
+            if (treatment.curesFracture() && user.removeStatusEffect(ModEffects.FRACTURE)) {
+                message(user, "message.deadhorizon.fracture.splinted", Formatting.GREEN);
+            }
             if (treatment.regenSeconds() > 0) {
                 user.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, treatment.regenSeconds() * 20));
             }

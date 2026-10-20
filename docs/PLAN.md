@@ -80,6 +80,9 @@ Ortak AI: kapı kırma, ses/ışık algısı (ateş, koşma, patlama sesi zombil
 - **Kanama** (ağır vuruşta), **kırık bacak** (yüksekten düşme → yavaşlık, atel ile iyileşir).
 - **Gürültü** seviyesi (koşma, silah, kapı → zombileri çeker; eğilerek yürümek sessiz).
 - Gece görüşü kısıtlı; el feneri / meşale önemli.
+- **Dayanıklılık**: koşmak ve vurmak yorar, ağır zırh daha çok yorar; tükenince koşamazsın ve güçsüzleşirsin.
+- **Zombi duyuları**: karanlıkta zor fark edilirsin (elinde ışık yoksa), kanaman varsa kokunu uzaktan alırlar; kafaya isabet eden mermi/ok iki kat hasar.
+- **Kirli su**: şişeyle doldurulan su hasta edebilir, kaynatılınca (fırın/kamp ateşi) temiz su olur.
 
 ### 2.7 Üs savunması
 - Güçlendirilmiş kapılar ve barikat blokları (zombiler hasar verebilir, tamir edilebilir).
@@ -146,12 +149,12 @@ Her dekor bloğu bir işe yarar; yapıların içinde de doğal olarak bulunur.
 |---|---|---|
 | **0 – Altyapı** ✓ | Fabric projesi, GitHub repo, config, CI ile `.jar`. | Oyunda yüklenen mod. |
 | **1 – Çekirdek zombiler** ✓ | Yürüyen, Koşucu, Tank; gündüz doğma, kapı kırma, ses algısı. | Daha tehlikeli zombiler. |
-| **2 – Enfeksiyon + tıbbi eşyalar** | Enfeksiyon aşamaları, HUD, bandaj, antibiyotik, antidot, kanama. | Isırığın bir anlamı var. |
-| **3 – Temel dekorasyon ve yağmalama** | Dolaplar, buzdolabı, raf, kasa, koltuk/sandalye, masa, lamba, çöp kutusu, kum torbası, barikat tahtası, dikenli tel; yağmalama sistemi. | Üs kurulabiliyor, yapılar doldurulabiliyor. |
-| **4 – Özel zombiler** | Çığlıkçı, Kusan, Patlayan, Sürünen, Zırhlı; GeckoLib modelleri. | Çeşitli tehditler. |
+| **2 – Enfeksiyon + tıbbi eşyalar** ✓ | Enfeksiyon aşamaları, HUD, bandaj, antibiyotik, antidot, kanama. | Isırığın bir anlamı var. |
+| **3 – Temel dekorasyon ve yağmalama** ✓ | Dolaplar, buzdolabı, raf, kasa, koltuk/sandalye, masa, lamba, çöp kutusu, kum torbası, barikat tahtası, dikenli tel; yağmalama sistemi. | Üs kurulabiliyor, yapılar doldurulabiliyor. |
+| **4 – Özel zombiler** ✓ | Çığlıkçı, Kusan, Patlayan, Sürünen, Zırhlı; GeckoLib modelleri. | Çeşitli tehditler. |
 | **5 – Silahlar** | Yakın dövüş, tam ateşli silah sistemi, mermi, eklentiler, atılabilirler. | Hazırlık ve ilerleme hissi. |
 | **6 – Yapılar (1. dalga)** | Evler, market, eczane, benzin istasyonu, polis karakolu, araç enkazları. | Keşfetmeye değer dünya. |
-| **7 – Hayatta kalma** | Susuzluk, yemek pişirme, bozulma, kırık bacak, yorgunluk, su sistemleri. | Tam hayatta kalma. |
+| **7 – Hayatta kalma** (ilk kısmı öne çekildi ✓) | ✓ Susuzluk, ✓ dayanıklılık, ✓ kırık bacak, ✓ zombi duyuları ve kafadan vuruş, ✓ konserve/içecekler; kalan: yemek pişirme, bozulma, vücut ısısı, su toplama. | Tam hayatta kalma. |
 | **8 – Sürüler + olaylar** | Kıyamet gün sayacı, Kan Ayı, gezgin sürüler, erzak düşürme, radyo. | Sürekli artan baskı. |
 | **9 – Elektrik ve üretim** | Jeneratör, güneş paneli, kablolar, elektrikli çit, projektör; çalışma tezgahları, tamir. | Gelişmiş üs. |
 | **10 – Yapılar (2. dalga)** | Hastane, okul, hapishane, askeri üs, apartman, küçük kasaba. | Büyük keşif hedefleri. |

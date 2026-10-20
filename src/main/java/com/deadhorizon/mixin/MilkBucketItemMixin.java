@@ -1,9 +1,12 @@
 package com.deadhorizon.mixin;
 
+import com.deadhorizon.config.DHConfig;
 import com.deadhorizon.registry.ModEffects;
+import com.deadhorizon.survival.Survival;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MilkBucketItem;
 import net.minecraft.world.World;
@@ -16,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Milk must not cure the infection or stop bleeding, so those effects survive drinking it. */
+/** Milk must not cure the infection or stop bleeding, so those effects survive drinking it. It does quench thirst. */
 @Mixin(MilkBucketItem.class)
 public abstract class MilkBucketItemMixin {
     @Unique
@@ -27,6 +30,7 @@ public abstract class MilkBucketItemMixin {
         List<StatusEffectInstance> kept = deadhorizon$kept.get();
         kept.clear();
         if (world.isClient) return;
+        if (DHConfig.INSTANCE.thirstEnabled && user instanceof PlayerEntity player) Survival.drink(player, 6.0f);
         for (StatusEffect effect : new StatusEffect[]{ModEffects.INFECTION, ModEffects.BLEEDING}) {
             StatusEffectInstance instance = user.getStatusEffect(effect);
             if (instance != null) kept.add(new StatusEffectInstance(instance));

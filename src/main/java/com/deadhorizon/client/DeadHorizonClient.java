@@ -32,6 +32,9 @@ public class DeadHorizonClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.ACID_SPIT, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(ModEntities.SEAT, EmptyEntityRenderer::new);
 
+        ClientSurvival.register();
+        SurvivalHud.register();
+
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), ModBlocks.BARBED_WIRE, ModBlocks.MEDICINE_CABINET);
     }
 }
